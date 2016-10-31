@@ -2,7 +2,7 @@ package ru.epatko;
 
 public class Calculator {
 
-	double result = 0.0;
+	private double result;
 
 	public void add(double a, double b) {   // method addition operation
 		this.result = a + b;
@@ -20,7 +20,7 @@ public class Calculator {
 		this.result = a / b;
 	}
 	
-	public double giveResult(){
+	public double getResult(){
 		return this.result;
 	}
 }
