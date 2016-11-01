@@ -38,7 +38,7 @@ public class TriangleTest{
 					
 		Point first = new Point (0, 0);
 		Point second = new Point (3, 0);
-		Point third = new Point (4, 0);
+		Point third = new Point (4, 0);			//The wrong point
 				
 		Triangle triangle = new Triangle(first, second, third);
 		
