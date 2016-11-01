@@ -14,7 +14,7 @@ public class StartCalc {
 		// call method subtraction operation from Calculator and print rezult:
 		
 		calc.sub(7.40, 8.50);
-		System.out.printf("7.40 - 8.50 = %.2f\n", calc.geteResult());
+		System.out.printf("7.40 - 8.50 = %.2f\n", calc.getResult());
 		
 		// call method multiplication operation from Calculator and print rezult:
 		
