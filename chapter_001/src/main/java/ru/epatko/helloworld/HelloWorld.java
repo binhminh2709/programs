@@ -1,4 +1,4 @@
-package ru.epatko;
+package ru.epatko.helloworld;
 
 public class HelloWorld {
 

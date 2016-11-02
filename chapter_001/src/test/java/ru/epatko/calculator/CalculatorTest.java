@@ -1,4 +1,4 @@
-package ru.epatko;
+package ru.epatko.calculator;
 
 import org.junit.Test;
 import static org.hamcrest.core.Is.is;

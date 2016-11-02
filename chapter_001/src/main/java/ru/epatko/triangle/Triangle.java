@@ -1,4 +1,4 @@
-package ru.epatko;
+package ru.epatko.triangle;
 
 public class Triangle {
 	public Point a;

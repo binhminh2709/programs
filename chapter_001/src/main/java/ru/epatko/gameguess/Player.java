@@ -1,4 +1,4 @@
-package ru.epatko;
+package ru.epatko.gameguess;
 
 public class Player {
 	int number = 0;

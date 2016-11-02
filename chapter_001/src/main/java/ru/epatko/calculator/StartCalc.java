@@ -1,4 +1,4 @@
-package ru.epatko;
+package ru.epatko.calculator;
 
 public class StartCalc {
 
