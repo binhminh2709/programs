@@ -1,2 +1,2 @@
 # programs
-my programs
+my training programs
