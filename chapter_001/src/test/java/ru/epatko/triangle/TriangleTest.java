@@ -52,5 +52,12 @@ public class TriangleTest{
 		Point second = new Point (3, 0);
 		assertEquals(3, first.distanceTo(second), 1e-6);
 	}
+
+	@Test
+	public void whenSetTheSidesThenGetMaxSide(){
+					
+		MaxSide testMaxSide = new MaxSide();
+		assertEquals(4.5, testMaxSide.max(1, 2, 4.5), 1e-6);
+	}
 		
 }		
