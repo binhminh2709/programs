@@ -1,5 +1,5 @@
 package ru.epatko.gameguess;
-
+//test
 public class Player {
 	int number = 0;
 	public void guess(){
