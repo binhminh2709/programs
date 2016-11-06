@@ -13,7 +13,7 @@ public class BubbleSortTest{
 
 		Sorter sorter = new Sorter();
 		int [] newArray = {0, 0, 3};
-		sorter.bubbleSort(newArray);
+		sorter.sort(newArray);
 		assertEquals(3, newArray[2]);
 	}
 

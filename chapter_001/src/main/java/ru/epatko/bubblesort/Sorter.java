@@ -1,7 +1,7 @@
 package ru.epatko.bubblesort;
 
 public class Sorter {
-	void bubbleSort(int[] array){
+	public void sort(int[] array){
 		int tmp;
 		
 		for(int i = array.length - 1; i >= 0; i--){

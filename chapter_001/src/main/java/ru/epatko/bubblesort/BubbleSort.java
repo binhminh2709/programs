@@ -14,7 +14,7 @@ public class BubbleSort{
 		printer.print(array);
 		
 		Sorter sorter = new Sorter();
-		sorter.bubbleSort(array);
+		sorter.sort(array);
 		
 		// Print sorted array
 		printer.print(array);

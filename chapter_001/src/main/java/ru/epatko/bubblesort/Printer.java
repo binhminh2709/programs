@@ -1,7 +1,7 @@
 package ru.epatko.bubblesort;
 
 public class Printer {
-	void print(int[] array){
+	public void print(int[] array){
 
 		for(int element : array){
 			System.out.print(element + ", ");
