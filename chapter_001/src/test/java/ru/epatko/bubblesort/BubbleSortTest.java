@@ -9,11 +9,11 @@ import java.io.PrintStream;
 public class BubbleSortTest{
 
 	@Test
-	public void wenGiveArrayThenGetSortedArray(){
+	public void wenGiveUnsortedArrayThenGetSortedArray(){
 
-		int [] newArray = new int [3];
-		newArray[0] = 3;
-		BubbleSort.bubbleSort(newArray);
+		Sorter sorter = new Sorter();
+		int [] newArray = {0, 0, 3};
+		sorter.bubbleSort(newArray);
 		assertEquals(3, newArray[2]);
 	}
 
@@ -23,10 +23,9 @@ public class BubbleSortTest{
 		ByteArrayOutputStream output = new ByteArrayOutputStream();
 		System.setOut (new PrintStream(output));
 		
-		int[] array = new int[2];
-		array[0] = 1;
-		array[1] = 2;
-		BubbleSort.printArray(array);
+		Printer printer = new Printer();
+		int[] newArray = {1, 2};
+		printer.print(newArray);
 		assertThat(output.toString(), is("1, 2, \b\b  \n"));
 	}
 }

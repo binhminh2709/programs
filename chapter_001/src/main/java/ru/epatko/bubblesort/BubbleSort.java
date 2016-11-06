@@ -6,44 +6,18 @@ public class BubbleSort{
 
 		int[] array = new int[10];
 		
-		createArray(array);
-		printArray(array);
+		Creator creator = new Creator();
+		creator.create(array);
 		
-		bubbleSort(array);
-		printArray(array);
-
-	}
-
-	public static void createArray(int[] array){
-
-		for (int k = 0; k < array.length; k++){
-			array[k] = (int)(Math.random()*100);
-		}
-	}
-
-	public static void bubbleSort(int[] array){
-		int tmp;
+		Printer printer  = new Printer();
+		// Print unsorted array
+		printer.print(array);
 		
-		for(int i = array.length - 1; i >= 0; i--){
-			
-			for(int j = 0; j <= i-1; j++){
-				
-				if(array[j] > array[j+1]){
-					tmp = array[j];
-					array[j] = array[j+1];
-					array[j+1] = tmp;
-				}
-			}
-		}
-	} 
+		Sorter sorter = new Sorter();
+		sorter.bubbleSort(array);
+		
+		// Print sorted array
+		printer.print(array);
 
-	public static void printArray(int[] array){
-
-		for(int element : array){
-			System.out.print(element + ", ");
-		}
-
-		// Return carriage on two symbols (", "), print there two spaces and go to the new line.
-		System.out.print("\b\b  \n"); 		
 	}
 }
