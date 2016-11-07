@@ -1,48 +1,43 @@
 package ru.epatko.arraymerger;
 
-import ru.epatko.bubblesort.Creator;
-import ru.epatko.bubblesort.Sorter;
-import ru.epatko.bubblesort.Printer;
+public class ArrayMerger {
+	
+	/**
+	* @param arrayA  - first source array
+	* @param arrayB - second source array
+	* @param arrayC - destination array
+	*/
 
-public class ArrayMerger{
-
-	public static void main (String[] args){
-
-		int[] arrayA = new int[5];
-		int[] arrayB = new int[6];
-		int[] arrayC = new int[arrayA.length + arrayB.length];
-
-		Creator creator = new Creator();
-		Sorter sorter = new Sorter();
-		Printer printer = new Printer();
+	void merge (int[] arrayA, int[] arrayB, int[] arrayC) {
 		
-		creator.create(arrayA);
-		System.out.print("Unsorted arrayA: ");
-		printer.print(arrayA);
+		/**
+		* Copy arrayA and arrayB to arrayC
+		*/
+		int lengthArrayA = arrayA.length;
+		for(int i = 0; i < lengthArrayA; i++) {
+			arrayC[i] = arrayA[i];
+		}
+
+		int lengthArrayB = arrayB.length;
+		for(int i = 0; i < lengthArrayB; i++) {
+			arrayC[i + lengthArrayA] = arrayB[i];
+		}	
 		
-		sorter.sort(arrayA);
-		System.out.print("Sorted arrayA: ");
-		printer.print(arrayA);
-		
-		creator.create(arrayB);
-		System.out.print("Unsorted arrayB: ");
-		printer.print(arrayB);
+		/**
+		* Sort arrayC
+		*/
+		int tmp;
 
-		sorter.sort(arrayB);
-		System.out.print("Sorted arrayB: ");
-		printer.print(arrayB);
-
-		Copier copier = new Copier();
-		copier.copy(arrayA, arrayB, arrayC);
-		System.out.print("Merge arrayA and arrayB to arrayC (unsorted): ");
-		printer.print(arrayC);
-
-		sorter.sort(arrayC);
-		System.out.print("Sorted arrayC: ");
-		printer.print(arrayC);
-	}
+		for(int i = arrayC.length - 1; i >= 0; i--) {
+			
+			for(int j = 0; j <= i-1; j++) {
+				
+				if(arrayC[j] > arrayC[j+1]) {
+					tmp = arrayC[j];
+					arrayC[j] = arrayC[j+1];
+					arrayC[j+1] = tmp;
+				}
+			}
+		}
+	}	
 }
-
-
-
-

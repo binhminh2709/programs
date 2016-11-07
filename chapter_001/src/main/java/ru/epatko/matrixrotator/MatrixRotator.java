@@ -1,7 +1,15 @@
-package ru.epatko.rotatematrix;
+package ru.epatko.matrixrotator;
 
-public class Rotator {
-	void rotate(int[][] array){
+/**
+* Rotate square array from right to left
+*/
+
+public class MatrixRotator {
+	
+	/**
+	* @param array - square array[n][n]
+	*/
+	void rotate(int[][] array) {
 		
 		int n = array.length;
 		int tmp;

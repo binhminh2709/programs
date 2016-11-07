@@ -3,20 +3,18 @@ package ru.epatko.arraymerger;
 import org.junit.Test;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
-import org.apache.commons.io.output.ByteArrayOutputStream;
-import java.io.PrintStream;
 
-public class ArrayMergerTest{
+public class ArrayMergerTest {
 
 	@Test
-	public void wenGiveTwoDifferentArraysThenGetOneMergedArray(){
+	public void wenGiveTwoDifferentArraysThenGetOneMergedArray() {
 
-		Copier copier = new Copier();
-		int [] arrayA = {5, 3};
+		ArrayMerger merger = new ArrayMerger();
+		int [] arrayA = {3, 5};
 		int [] arrayB = {2, 4};
 		int [] arrayC = new int[4];
 
-		copier.copy(arrayA, arrayB, arrayC);
-		assertEquals(4, arrayC[3]);
+		merger.merge(arrayA, arrayB, arrayC);
+		assertEquals(4, arrayC[2]);
 	}
 }
