@@ -12,7 +12,7 @@ import static org.junit.Assert.*;
 public class MatrixRotatorTest{
 
 	@Test
-	public void wenGiveArrayThenGetRotatedArray(){
+	public void whenGiveArrayThenGetRotatedArray(){
 
 /**
 * Create test array
