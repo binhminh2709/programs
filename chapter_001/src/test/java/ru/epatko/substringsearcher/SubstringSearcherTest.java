@@ -2,7 +2,7 @@ package ru.epatko.substringsearcher;
 
 /**
 * Test SubstringSearcher
-* @autor Mikhail Epatko 
+* @author Mikhail Epatko 
 */
 
 import org.junit.Test;

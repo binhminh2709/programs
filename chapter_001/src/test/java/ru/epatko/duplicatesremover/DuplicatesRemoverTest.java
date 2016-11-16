@@ -2,7 +2,7 @@ package ru.epatko.duplicatesremover;
 
 /**
 * Tester
-* @autor Mikhail Epatko
+* @author Mikhail Epatko
 */
 import org.junit.Test;
 import static org.hamcrest.core.Is.is;

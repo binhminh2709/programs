@@ -2,7 +2,7 @@ package ru.epatko.maxnumbersearcher;
 
 /**
 * Max number searcher
-* @autor Mikhail Epatko
+* @author Mikhail Epatko
 */
 public class MaxNumberSearcher{
 

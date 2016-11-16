@@ -2,7 +2,7 @@ package ru.epatko.substringsearcher;
 
 /**
 * Search substring in original string
-* @autor Mikhail Epatko 
+* @author Mikhail Epatko 
 */
 
 public class SubstringSearcher {

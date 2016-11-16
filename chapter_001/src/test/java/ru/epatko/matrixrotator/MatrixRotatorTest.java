@@ -2,7 +2,7 @@ package ru.epatko.matrixrotator;
 
 /**
 * Test MatrixRotator
-* @autor Mikhail Epatko 
+* @author Mikhail Epatko 
 */
 
 import org.junit.Test;

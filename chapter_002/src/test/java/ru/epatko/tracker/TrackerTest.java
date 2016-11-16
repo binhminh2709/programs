@@ -2,7 +2,7 @@ package ru.epatko.tracker;
 
 /**
 * Tracker Test
-* @autor Mikhail Epatko 
+* @author Mikhail Epatko 
 */
 import ru.epatko.models.Order;
 import org.junit.Test;

@@ -2,7 +2,7 @@ package ru.epatko.maxnumbersearcher;
 
 /**
 * Test MaxNumberSarcher
-* @autor Mikhail Epatko
+* @author Mikhail Epatko
 */
 
 import org.junit.Test;

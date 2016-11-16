@@ -2,7 +2,7 @@ package ru.epatko.arraymerger;
 
 /**
 * Test ArrayMerger
-* @autor Mikhail Epatko 
+* @author Mikhail Epatko 
 */
 
 import org.junit.Test;

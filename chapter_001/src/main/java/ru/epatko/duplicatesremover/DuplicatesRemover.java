@@ -2,7 +2,7 @@ package ru.epatko.duplicatesremover;
 
 /**
 * Remove duplicates in string array
-* @autor Mikhail Epatko
+* @author Mikhail Epatko
 */
 
 public class DuplicatesRemover {
