@@ -98,4 +98,12 @@ public class Order {
 	public String getComment() {
 		return this.comment;
 	}
+
+/**
+* Get order name.
+* @return order name.
+*/
+	public String getName() {
+		return this.name;
+	}
 }

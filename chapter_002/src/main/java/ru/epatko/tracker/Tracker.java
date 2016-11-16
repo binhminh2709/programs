@@ -62,9 +62,9 @@ public class Tracker {
 * @param orderId - ID of order to delete.
 */
 	public void delete(int orderId) {
-		for (Order element : this.orders) {
-			if (element.getId() == orderId) {
-				element = null;
+		for (int i = 0; i < this.orders.length; i++) {
+			if (orders[i].getId() == orderId) {
+				orders[i] = null;
 				break;
 			}
 		}
@@ -89,6 +89,35 @@ public class Tracker {
 			if (element.getId() == orderId) {
 				result = element;
 				break;
+			}
+		}
+		return result;
+	}
+
+/**
+* Get order by index.
+* @param orderIndex - order index.
+* @return Order by index.
+*/
+	public Order getOrderByIndex(int orderIndex) {
+		return this.orders[orderIndex];
+	}
+
+/**
+* Get orders by filter.
+* @param filter - filter by symbols in name.
+* @return filtered array of orders.
+*/
+	public Order[] getOrdersByFilter(String filter) {
+		Order[] result = new Order[this.orders.length];
+		int i = 0;
+		for (Order element : this.orders) {
+			if (element == null) {
+				continue;
+			}
+			if (element.getName().contains(filter)) {
+				result[i] = element;
+				i++;
 			}
 		}
 		return result;

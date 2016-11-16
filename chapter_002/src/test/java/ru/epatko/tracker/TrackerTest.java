@@ -55,7 +55,10 @@ public class TrackerTest {
 		assertThat("New description", is(tracker.getOrderById(0).getDescription()));
 	}
 
-@Test
+/**
+* Testing metods: tracker.getOrderById.
+*/
+	@Test
 	public void wenAskToGetOrdersByIdThenGetOrdersById() {
 		Order first = new Order(1, 111L, "first name", "first description");
 		Order second = new Order(2, 222L, "second name", "second description");
@@ -70,7 +73,47 @@ public class TrackerTest {
 		assertThat(second, is(tracker.getOrderById(2)));
 	}
 
+/**
+* Testing metods: tracker.delete.
+*/
+	@Test
+	public void wenAskToDeletOrderThenTrackerDeletOrder() {
 
+		Order first = new Order(1, 111L, "first name", "first description");
+		Order second = new Order(2, 222L, "second name", "second description");
+		Order third = new Order(3, 333L, "third name", "third description");
 
+		Tracker tracker = new Tracker();
 
+		tracker.add(first);
+		tracker.add(second);
+		tracker.add(third);
+
+		tracker.delete(2);
+
+		assertThat(null, is(tracker.getOrderByIndex(1)));
+	}
+
+/**
+* Testing metods: tracker.getOrdersByFilter.
+*/
+	@Test
+	public void wenSetAFilterThenGetFilteredArrayOfOrders() {
+
+		Order first = new Order(1, 111L, "aaa sss fff lggg", "first description");
+		Order second = new Order(2, 222L, "jjjff llldd ;;;", "second description");
+		Order third = new Order(3, 333L, "nnn ee aaa", "third description");
+
+		Tracker tracker = new Tracker();
+
+		tracker.add(first);
+		tracker.add(second);
+		tracker.add(third);
+
+		Order[] testArray = new Order[tracker.getAllOrders().length];
+		testArray[0] = first;
+		testArray[1] = second;
+
+		assertThat(testArray, is(tracker.getOrdersByFilter("f l")));
+	}
 }
