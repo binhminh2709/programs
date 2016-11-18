@@ -1,7 +1,6 @@
 package ru.epatko.startui;
 
 import ru.epatko.models.Order;
-import ru.epatko.tracker.Tracker;
 
 /**
 * StartUI.
@@ -16,9 +15,13 @@ public class StartUI {
 */
 	public static void main(String[] args) {
 
-		Tracker tracker = new Tracker();
-		Order order = new Order();
-		tracker.add(order);
-		System.out.println(tracker.getOrderByIndex(0).getName());
+	}
+
+/**
+* Print order name.
+* @param order - order.
+*/
+	public void printName(Order order) {
+		System.out.println(order.getName());
 	}
 }
