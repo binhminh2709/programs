@@ -11,7 +11,7 @@ import java.io.PrintStream;
 public class StartUITest {
 
 /**
-* Testing metods: main().
+* Testing method: main().
 */	
 	@Test
 	public void wenCreateAnOrderThenCanPrintOrderName() {
