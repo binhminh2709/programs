@@ -3,9 +3,11 @@ package ru.epatko.tracker;
 import ru.epatko.models.Order;
 
 /**
-* Just a Tracker...
-* @author Mikhail Epatko.
-*/
+ * Manager of orders.
+ * @author Mikhail Epatko (epatko-m-i@rambler.ru)
+ * @version $Id$
+ * @since 0.1
+ */
 
 public class Tracker {
 

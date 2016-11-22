@@ -13,9 +13,9 @@ public class StartUITest {
 /**
 * Testing method: main().
 */	
-	@Test
+/*	@Test
 	public void wenCreateAnOrderThenCanPrintOrderName() {
-		
+
 		ByteArrayOutputStream output = new ByteArrayOutputStream();
 		System.setOut (new PrintStream(output));
 
@@ -23,5 +23,5 @@ public class StartUITest {
 		Order order = new Order();
 		start.printName(order);
 		assertThat(output.toString(), is("default\n"));
-	}
+	} */
 }

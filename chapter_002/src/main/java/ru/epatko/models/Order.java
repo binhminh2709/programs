@@ -2,8 +2,10 @@ package ru.epatko.models;
 
 /**
 * An order.
-* @author Mikhail Epatko.
-*/
+ * @author Mikhail Epatko (epatko-m-i@rambler.ru)
+ * @version $Id$
+ * @since 0.1
+ */
 public class Order {
 
 /**
