@@ -3,8 +3,6 @@ package ru.epatko.tracker;
 /**
 * Tracker Test
  * @author Mikhail Epatko (epatko-m-i@rambler.ru)
- * @version $Id$
- * @since 0.1
  */
 import ru.epatko.models.Order;
 import org.junit.Test;

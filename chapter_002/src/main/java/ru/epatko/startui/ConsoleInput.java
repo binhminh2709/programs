@@ -4,7 +4,7 @@ import java.util.*;
 
 /**
  * Console input.
- * @author Mikhail Epatko (epatko-m-i@rambler.ru)
+ * @author Mikhail Epatko (epatko-m-i@rambler.ru).
  * @version $Id$
  * @since 0.1
  */

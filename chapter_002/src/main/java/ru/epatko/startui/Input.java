@@ -2,9 +2,7 @@ package ru.epatko.startui;
 
 /**
  * Input interface.
- * @author Mikhail Epatko (epatko-m-i@rambler.ru)
- * @version $Id$
- * @since 0.1
+ * @author Mikhail Epatko (epatko-m-i@rambler.ru).
  */
 public interface Input {
     /**

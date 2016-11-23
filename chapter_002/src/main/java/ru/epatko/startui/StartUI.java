@@ -8,10 +8,8 @@ import java.util.Date;
 
 /**
  * StartUI.
- * @author Mikhail Epatko (epatko-m-i@rambler.ru)
- * @version $Id$
- * @since 0.1
- */
+ * @author Mikhail Epatko (epatko-m-i@rambler.ru).
+  */
 
 public class StartUI {
 	/**
@@ -126,7 +124,7 @@ public class StartUI {
 	 * @param args - no arguments.
 	 */
 	public static void main(String[] args) {
-		Input inputMethod = new ConsoleInput();
+		Input inputMethod = new StubInput();
 		StartUI start = new StartUI(inputMethod);
 		start.printMenu();
 		start.choice();
