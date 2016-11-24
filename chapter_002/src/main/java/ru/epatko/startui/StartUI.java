@@ -57,12 +57,13 @@ public class StartUI {
 		String name;
 		String description;
 		String field;
+		String choice;
 		int id;
 		/**
 		 * Cycle.
 		 */
 		do {
-			String choice = this.input.ask("Enter your choice number: ");
+			choice = this.input.ask("Enter your choice number: ");
 
 			if (choice.equals("0")) {
 				printMenu();
