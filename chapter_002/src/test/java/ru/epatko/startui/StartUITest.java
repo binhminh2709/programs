@@ -20,12 +20,13 @@ public class StartUITest {
        // Input inputMethod = new StubInput();
         //StartUI start = new StartUI(inputMethod);
         StartUI.main(new String[2]);
+        String testString = new StringBuilder("-----------------------\nMenu:\n-----------------------\n"
+                + "0 - Print this menu.\n1 - Add new order.\n2 - Change order.\n"
+                + "3 - Delete order.\n4 - Get list of orders.\n5 - Get order by name.\n"
+                + "6 - Quit program.\nEnter your choice number: \nEnter order name: \n"
+                + "Enter order description: \nOrder ID: 1 was added.\nEnter your choice number: \n").toString();
 
-        assertThat(output.toString(), is("-----------------------\nMenu:\n-----------------------\n"
-                                        + "0 - Print this menu.\n1 - Add new order.\n2 - Change order.\n"
-                                        + "3 - Delete order.\n4 - Get list of orders.\n5 - Get order by name.\n"
-                                        + "6 - Quit program.\nEnter your choice number: \nEnter order name: \n"
-                                        + "Enter order description: \nOrder ID: 1 was added.\nEnter your choice number: \n"));
+        assertThat(output.toString(), is(testString));
     }
 
     @Test
