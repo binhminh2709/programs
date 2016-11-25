@@ -25,14 +25,17 @@ public class StartUI {
  	 */
 	private Date date = new Date();
 
+	private Tracker tracker;
+
 	/**
 	 * Constructor.
 	 *
 	 * @param inputMethod - input interface.
 	 */
-	public StartUI(Input inputMethod) {
+	public StartUI(Input inputMethod, Tracker manager) {
 		this.input = inputMethod;
-	}
+		this.tracker = manager;
+	}пше
 
 	/**
 	 * Method print main user menu.
@@ -52,7 +55,6 @@ public class StartUI {
 	 * Processing user choice.
 	 */
 	public void choice() {
-		Tracker tracker = new Tracker();
 		Order order;
 		String name;
 		String description;
@@ -73,21 +75,21 @@ public class StartUI {
 				description = this.input.ask("Enter order description: ");
 				this.orderID++;
 				order = new Order(this.orderID, this.date.getTime(), name, description);
-				tracker.add(order);
+				this.tracker.add(order);
 				System.out.printf("Order ID: %d was added.\n", this.orderID);
 
 			} else if (choice.equals("2")) {
 				id = Integer.parseInt(this.input.ask("Enter order ID: "));
 				field = this.input.ask("Enter field to change: \"comment\" - change order comment, \"description\" - change order description: ");
 				description = this.input.ask("Enter new description/commit: ");
-				tracker.change(id, field, description);
+				this.tracker.change(id, field, description);
 
 			} else if (choice.equals("3")) {
 				id = Integer.parseInt(this.input.ask("Enter ID of order to delete: "));
-				tracker.delete(id);
+				this.tracker.delete(id);
 
 			} else if (choice.equals("4")) {
-				for (Order element : tracker.getAllOrders()) {
+				for (Order element : this.tracker.getAllOrders()) {
 					if (element != null) {
 						printOrder(element);
 					}
@@ -95,13 +97,15 @@ public class StartUI {
 
 			} else if (choice.equals("5")) {
 				name = this.input.ask("Enter keyword: ");
-				for (Order element : tracker.getOrdersByFilter(name)) {
+				for (Order element : this.tracker.getOrdersByFilter(name)) {
 					if (element != null) {
 						printOrder(element);
 					}
 				}
 			} else if (choice.equals("6")) {
 				return;
+			} else if (choice.equals("pause")) {
+				continue;
 			} else {
 				System.out.println("Incorrect input. Try again.");
 			}
@@ -125,8 +129,9 @@ public class StartUI {
 	 * @param args - no arguments.
 	 */
 	public static void main(String[] args) {
+		Tracker tracker = new Tracker();
 		Input inputMethod = new StubInput();
-		StartUI start = new StartUI(inputMethod);
+		StartUI start = new StartUI(inputMethod, tracker);
 		start.printMenu();
 		start.choice();
 	}
