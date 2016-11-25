@@ -24,13 +24,16 @@ public class StartUI {
 	 * Order create date.
  	 */
 	private Date date = new Date();
-
+	/**
+	 * Tracker.
+	 */
 	private Tracker tracker;
 
 	/**
 	 * Constructor.
 	 *
 	 * @param inputMethod - input interface.
+	 * @param manager - orders manager (tracker).
 	 */
 	public StartUI(Input inputMethod, Tracker manager) {
 		this.input = inputMethod;

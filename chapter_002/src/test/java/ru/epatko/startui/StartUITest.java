@@ -1,10 +1,9 @@
 package ru.epatko.startui;
 
-import org.junit.Test;
-import static org.hamcrest.core.Is.is;
+import org.junit.*;
 import static org.junit.Assert.*;
-import org.apache.commons.io.output.ByteArrayOutputStream;
-import java.io.PrintStream;
+import static org.hamcrest.core.Is.is;
+import ru.epatko.tracker.Tracker;
 
 /**
  * @author Mikhail Epatko (epatko-m-i@rambler.ru).
@@ -12,44 +11,44 @@ import java.io.PrintStream;
  */
 public class StartUITest {
 
-    @Test
-    public void wenStartTheProgramThenPrintResult() {
-        ByteArrayOutputStream output = new ByteArrayOutputStream();
-        System.setOut (new PrintStream(output));
-
-       // Input inputMethod = new StubInput();
-        //StartUI start = new StartUI(inputMethod);
-        StartUI.main(new String[2]);
-        String testString;
-        testString = new StringBuilder().append("-----------------------\nMenu:\n-----------------------\n").append
-                ("0 - Print this menu.\n1 - Add new order.\n2 - Change order.\n").append
-                ("3 - Delete order.\n4 - Get list of orders.\n5 - Get order by name.\n").append
-                ("6 - Quit program.\nEnter your choice number: \nEnter order name: \n").append
-                ("Enter order description: \nOrder ID: 1 was added.\nEnter your choice number: \n").toString();
-
-        assertThat(output.toString(), is(testString));
-    }
 
     @Test
-    public void wenEnterIncorrectNumberThenGetWarning() {
-        ByteArrayOutputStream output = new ByteArrayOutputStream();
-        System.setOut (new PrintStream(output));
-
-        Input inputMethod = new TestInput();
-        StartUI start = new StartUI(inputMethod);
+    public void whenCreateOrderOneThenCanGetNameOfOrderOne() {
+        Input inputMethod = new StubInput();
+        Tracker tracker = new Tracker();
+        StartUI start = new StartUI(inputMethod, tracker);
         start.choice();
-        assertThat(output.toString(), is("Enter your choice number: \nIncorrect input. Try again.\nEnter your choice number: \n"));
 
+        assertThat(tracker.getOrderName(1), is("Order-1"));
     }
 
-    private class TestInput implements Input {
+    @Test
+    public void whenDeleteOrderTwoThenCantGetNameOfOrderTwo() {
+        Input inputMethod = new StubInput();
+        Tracker tracker = new Tracker();
+        StartUI start = new StartUI(inputMethod, tracker);
+        start.choice();
 
-        private String[] answers = {"7", "6"};
-        private int index;
+        assertThat(tracker.getOrderName(2), is("No order with this ID."));
+    }
 
-        public String ask(String question) {
-            System.out.println(question);
-            return this.answers[this.index++];
-        }
+    @Test
+    public void whenCreateOrderOneCommentThenCanGetCommentOfOrderOne() {
+        Input inputMethod = new StubInput();
+        Tracker tracker = new Tracker();
+        StartUI start = new StartUI(inputMethod, tracker);
+        start.choice();
+
+        assertThat(tracker.getOrderComment(1), is("Comment-1"));
+    }
+
+    @Test
+    public void whenChangeOrderThreeDescriptionThenCanGetNewDescriptionOfOrderThree() {
+        Input inputMethod = new StubInput();
+        Tracker tracker = new Tracker();
+        StartUI start = new StartUI(inputMethod, tracker);
+        start.choice();
+
+        assertThat(tracker.getOrderDescription(3), is("New description-3"));
     }
 }

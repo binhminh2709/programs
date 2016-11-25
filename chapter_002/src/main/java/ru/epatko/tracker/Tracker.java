@@ -84,9 +84,11 @@ public class Tracker {
 * @return Order by ID.
 */
 	public Order getOrderById(int orderId) {
-		Order result = new Order();
+		Order result = null;
 		for (Order element : this.orders) {
-			if (element.getId() == orderId) {
+			if (element == null) {
+				continue;
+			} else if (element.getId() == orderId) {
 				result = element;
 				break;
 			}
@@ -119,6 +121,55 @@ public class Tracker {
 				result[i] = element;
 				i++;
 			}
+		}
+		return result;
+	}
+
+	/**
+	 * Get order name by order ID.
+	 * @param id - order ID.
+	 * @return - order name.
+	 */
+	public String getOrderName(int id) {
+		String result;
+
+		if (getOrderById(id) != null) {
+			Order order = getOrderById(id);
+			result = order.getName();
+		} else {
+			result = "No order with this ID.";
+		}
+		return result;
+	}
+
+	/**
+	 * Get order description by order ID.
+	 * @param id - order ID.
+	 * @return - order description.
+	 */
+	public String getOrderDescription(int id) {
+		String result;
+		Order order = getOrderById(id);
+		if (order != null) {
+			result = order.getDescription();
+		} else {
+			result = "No order with this ID.";
+		}
+		return result;
+	}
+
+	/**
+	 * Get order comment by order ID.
+	 * @param id - order ID.
+	 * @return - order comment.
+	 */
+	public String getOrderComment(int id) {
+		String result;
+		Order order = getOrderById(id);
+		if (order != null) {
+			result = order.getComment();
+		} else {
+			result = "No order with this ID.";
 		}
 		return result;
 	}
