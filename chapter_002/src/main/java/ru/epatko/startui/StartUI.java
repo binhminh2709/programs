@@ -35,7 +35,7 @@ public class StartUI {
 	public StartUI(Input inputMethod, Tracker manager) {
 		this.input = inputMethod;
 		this.tracker = manager;
-	}пше
+	}
 
 	/**
 	 * Method print main user menu.
