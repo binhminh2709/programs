@@ -19,7 +19,7 @@ public class MenuTracker {
      */
     private Tracker tracker;
     /**
-     *
+     * Order ID.
      */
     private int orderID;
     /**
@@ -76,9 +76,9 @@ public class MenuTracker {
         this.actions[4] = this.new GetOrdersFilteredByName();
         this.actions[5] = this.new QuitProgram();
     }
-    /****************************************/
-    /**************Inner Classes*************/
-    /****************************************/
+    //****************************************//
+    //************* Inner Classes ************//
+    //****************************************//
 
     /**
      * Add new order to array.
