@@ -21,17 +21,17 @@ public class StubInput implements Input {
      * Default constructor.
      */
     public StubInput() {
-        this(new String[] {"1", "Order-1", "Description-1",             // Create order #1.
-                           "1", "Order-2", "Description-2",             // Create order #2.
-                           "1", "Order-3", "Description-3",             // Create order #3.
-                           "2", "1", "comment", "Comment-1",            // Change comment of order #1.
-                           "2", "3", "description", "New description-3", // Change description of order #3.
-                           "5", "r-2",                                  // Find order which name contains "r-2".
+        this(new String[] {"0", "Order-1", "Description-1",             // Create order #1.
+                           "0", "Order-2", "Description-2",             // Create order #2.
+                           "0", "Order-3", "Description-3",             // Create order #3.
+                           "1", "1", "comment", "Comment-1",            // Change comment of order #1.
+                           "1", "3", "description", "New description-3", // Change description of order #3.
+                           "4", "r-2",                                  // Find order which name contains "r-2".
                            "7",                                         // Try input incorrect number.
-                           "4",                                         // Print all orders.
-                           "3", "2",                                    // Delete order #2.
-                           "4",                                         // Print all orders.
-                           "6"});                                        // Exit program.
+                           "3",                                         // Print all orders.
+                           "2", "2",                                    // Delete order #2.
+                           "3",                                         // Print all orders.
+                           "5"});                                        // Exit program.
     }
 
     /**

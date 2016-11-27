@@ -1,5 +1,7 @@
 package ru.epatko.models;
 
+import java.util.Date;
+
 /**
 * An order.
  * @author Mikhail Epatko (epatko-m-i@rambler.ru).
@@ -31,19 +33,18 @@ public class Order {
 * Empty constructor.
 */
 	public Order() {
-		this(0, 0, "default", "default");
+		this(0, "default", "default");
 	}
 
-/**
-* Constructor.
-* @param orderId - order id.
-* @param orderDate - order date.
-* @param orderName - order name.
-* @param orderDescription - order description.
-*/
-	public Order(int orderId, long orderDate, String orderName, String orderDescription) {
-		this.id = orderId;
-		this.date = orderDate;
+	/**
+	 * Constructor.
+	 * @param orderID - order ID.
+	 * @param orderName - order Name.
+	 * @param orderDescription - order description.
+	 */
+	public Order(int orderID, String orderName, String orderDescription) {
+		this.id = orderID;
+		this.date = new Date().getTime();
 		this.name = orderName;
 		this.description = orderDescription;
 	}

@@ -18,9 +18,10 @@ public class Tracker {
 */
 	private Order[] orders = new Order[n];
 /**
-* Index of array of orders.
-*/
-	private int index = 0;
+ * Order ID.
+ */
+	private int orderID;
+
 /**
 * Add new order to array.
 * @param order - new order.
@@ -32,8 +33,6 @@ public class Tracker {
 				break;
 			}
 		}
-		this.orders[this.index] = order;
-		this.index++;
 	}
 
 /**
