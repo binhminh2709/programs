@@ -27,7 +27,6 @@ public class StubInput implements Input {
                            "1", "1", "comment", "Comment-1",            // Change comment of order #1.
                            "1", "3", "description", "New description-3", // Change description of order #3.
                            "4", "r-2",                                  // Find order which name contains "r-2".
-                           "7",                                         // Try input incorrect number.
                            "3",                                         // Print all orders.
                            "2", "2",                                    // Delete order #2.
                            "3",                                         // Print all orders.

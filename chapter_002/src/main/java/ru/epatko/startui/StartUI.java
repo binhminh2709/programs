@@ -46,18 +46,11 @@ public class StartUI {
 		do {
 			menu.showUserMenu();
 			String key = input.ask("Enter your choice number: ");
-			if (key.equals("0")
-			 || key.equals("1")
-			 ||	key.equals("2")
-			 ||	key.equals("3")
-			 ||	key.equals("4")) {
-				menu.choice(Integer.parseInt(key));
-			} else if (key.equals("5")) {
+			if (key.equals("5")) {
 				return;
-			} else {
-				System.out.println("Incorrect input. Try again.");
 			}
-		} while (true);
+				menu.choice(Integer.parseInt(key));
+			} while (true);
 	}
 
 	/**
