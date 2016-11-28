@@ -46,15 +46,16 @@ public class StartUI {
 		do {
 			menu.showUserMenu();
 			String key = input.ask("Enter your choice number: ");
-			switch (key) {
-				case "0":
-				case "1":
-				case "2":
-				case "3":
-				case "4": menu.choice(Integer.parseInt(key));
-					break;
-				case "5":	return;
-				default: System.out.println("Incorrect input. Try again.");
+			if (key.equals("0")
+			 || key.equals("1")
+			 ||	key.equals("2")
+			 ||	key.equals("3")
+			 ||	key.equals("4")) {
+				menu.choice(Integer.parseInt(key));
+			} else if (key.equals("5")) {
+				return;
+			} else {
+				System.out.println("Incorrect input. Try again.");
 			}
 		} while (true);
 	}
