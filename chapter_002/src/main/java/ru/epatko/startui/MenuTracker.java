@@ -25,7 +25,7 @@ public class MenuTracker {
     /**
      * Actions array.
      */
-    private UserAction[] actions = new UserAction[6];
+    private UserAction[] actions = new UserAction[5];
 
     /**
      * MenuTracker constructor.
@@ -74,7 +74,6 @@ public class MenuTracker {
         this.actions[2] = this.new DeleteOrder();
         this.actions[3] = new MenuTracker.GetListOfOrders();
         this.actions[4] = this.new GetOrdersFilteredByName();
-        this.actions[5] = this.new QuitProgram();
     }
     //****************************************//
     //************* Inner Classes ************//
@@ -280,38 +279,6 @@ public class MenuTracker {
             if (counter == 0) {
                 System.out.println("There are no orders contain this keyword in the name.");
             }
-        }
-    }
-
-    /**
-     * Nothing to do. Only print item of menu.
-     */
-    private class QuitProgram implements UserAction {
-        /**
-         * Number of action.
-         * @return - number of action.
-         */
-        @Override
-        public int key() {
-            return 5;
-        }
-
-        /**
-         * Information about action.
-         * @return - information about action.
-         */
-        @Override
-        public String info() {
-            return String.format("%d - %s\n-------------------------------------------", this.key(), "Quit program.");
-        }
-
-        /**
-         * Nothing to do. Only print item of menu.
-         * @param input - input method.
-         * @param tracker - tracker.
-         */
-        @Override
-        public void execute(Input input, Tracker tracker) {
         }
     }
 }

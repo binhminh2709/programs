@@ -13,7 +13,7 @@ public class StartUITest {
 
     @Test
     public void whenCreateOrderThenCanGetNameOfOrder() {
-        String answers[] = {"0", "Some Order Name", "Some Order Description", "5"}; //Create an order #1 and exit cycle.
+        String answers[] = {"0", "Some Order Name", "Some Order Description", "y"}; //Create an order #1 and exit cycle.
         Input inputMethod = new StubInput(answers);
         Tracker tracker = new Tracker();
         StartUI start = new StartUI(inputMethod, tracker);
@@ -25,10 +25,10 @@ public class StartUITest {
 
    @Test
     public void whenDeleteOrderThenCantGetNameOfOrder() {
-        String answers[] = {"0", "Order-1", "Description-1",             // Create order #1.
-                            "0", "Order", "Description",                 // Create order #2.
-                            "2", "2",                                    // Delete order #2.
-                            "5"};                                        // Exit cycle.
+        String answers[] = {"0", "Order-1", "Description-1", "",             // Create order #1.
+                            "0", "Order", "Description", "",                 // Create order #2.
+                            "2", "2",                                        // Delete order #2.
+                            "y"};                                            // Exit cycle.
         Input inputMethod = new StubInput(answers);
         Tracker tracker = new Tracker();
         StartUI start = new StartUI(inputMethod, tracker);
@@ -40,9 +40,9 @@ public class StartUITest {
 
     @Test
     public void whenCreateOrderCommentThenCanGetCommentOfOrder() {
-        String answers[] = {"0", "Order-1", "Description-1",             // Create order #1.
-                            "1", "1", "comment", "Comment",              // Change comment of order #1.
-                            "5"};                                        // Exit cycle.
+        String answers[] = {"0", "Order-1", "Description-1", "",             // Create order #1.
+                            "1", "1", "comment", "Comment",                 // Change comment of order #1.
+                            "y"};                                           // Exit cycle.
         Input inputMethod = new StubInput(answers);
         Tracker tracker = new Tracker();
         StartUI start = new StartUI(inputMethod, tracker);
@@ -53,11 +53,11 @@ public class StartUITest {
 
     @Test
     public void whenChangeOrderDescriptionThenCanGetNewDescriptionOfOrder() {
-        String[] answers = {"0", "Order-1", "Description-1",                    // Create order #1.
-                            "0", "Order-2", "Description-2",                    // Create order #2.
-                            "0", "Order-3", "Description-3",                    // Create order #3.
+        String[] answers = {"0", "Order-1", "Description-1", "",                // Create order #1.
+                            "0", "Order-2", "Description-2", "",                // Create order #2.
+                            "0", "Order-3", "Description-3", "",                // Create order #3.
                             "1", "3", "description", "Some New description-3",  // Change description of order #3.
-                            "5"};                                               // Exit cycle.
+                            "y"};                                               // Exit cycle.
         Input inputMethod = new StubInput(answers);
         Tracker tracker = new Tracker();
         StartUI start = new StartUI(inputMethod, tracker);
