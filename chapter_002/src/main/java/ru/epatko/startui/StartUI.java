@@ -45,9 +45,8 @@ public class StartUI {
 		 */
 		do {
 			menu.showUserMenu();
-			String key = input.ask("Enter your choice number: ");
-			menu.choice(Integer.parseInt(key));
-		} while (!"y".equals(this.input.ask("Exit? y/n ")));
+			menu.choice(input.ask("Enter your choice number: ", menu.getKeys()));
+		} while (!"y".equals(this.input.ask("Exit (y/N)? ")));
 	}
 
 	/**
@@ -56,7 +55,7 @@ public class StartUI {
 	 */
 	public static void main(String[] args) {
 		Tracker tracker = new Tracker();
-		Input inputMethod = new ConsoleInput();
+		Input inputMethod = new ValidateInput();
 		StartUI start = new StartUI(inputMethod, tracker);
 		start.init();
 	}

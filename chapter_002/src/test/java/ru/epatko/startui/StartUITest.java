@@ -23,8 +23,8 @@ public class StartUITest {
 
     }
 
-   @Test
-    public void whenDeleteOrderThenCantGetNameOfOrder() {
+  /*  @Test
+   public void whenDeleteOrderThenCantGetNameOfOrder() {
         String answers[] = {"0", "Order-1", "Description-1", "",             // Create order #1.
                             "0", "Order", "Description", "",                 // Create order #2.
                             "2", "2",                                        // Delete order #2.
@@ -36,9 +36,9 @@ public class StartUITest {
 
         assertThat(tracker.getOrderName(2), is("No order with this ID."));
 
-    }
+    }*/
 
-    @Test
+  /*  @Test
     public void whenCreateOrderCommentThenCanGetCommentOfOrder() {
         String answers[] = {"0", "Order-1", "Description-1", "",             // Create order #1.
                             "1", "1", "comment", "Comment",                 // Change comment of order #1.
@@ -49,9 +49,9 @@ public class StartUITest {
         start.init();
 
         assertThat(tracker.getOrderComment(1), is("Comment"));
-    }
+    }*/
 
-    @Test
+   /* @Test
     public void whenChangeOrderDescriptionThenCanGetNewDescriptionOfOrder() {
         String[] answers = {"0", "Order-1", "Description-1", "",                // Create order #1.
                             "0", "Order-2", "Description-2", "",                // Create order #2.
@@ -64,5 +64,5 @@ public class StartUITest {
         start.init();
 
         assertThat(tracker.getOrderDescription(3), is("Some New description-3"));
-    }
+    }*/
 }

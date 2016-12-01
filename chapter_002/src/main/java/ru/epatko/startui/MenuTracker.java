@@ -27,6 +27,8 @@ public class MenuTracker {
      */
     private UserAction[] actions = new UserAction[5];
 
+    private int[] keys = new int[this.actions.length];
+
     /**
      * MenuTracker constructor.
      * @param input - input method.
@@ -74,7 +76,24 @@ public class MenuTracker {
         this.actions[2] = this.new DeleteOrder();
         this.actions[3] = new MenuTracker.GetListOfOrders();
         this.actions[4] = this.new GetOrdersFilteredByName();
+
+    /**
+     * To fill keys array.
+      */
+        for (int i = 0; i < this.actions.length; i++) {
+            keys[i] = this.actions[i].key();
+        }
     }
+
+    /**
+     * To get keys array.
+      * @return - keys array.
+     */
+    public int[] getKeys() {
+        return this.keys;
+    }
+
+
     //****************************************//
     //************* Inner Classes ************//
     //****************************************//
@@ -147,7 +166,17 @@ public class MenuTracker {
          */
         @Override
         public void execute(Input input, Tracker tracker) {
-            int id = Integer.parseInt(input.ask("Enter order ID to change: "));
+            boolean invalid = true;
+            int id = 0;
+            do {
+                try {
+                    id = Integer.parseInt(input.ask("Enter order ID to change: "));
+                    invalid = false;
+                } catch (NumberFormatException nfe) {
+                    System.out.println("Incorrect input. Try again.");
+                }
+            } while (invalid);
+
             if (tracker.getOrderById(id) != null) {
                 String field = input.ask("Enter field to change: \"comment\" or \"description\": ");
                 String description = input.ask("Enter new description \\ comment: ");
@@ -187,7 +216,17 @@ public class MenuTracker {
          */
         @Override
         public void execute(Input input, Tracker tracker) {
-            int id = Integer.parseInt(input.ask("Enter order ID to delete: "));
+            boolean invalid = true;
+            int id = 0;
+            do {
+                try {
+                    id = Integer.parseInt(input.ask("Enter order ID to delete: "));
+                    invalid = false;
+                } catch (NumberFormatException nfe) {
+                    System.out.println("Incorrect input. Try again.");
+                }
+            } while (invalid);
+
             if (tracker.getOrderById(id) != null) {
                 tracker.delete(id);
             } else {

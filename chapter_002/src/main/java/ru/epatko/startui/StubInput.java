@@ -50,4 +50,7 @@ public class StubInput implements Input {
         System.out.println(question);
         return this.answers[this.index++];
     }
+    public int ask(String question, int[] range) {
+        return 0;
+    }
 }

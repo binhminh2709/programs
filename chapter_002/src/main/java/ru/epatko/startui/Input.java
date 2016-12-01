@@ -11,4 +11,12 @@ public interface Input {
      * @return - String.
      */
     String ask(String question);
+
+    /**
+     *
+     * @param question - question.
+     * @param validKeys - array of valid keys.
+     * @return int key.
+     */
+    int ask(String question, int[] validKeys);
 }
