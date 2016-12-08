@@ -6,11 +6,21 @@ package ru.epatko.Chess;
  */
 public class Bishop extends Figure {
 
+    /**
+     *
+     * @param source - source cell.
+     */
     public Bishop(Cell source) {
         super(source);
 
     }
 
+    /**
+     *
+     * @param dest - destination cell.
+     * @return - array of the way cells.
+     * @throws ImpossibleMoveException - can't move figure (incorrect destination cell).
+     */
     public Cell[] way(Cell dest) throws ImpossibleMoveException {
 
         Cell[] result = new Cell[8];
@@ -21,11 +31,15 @@ public class Bishop extends Figure {
         int stepColumn = 1;
         int stepRow = 1;
 
-        if ((Math.abs(positionColumn - destColumn) == Math.abs(positionRow - destRow)) &&
-                                                            (positionColumn != destColumn)) {
+        /**
+         * Check right way.
+         */
+        if ((Math.abs(positionColumn - destColumn) == Math.abs(positionRow - destRow))
+             && (positionColumn != destColumn)) {
             if (positionColumn > destColumn) {
                 stepColumn = -1;
             }
+
             if (positionRow > destRow) {
                 stepRow = -1;
             }

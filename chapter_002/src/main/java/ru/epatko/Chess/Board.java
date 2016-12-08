@@ -7,6 +7,15 @@ package ru.epatko.Chess;
 public class Board {
     public Figure[][] cells = new Figure[8][8];
 
+    /**
+     *
+     * @param source - source cell.
+     * @param dest - destination cell.
+     * @return - boolean "true" or "false" (move is done).
+     * @throws ImpossibleMoveException - can't move figure (incorrect source or destination cell).
+     * @throws OccupiedWayException - there is another figure on the way.
+     * @throws FigureNotFoundException - figure not found at source cell.
+     */
     boolean move(Cell source, Cell dest) throws ImpossibleMoveException, OccupiedWayException,
                                                                         FigureNotFoundException {
         boolean result = false;
@@ -36,7 +45,7 @@ public class Board {
                 }
 
                 if (cells[cell.getColumn()][cell.getRow()] != null) {
-                    throw new OccupiedWayException("There is another figure on the way");
+                    throw new OccupiedWayException("There is another figure on the way.");
                 }
             }
 

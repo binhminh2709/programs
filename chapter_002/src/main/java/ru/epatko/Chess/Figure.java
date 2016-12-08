@@ -5,9 +5,15 @@ package ru.epatko.Chess;
  *         05.12.16.
  */
 public abstract class Figure {
+    /**
+     * Figure position.
+     */
     final Cell position;
-    private String type;
 
+    /**
+     *
+     * @param source - source cell (figure position).
+     */
     public Figure(Cell source) {
         position = source;
     }
