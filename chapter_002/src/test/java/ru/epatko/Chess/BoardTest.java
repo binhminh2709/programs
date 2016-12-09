@@ -86,4 +86,15 @@ public class BoardTest {
         board.cells[7][6] = bishop2;
         board.move(source, destination);
     }
+
+    @Test
+    public void wenSetWrongSourceCellThenGetFigureNotFoundException() throws Exception {
+        Board board = new Board();
+        Cell source = new Cell(1, 0);
+        Cell destination = new Cell(7, 6);
+        Bishop bishop = new Bishop(source);
+        board.cells[2][1] = bishop;
+        board.move(source, destination);
+    }
+
 }

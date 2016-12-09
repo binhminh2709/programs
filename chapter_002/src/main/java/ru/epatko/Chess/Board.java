@@ -36,6 +36,9 @@ public class Board {
                 throw new ImpossibleMoveException("Destination cell is out of the board.");
             }
 
+            /**
+             * Checking figure way.
+             */
             Cell[] way = cells[sourceColumn][sourceRow].way(dest);
 
             for (Cell cell : way) {
