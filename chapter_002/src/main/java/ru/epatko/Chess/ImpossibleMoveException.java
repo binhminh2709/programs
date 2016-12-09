@@ -6,6 +6,10 @@ package ru.epatko.Chess;
  */
 public class ImpossibleMoveException  extends Exception {
 
+    /**
+     *
+     * @param message - exception message.
+     */
     public ImpossibleMoveException(String message) {
         super(message);
     }

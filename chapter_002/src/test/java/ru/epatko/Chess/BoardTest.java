@@ -52,4 +52,38 @@ public class BoardTest {
         board.move(source, destination);
 
     }
+
+    @Test
+    public void wenSetRightDestinationCellThenGetRightRowFromFigureOnDestinationCell() throws Exception {
+        Board board = new Board();
+        Cell source = new Cell(0, 0);
+        Cell destination = new Cell(7, 7);
+        Bishop bishop = new Bishop(source);
+        board.cells[0][0] = bishop;
+        board.move(source, destination);
+        assertThat(board.cells[7][7].position.getRow(), is(7));
+    }
+
+    @Test
+    public void wenSetRightDestinationCellThenGetRightFigureOnDestinationCell() throws Exception {
+        Board board = new Board();
+        Cell source = new Cell(1, 0);
+        Cell destination = new Cell(7, 6);
+        Bishop bishop = new Bishop(source);
+        board.cells[1][0] = bishop;
+        board.move(source, destination);
+        assertThat(board.cells[7][6] instanceof Bishop, is(true));
+    }
+
+    @Test
+    public void wenSetWrongWayThenGetOccupiedWayException() throws Exception {
+        Board board = new Board();
+        Cell source = new Cell(1, 0);
+        Cell destination = new Cell(7, 6);
+        Bishop bishop1 = new Bishop(source);
+        Bishop bishop2 = new Bishop(destination);
+        board.cells[1][0] = bishop1;
+        board.cells[7][6] = bishop2;
+        board.move(source, destination);
+    }
 }

@@ -8,11 +8,10 @@ public class Bishop extends Figure {
 
     /**
      *
-     * @param source - source cell.
+     * @param position - source cell.
      */
-    public Bishop(Cell source) {
-        super(source);
-
+    public Bishop(Cell position) {
+        super(position);
     }
 
     /**
@@ -55,4 +54,16 @@ public class Bishop extends Figure {
         }
         return result;
     }
+
+
+    /**
+     * Clone figure to destination cell.
+     * @param destination - destination cell.
+     * @return - new figure whose position equals destination cell.
+     */
+    public Bishop clone(Cell destination) {
+        return new Bishop(destination);
+    }
+
+
 }

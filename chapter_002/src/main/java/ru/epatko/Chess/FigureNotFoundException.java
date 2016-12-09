@@ -6,6 +6,10 @@ package ru.epatko.Chess;
  */
 public class FigureNotFoundException extends Exception {
 
+    /**
+     *
+     * @param message - exception message.
+     */
     public FigureNotFoundException(String message) {
         super(message);
     }

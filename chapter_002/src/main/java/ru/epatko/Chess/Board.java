@@ -17,7 +17,7 @@ public class Board {
      * @throws FigureNotFoundException - figure not found at source cell.
      */
     boolean move(Cell source, Cell dest) throws ImpossibleMoveException, OccupiedWayException,
-                                                                        FigureNotFoundException {
+                                                                      FigureNotFoundException {
         boolean result = false;
 
         try {
@@ -49,12 +49,16 @@ public class Board {
                 }
             }
 
-            if (cells[sourceColumn][sourceRow] instanceof Bishop) {
-                cells[dest.getColumn()][dest.getRow()] = new Bishop(dest);
-            }
-            /*Here is other figures checking.*/
+            /**
+             * Clone figure to destination cell.
+             */
+            cells[dest.getColumn()][dest.getRow()] = cells[sourceColumn][sourceRow].clone(dest);
 
+            /**
+             * Empty source cell.
+             */
             cells[sourceColumn][sourceRow] = null;
+
             result = true;
 
         } catch (ImpossibleMoveException ime) {

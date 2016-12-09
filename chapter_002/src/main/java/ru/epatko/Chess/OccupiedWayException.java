@@ -6,6 +6,10 @@ package ru.epatko.Chess;
  */
 public class OccupiedWayException extends Exception {
 
+    /**
+     *
+     * @param message - exception message.
+     */
     public OccupiedWayException(String message) {
         super(message);
     }
