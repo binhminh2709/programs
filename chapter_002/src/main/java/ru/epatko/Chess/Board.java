@@ -5,6 +5,9 @@ package ru.epatko.Chess;
  *         06.12.16.
  */
 public class Board {
+    /**
+     * Board cells.
+     */
     public Figure[][] cells = new Figure[8][8];
 
     /**
@@ -24,6 +27,9 @@ public class Board {
             int sourceColumn = source.getColumn();
             int sourceRow = source.getRow();
 
+            /**
+             * Checking source cell is on the board.
+             */
             if ((cells[sourceColumn][sourceRow] == null)
                                                         || sourceColumn < 0
                                                         || sourceColumn > 7
@@ -32,15 +38,21 @@ public class Board {
                 throw new FigureNotFoundException("Figure not found.");
             }
 
+            /**
+             * Checking destination cell is on the board.
+             */
             if (dest.getColumn() < 0 || dest.getRow() > 7) {
                 throw new ImpossibleMoveException("Destination cell is out of the board.");
             }
 
             /**
-             * Checking figure way.
+             * Checking the figure can go by the way.
              */
             Cell[] way = cells[sourceColumn][sourceRow].way(dest);
 
+            /**
+             * Checking the way is free.
+             */
             for (Cell cell : way) {
 
                 if (cell == null) {
@@ -64,12 +76,8 @@ public class Board {
 
             result = true;
 
-        } catch (ImpossibleMoveException ime) {
-            System.out.println(ime);
-        } catch (OccupiedWayException owe) {
-            System.out.println(owe);
-        } catch (FigureNotFoundException nfe) {
-            System.out.println(nfe);
+        } catch (ImpossibleMoveException | OccupiedWayException | FigureNotFoundException exc) {
+            System.out.println(exc);
         }
         return result;
     }
