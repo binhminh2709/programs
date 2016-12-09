@@ -1,6 +1,9 @@
 package ru.epatko.Chess;
 
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
+
 import static org.junit.Assert.*;
 import static org.hamcrest.core.Is.is;
 
@@ -42,16 +45,6 @@ public class BoardTest {
         assertNull(board.cells[0][0]);
     }
 
-    @Test
-    public void wenSetWrongDestinationCellThenGetImpossibleMoveException() throws Exception {
-        Board board = new Board();
-        Cell source = new Cell(5, 4);
-        Cell destination = new Cell(7, 7);
-        Bishop bishop = new Bishop(source);
-        board.cells[5][4] = bishop;
-        board.move(source, destination);
-
-    }
 
     @Test
     public void wenSetRightDestinationCellThenGetRightRowFromFigureOnDestinationCell() throws Exception {
@@ -76,6 +69,17 @@ public class BoardTest {
     }
 
     @Test
+    public void wenSetWrongDestinationCellThenGetImpossibleMoveException() throws Exception {
+        Board board = new Board();
+        Cell source = new Cell(5, 4);
+        Cell destination = new Cell(7, 7);
+        Bishop bishop = new Bishop(source);
+        board.cells[5][4] = bishop;
+        board.move(source, destination);
+
+    }
+
+    @Test
     public void wenSetWrongWayThenGetOccupiedWayException() throws Exception {
         Board board = new Board();
         Cell source = new Cell(1, 0);
@@ -88,13 +92,40 @@ public class BoardTest {
     }
 
     @Test
-    public void wenSetWrongSourceCellThenGetFigureNotFoundException() throws Exception {
+    public void wenSetWrongSourceCellThenGetException() throws Exception {
         Board board = new Board();
         Cell source = new Cell(1, 0);
         Cell destination = new Cell(7, 6);
         Bishop bishop = new Bishop(source);
         board.cells[2][1] = bishop;
         board.move(source, destination);
+    }
+
+    @Rule
+    public final ExpectedException thrown = ExpectedException.none();
+
+    @Test
+    public void wenThrowFigureNotFoundExceptionThenGetFigureNotFoundException()
+                                                     throws FigureNotFoundException {
+        thrown.expect(FigureNotFoundException.class);
+        thrown.expectMessage("Message.");
+        throw new FigureNotFoundException("Message.");
+    }
+
+    @Test
+    public void wenThrowImpossibleMoveExceptionThenGetImpossibleMoveException()
+                                                     throws ImpossibleMoveException {
+        thrown.expect(ImpossibleMoveException.class);
+        thrown.expectMessage("Message.");
+        throw new ImpossibleMoveException("Message.");
+    }
+
+    @Test
+    public void wenThrowOccupiedWayExceptionThenGetOccupiedWayException()
+                                                     throws OccupiedWayException {
+        thrown.expect(OccupiedWayException.class);
+        thrown.expectMessage("Message.");
+        throw new OccupiedWayException("Message.");
     }
 
 }
