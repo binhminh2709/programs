@@ -14,6 +14,33 @@ import static org.hamcrest.core.Is.is;
  */
 public class BoardTest {
 
+    @Rule
+    public final ExpectedException thrown = ExpectedException.none();
+
+    @Test
+    public void wenThrowFigureNotFoundExceptionThenGetFigureNotFoundException()
+                                                     throws FigureNotFoundException {
+        thrown.expect(FigureNotFoundException.class);
+        thrown.expectMessage("Message.");
+        throw new FigureNotFoundException("Message.");
+    }
+
+    @Test
+    public void wenThrowImpossibleMoveExceptionThenGetImpossibleMoveException()
+                                                     throws ImpossibleMoveException {
+        thrown.expect(ImpossibleMoveException.class);
+        thrown.expectMessage("Message.");
+        throw new ImpossibleMoveException("Message.");
+    }
+
+    @Test
+    public void wenThrowOccupiedWayExceptionThenGetOccupiedWayException()
+                                                     throws OccupiedWayException {
+        thrown.expect(OccupiedWayException.class);
+        thrown.expectMessage("Message.");
+        throw new OccupiedWayException("Message.");
+    }
+
     @Test
     public void wenSetRightDestinationCellThenGetTrue() throws Exception {
         Board board = new Board();
@@ -101,31 +128,57 @@ public class BoardTest {
         board.move(source, destination);
     }
 
-    @Rule
-    public final ExpectedException thrown = ExpectedException.none();
-
     @Test
-    public void wenThrowFigureNotFoundExceptionThenGetFigureNotFoundException()
-                                                     throws FigureNotFoundException {
-        thrown.expect(FigureNotFoundException.class);
-        thrown.expectMessage("Message.");
-        throw new FigureNotFoundException("Message.");
+    public void wenSetRightDestinationCellThenRookCanGoDown() throws Exception {
+        Board board = new Board();
+        Cell source = new Cell(0, 7);
+        Cell destination = new Cell(0, 0);
+        Rook rook = new Rook(source);
+        board.cells[0][7] = rook;
+        board.move(source, destination);
+        assertThat(board.cells[0][0] instanceof Rook, is(true));
     }
 
     @Test
-    public void wenThrowImpossibleMoveExceptionThenGetImpossibleMoveException()
-                                                     throws ImpossibleMoveException {
-        thrown.expect(ImpossibleMoveException.class);
-        thrown.expectMessage("Message.");
-        throw new ImpossibleMoveException("Message.");
+    public void wenSetRightDestinationCellThenRookCanGoUp() throws Exception {
+        Board board = new Board();
+        Cell source = new Cell(3, 0);
+        Cell destination = new Cell(3, 7);
+        Rook rook = new Rook(source);
+        board.cells[3][0] = rook;
+        board.move(source, destination);
+        assertThat(board.cells[3][7] instanceof Rook, is(true));
     }
 
     @Test
-    public void wenThrowOccupiedWayExceptionThenGetOccupiedWayException()
-                                                     throws OccupiedWayException {
-        thrown.expect(OccupiedWayException.class);
-        thrown.expectMessage("Message.");
-        throw new OccupiedWayException("Message.");
+    public void wenSetRightDestinationCellThenRookCanGoLeft() throws Exception {
+        Board board = new Board();
+        Cell source = new Cell(7, 2);
+        Cell destination = new Cell(0, 2);
+        Rook rook = new Rook(source);
+        board.cells[7][2] = rook;
+        board.move(source, destination);
+        assertThat(board.cells[0][2] instanceof Rook, is(true));
     }
 
+    @Test
+    public void wenSetRightDestinationCellThenRookCanGoRight() throws Exception {
+        Board board = new Board();
+        Cell source = new Cell(0, 6);
+        Cell destination = new Cell(7, 6);
+        Rook rook = new Rook(source);
+        board.cells[0][6] = rook;
+        board.move(source, destination);
+        assertThat(board.cells[7][6] instanceof Rook, is(true));
+    }
+
+    @Test
+    public void wenSetRookWrongDestinationCellThenGetImpossibleMoveException() throws Exception {
+        Board board = new Board();
+        Cell source = new Cell(3, 4);
+        Cell destination = new Cell(2, 3);
+        Rook rook = new Rook(source);
+        board.cells[3][4] = rook;
+        board.move(source, destination);
+    }
 }
