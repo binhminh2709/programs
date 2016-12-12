@@ -55,8 +55,8 @@ public class InputCheckerTest {
     }
 
     @Test
-    public void wenGiveEvenAndNotEvenNumbersThenGetTrue() throws Exception {
+    public void wenGiveEvenAndNotEvenNumbersThenGetFalse() throws Exception {
         InputChecker checker = new InputChecker();
-        assertThat(checker.isNumber(new ByteArrayInputStream("2 11".getBytes())), is(true));
+        assertThat(checker.isNumber(new ByteArrayInputStream("2 11".getBytes())), is(false));
     }
 }
