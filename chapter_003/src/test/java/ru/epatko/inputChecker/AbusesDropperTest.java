@@ -12,7 +12,7 @@ import static org.junit.Assert.*;
  */
 public class AbusesDropperTest {
     @Test
-    public void dropAbuses() throws Exception {
+    public void whenSetAbusesThenGetStringWithChangedAbusesToBadWord() throws Exception {
 
         try (InputStream input = (new ByteArrayInputStream("121 2 31".getBytes()));
                                  OutputStream output = new ByteArrayOutputStream()) {
