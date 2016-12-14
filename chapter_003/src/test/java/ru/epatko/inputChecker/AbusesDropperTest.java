@@ -14,13 +14,14 @@ public class AbusesDropperTest {
     @Test
     public void dropAbuses() throws Exception {
 
-        AbusesDropper dropper = new AbusesDropper();
-        InputStream input = (new ByteArrayInputStream("121 2 31".getBytes()));
-        OutputStream output = new ByteArrayOutputStream();
-        String[] stringArray =  new String[] {"2", "3"};
-        dropper.dropAbuses(input, output, stringArray);
+        try (InputStream input = (new ByteArrayInputStream("121 2 31".getBytes()));
+                                 OutputStream output = new ByteArrayOutputStream()) {
+            AbusesDropper dropper = new AbusesDropper();
+            String[] stringArray = new String[] {"2", "3"};
+            dropper.dropAbuses(input, output, stringArray);
 
-        assertThat(output.toString(), is ("1\"BAD_WORD\"1 \"BAD_WORD\" \"BAD_WORD\"1"));
+            assertThat(output.toString(), is("1\"BAD_WORD\"1 \"BAD_WORD\" \"BAD_WORD\"1"));
+        }
 
 
 
