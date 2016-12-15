@@ -20,7 +20,7 @@ public class AbusesDropperTest {
             String[] stringArray = new String[] {"2", "3"};
             dropper.dropAbuses(input, output, stringArray);
 
-            assertThat(output.toString(), is("1\"BAD_WORD\"1 \"BAD_WORD\" \"BAD_WORD\"1"));
+            assertThat(output.toString(), is("11  1"));
         }
 
 

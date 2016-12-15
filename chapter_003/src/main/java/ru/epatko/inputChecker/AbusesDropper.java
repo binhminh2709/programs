@@ -28,7 +28,7 @@ public class AbusesDropper {
 
                 for (String abuse : abuses) {
                     if (result.contains(abuse)) {
-                        result = result.replace(abuse, "\"BAD_WORD\"");
+                        result = result.replace(abuse, "");
                     }
                 }
                 printer.print(result);
