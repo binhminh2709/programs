@@ -8,8 +8,8 @@ import java.io.*;
  *
  *  Задача:
  *  1. Есть файл размер более 3G.
- *  2. Файл теrстовый. В каждой строке записана строка произвольной длины.
- *  3. Нужно реализовать интерфейс sort(File source, File distance);
+ *  2. Файл текстовый. В каждой строке записана строка произвольной длины.
+ *  3. Нужно реализовать интерфейс sort(File source, File dist);
  *  File source - это txt файл со строками. File dist - несуществующий файл, его надо создать и записать
  *  туда результат сортировки.
  *  4. Необходимо отсортировать файл по возрастанию длин строк,
@@ -18,12 +18,27 @@ import java.io.*;
  */
 public class FileSorter {
 
+    /**
+     * Temp file A.
+     */
     private File tempA;
+    /**
+     * Temp file B.
+     */
     private File tempB;
+    /**
+     * temp result file.
+     */
     private File result;
+    /**
+     * Line separator.
+     */
     private String lineSeparator;
 
 
+    /**
+     * Class.
+     */
     public FileSorter() {
         this.tempA = new File("tempA");
         this.tempB = new File("tempB");
@@ -41,11 +56,11 @@ public class FileSorter {
 
         try (RandomAccessFile sourceRaf = new RandomAccessFile(source, "r");
              RandomAccessFile resultRaf = new RandomAccessFile(this.result, "rw")) {
-            while(sourceRaf.getFilePointer() != sourceRaf.length()) {
+            while (sourceRaf.getFilePointer() != sourceRaf.length()) {
                 resultRaf.writeByte(sourceRaf.read());
             }
-        } catch ( IOException ioe) {
-            System.out.println(ioe.getStackTrace() + "***************Source file copy error.***************");
+        } catch (IOException ioe) {
+            ioe.getStackTrace();
         }
 
 //*************************************************************************************
@@ -55,9 +70,9 @@ public class FileSorter {
          */
         while (true) {
             splitResultFile();
-            try (RandomAccessFile tempRafA = new RandomAccessFile (this.tempA, "r");
-                 RandomAccessFile tempRafB = new RandomAccessFile (this.tempB, "r");
-                 RandomAccessFile distRaf = new RandomAccessFile (dist, "rw")) {
+            try (RandomAccessFile tempRafA = new RandomAccessFile(this.tempA, "r");
+                 RandomAccessFile tempRafB = new RandomAccessFile(this.tempB, "r");
+                 RandomAccessFile distRaf = new RandomAccessFile(dist, "rw")) {
 
                 if ((this.tempA.length() == source.length())) {
                     while (tempRafA.getFilePointer() != tempRafA.length()) {
@@ -72,8 +87,7 @@ public class FileSorter {
                     break;
                 }
             } catch (IOException ioe) {
-                System.out.println(ioe.getStackTrace());
-                System.out.println("***************Dist file create error.***************");
+                ioe.getStackTrace();
             }
             mergeTempFiles();
         }
@@ -107,28 +121,27 @@ public class FileSorter {
             while (resultRaf.getFilePointer() != resultRaf.length()) {
                 secondString = resultRaf.readLine();
 
-                if (firstString.length() <= secondString.length() && writeToTempA == true) {
+                if (firstString.length() <= secondString.length() && writeToTempA) {
                         tempRafA.writeBytes(String.format("%s%s", secondString, lineSeparator));
                         firstString = secondString;
 
-                } else if (writeToTempA == true){
+                } else if (writeToTempA) {
                     tempRafB.writeBytes(String.format("%s%s", secondString, lineSeparator));
                     firstString = secondString;
                     writeToTempA = false;
 
-                } else if (firstString.length() <= secondString.length() && writeToTempA == false) {
+                } else if (firstString.length() <= secondString.length() && !writeToTempA) {
                     tempRafB.writeBytes(String.format("%s%s", secondString, lineSeparator));
                     firstString = secondString;
 
-                } else if (writeToTempA == false) {
+                } else if (!writeToTempA) {
                     tempRafA.writeBytes(String.format("%s%s", secondString, lineSeparator));
                     firstString = secondString;
                     writeToTempA = true;
                 }
             }
-        } catch ( IOException ioe) {
-            System.out.println(ioe.getStackTrace());
-            System.out.println("***********Split result file error.**************");
+        } catch (IOException ioe) {
+           ioe.getStackTrace();
         }
         this.result.delete();
         this.result.createNewFile();
@@ -182,8 +195,7 @@ public class FileSorter {
                 }
             } while (!skipReadFromTempA || !skipReadFromTempB);
         } catch (IOException ioe) {
-            System.out.println(ioe.getStackTrace());
-            System.out.println("***********Merge temp files error.**************");
+            ioe.getStackTrace();
         }
         this.tempA.delete();
         this.tempB.delete();

@@ -20,7 +20,7 @@ public class InputChecker {
         boolean result = false;
         try (Scanner scanner = new Scanner(in)) {
                 int number = scanner.nextInt();
-                if (number!=0 && (number % 2 == 0) && !scanner.hasNext()) {
+                if (number != 0 && (number % 2 == 0) && !scanner.hasNext()) {
                     result = true;
                 }
             } catch (NoSuchElementException | IllegalStateException ex) {

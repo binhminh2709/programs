@@ -16,8 +16,18 @@ public class PalindromeCheckerTest {
         assertThat(checker.check("cbcBc"), is(true));
     }
     @Test
-    public void whenGiveNotPalindromeThenGetFalse() throws Exception {
+    public void whenGivePalindromeNumberThenGetTrue() throws Exception {
+        PalindromeChecker <Integer> checker = new PalindromeChecker();
+        assertThat(checker.check(12321), is(true));
+    }
+    @Test
+    public void whenGiveNotPalindromeNumberThenGetFalse() throws Exception {
         PalindromeChecker checker = new PalindromeChecker();
+        assertThat(checker.check(12325), is(false));
+    }
+    @Test
+    public void whenGiveNotPalindromeThenGetFalse() throws Exception {
+        PalindromeChecker <String> checker = new PalindromeChecker();
         assertThat(checker.check("cbcAc"), is(false));
     }
     @Test

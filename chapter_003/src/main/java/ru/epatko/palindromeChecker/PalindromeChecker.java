@@ -13,28 +13,32 @@ package ru.epatko.palindromeChecker;
  */
 
 
-public class PalindromeChecker {
+/**
+ *
+ * @param <T>
+ */
+public class PalindromeChecker<T> {
 
-    private String temp;
-    private boolean result;
+    /**
+     * Reversed string.
+     */
+    private String tempA;
+    /**
+     * Source string.
+     */
+    private String tempB;
 
     /**
      *
      * @param word - word.
-     * @return - boolean (is the word a palindrome).
+     * @return - boolean (the word is a palindrome and the word has 5 chars).
      */
-    public boolean check (String word) {
-        this.temp = word;
-        this.temp.toLowerCase();
-        if (this.temp.length() == 5) {
-            if (this.temp.charAt(0) == this.temp.charAt(4) & this.temp.charAt(1) == this.temp.charAt(3)) {
-                this.result = true;
-            } else {
-                this.result = false;
-            }
-        } else {
-            this.result = false;
+    public boolean check(T word) {
+        this.tempA = new StringBuilder(word.toString().toLowerCase()).reverse().toString();
+        this.tempB = word.toString().toLowerCase();
+        if (this.tempB.length() != 5) {
+            return false;
         }
-        return this.result;
+        return this.tempB.equals(tempA);
     }
 }
