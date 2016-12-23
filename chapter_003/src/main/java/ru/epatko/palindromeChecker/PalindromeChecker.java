@@ -29,7 +29,7 @@ public class PalindromeChecker<T> {
     private String tempB;
 
     /**
-     *
+     * Jedi method.
      * @param word - word.
      * @return - boolean (the word is a palindrome and the word has 5 chars).
      */
