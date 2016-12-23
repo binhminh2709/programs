@@ -36,9 +36,7 @@ public class PalindromeChecker<T> {
     public boolean check(T word) {
         this.tempA = new StringBuilder(word.toString().toLowerCase()).reverse().toString();
         this.tempB = word.toString().toLowerCase();
-        if (this.tempB.length() != 5) {
-            return false;
-        }
-        return this.tempB.equals(tempA);
+
+        return (this.tempB.length() == 5) && this.tempB.equals(tempA);
     }
 }
