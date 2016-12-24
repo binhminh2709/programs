@@ -13,12 +13,12 @@ public class AbusesDropper {
      * @param in input stream.
      * @param out output stream.
      * @param abuses array of abuses.
-     * @throws IOException
+     * @throws IOException - exception.
      */
 
     public void dropAbuses(InputStream in, OutputStream out, String[] abuses) throws IOException {
         /**
-         * Strig without abuses.
+         * String without abuses.
          */
         String result;
 

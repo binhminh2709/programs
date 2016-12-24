@@ -50,7 +50,7 @@ public class FileSorter {
      *
      * @param source - source file.
      * @param dist - destination file.
-     * @throws IOException
+     * @throws IOException - exception.
      */
     public void sort(File source, File dist) throws IOException {
 
@@ -100,7 +100,7 @@ public class FileSorter {
 
     /**
      * Split temp result file to two temp files.
-     * @throws IOException
+     * @throws IOException  - exception.
      */
     public void splitResultFile() throws IOException {
 
@@ -152,7 +152,7 @@ public class FileSorter {
 
     /**
      * Merge two temp files to one temp result file.
-     * @throws IOException
+     * @throws IOException - exception.
      */
     public void mergeTempFiles() throws IOException {
 
