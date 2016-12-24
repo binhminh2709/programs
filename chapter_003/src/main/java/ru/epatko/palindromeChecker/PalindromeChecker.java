@@ -15,7 +15,7 @@ package ru.epatko.palindromeChecker;
 
 /**
  *
- * @param <T>
+ * @param <T> - universal type.
  */
 public class PalindromeChecker<T> {
 
