@@ -34,9 +34,9 @@ public class PalindromeChecker<T> {
      * @return - boolean (the word is a palindrome and the word has 5 chars).
      */
     public boolean check(T word) {
-        this.tempA = new StringBuilder(word.toString().toLowerCase()).reverse().toString();
-        this.tempB = word.toString().toLowerCase();
+        this.tempA = new StringBuilder(word.toString()).reverse().toString();
+        this.tempB = word.toString();
 
-        return (this.tempB.length() == 5) && this.tempB.equals(tempA);
+        return (this.tempB.length() == 5) && this.tempB.equalsIgnoreCase(tempA);
     }
 }
