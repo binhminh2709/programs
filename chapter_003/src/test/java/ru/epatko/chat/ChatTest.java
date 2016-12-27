@@ -41,7 +41,7 @@ class TestInput implements Input {
     int i = 0;
     public String say(String message) {
         String[] array = {"1", "finish"};
-        return array [i++];
+        return array[i++];
     }
 }
 

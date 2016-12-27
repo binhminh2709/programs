@@ -92,8 +92,12 @@ public class Chat {
      * @throws IOException - exception.
      */
     public static void main(String[] args) throws IOException {
-        File botAnswers = new File("chapter_003/src/main/java/ru/epatko/chat/botAnswers.txt");
-        File logFile = new File("chapter_003/src/main/java/ru/epatko/chat/chat.log");
+
+
+        File botAnswers = new File("botAnswers.txt");
+        System.out.println(botAnswers.getAbsolutePath());
+        File logFile = new File("chat.log");
+
         logFile.delete();
         logFile.createNewFile();
         Input inputMethod = new ConsoleInput();
