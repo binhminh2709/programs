@@ -1,4 +1,4 @@
-package ru.epatko.NetFileManger;
+package ru.epatko.netFileManger;
 
 /**
  * @author Mikhail Epatko (epatko-m-i@rambler.ru).

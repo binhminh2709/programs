@@ -1,4 +1,4 @@
-package ru.epatko.NetFileManger;
+package ru.epatko.netFileManger;
 
 import java.io.InputStream;
 import java.nio.file.Path;
