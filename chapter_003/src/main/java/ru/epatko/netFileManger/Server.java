@@ -151,7 +151,7 @@ public class Server {
         }
     }
     /**
-     * Change directory.
+     * Change working directory.
      * @param directory - destination directory.
      * @throws IOException - exception.
      */

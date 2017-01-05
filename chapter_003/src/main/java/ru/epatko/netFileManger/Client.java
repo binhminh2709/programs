@@ -70,6 +70,7 @@ public class Client {
     }
 
     /**
+     * Getter.
      * @return - connection address.
      */
     public String getAddress() {
@@ -77,6 +78,7 @@ public class Client {
     }
 
     /**
+     * Getter.
      * @return - connection port number.
      */
     public int getPort() {
@@ -231,7 +233,7 @@ public class Client {
         try {
             Client client = new Client();
             System.out.println(" ---------------------------------------------------------");
-            System.out.println("| Wait connection message and use next command:           |");
+            System.out.println("| Wait connection message and use next commands:          |");
             client.help();
             client.connect();
         } catch (IOException ioe) {
