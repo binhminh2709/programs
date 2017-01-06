@@ -141,7 +141,7 @@ public class Find extends SimpleFileVisitor<Path> {
                 pattern = String.format(".*\\.%s$", args[3]);
             }
         } else if ("-f".equals(args[4])) {
-           pattern = String.format("^%s$",args[3]);
+           pattern = String.format("^%s$", args[3]);
 
         } else if ("-r".equals(args[4])) {
             pattern = args[3];
@@ -151,13 +151,7 @@ public class Find extends SimpleFileVisitor<Path> {
         }
 
         try {
-            /**
-             * Starting directory.
-             */
             Path startingDir = Paths.get(args[1]);
-            /**
-             * Compile pattern.
-             */
             Pattern aPattern = Pattern.compile(pattern);
             Find finder = new Find(aPattern, args[6]);
             Files.walkFileTree(startingDir, finder);
