@@ -40,8 +40,10 @@ public class Find extends SimpleFileVisitor<Path> {
         matcher = FileSystems.getDefault().getPathMatcher("regex:" + aPattern);
         try {
             File logFile = new File(aLogFile);
-            logFile.delete();
-            logFile.createNewFile();
+            if (logFile.exists()) {
+                logFile.delete();
+                logFile.createNewFile();
+            }
             this.logger = new Logger(logFile);
         } catch (IOException ioe) {
             ioe.printStackTrace();
@@ -111,19 +113,19 @@ public class Find extends SimpleFileVisitor<Path> {
      * Print help and exit program.
      */
     static void usage() {
-        System.out.println("Incorrect argument(s). Use command syntax:");
+        System.out.print("Incorrect argument(s). Use next command syntax:  ");
         System.out.println("java -jar find.jar -d [START DIRECTORY] -n [FILE NAME] -{m, f, r} -o [LOG FILE]");
         System.out.println();
-        System.out.println("-d [START DIRECTORY] - start directory name;");
-        System.out.println("-n [FILE NAME] - file name to search;");
-        System.out.print("-{m, f, r} - find options: m - by mask (mask example: txt, exe),");
+        System.out.println("-d [START DIRECTORY]         - start directory name;");
+        System.out.println("-n [FILE NAME]               - file name to search;");
+        System.out.print("-{m, f, r}                   - find options: m - by mask (mask example: txt, exe),");
         System.out.println(" f - by file name, r - by regular expression;");
-        System.out.println("-o [LOG FILE] - log file name.");
+        System.out.println("-o [LOG FILE]                - log file name.");
         System.exit(0);
     }
     /**
      * Main method.
-     * @param args - d [START DIRECTORY] -n [FILE NAME] -{m, f, r} -o [LOG FILE].
+     * @param args -d [START DIRECTORY] -n [FILE NAME] -{m, f, r} -o [LOG FILE].
      * @throws IOException - exception.
      */
     public static void main(String[] args) throws IOException {
