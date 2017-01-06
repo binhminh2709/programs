@@ -1,4 +1,4 @@
-package ru.epatko.netFileManger;
+package ru.epatko.netFileManager;
 
 import java.io.*;
 import java.net.Socket;

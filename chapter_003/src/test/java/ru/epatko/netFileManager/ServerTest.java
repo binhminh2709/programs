@@ -1,4 +1,4 @@
-package ru.epatko.netFileManger;
+package ru.epatko.netFileManager;
 
 import org.junit.Test;
 import static org.hamcrest.core.Is.is;

@@ -16,4 +16,4 @@
  */
 
 
-package ru.epatko.netFileManger;
+package ru.epatko.netFileManager;
