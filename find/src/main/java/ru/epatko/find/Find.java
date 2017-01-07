@@ -110,20 +110,6 @@ public class Find extends SimpleFileVisitor<Path> {
         return CONTINUE;
     }
     /**
-     * Print help and exit program.
-     */
-    static void usage() {
-        System.out.print("Incorrect argument(s). Use next command syntax:  ");
-        System.out.println("java -jar find.jar -d [START DIRECTORY] -n [FILE NAME] -{m, f, r} -o [LOG FILE]");
-        System.out.println();
-        System.out.println("-d [START DIRECTORY]         - start directory name;");
-        System.out.println("-n [FILE NAME]               - file name to search;");
-        System.out.print("-{m, f, r}                   - find options: m - by mask (mask example: txt, exe),");
-        System.out.println(" f - by file name, r - by regular expression;");
-        System.out.println("-o [LOG FILE]                - log file name.");
-        System.exit(0);
-    }
-    /**
      * Main method.
      * @param args -d [START DIRECTORY] -n [FILE NAME] -{m, f, r} -o [LOG FILE].
      * @throws IOException - exception.
@@ -132,13 +118,14 @@ public class Find extends SimpleFileVisitor<Path> {
         /**
          * String pattern to compare.
          */
+        Usage usage = new Usage();
         String pattern = null;
         if (args.length != 7 || !"-d".equals(args[0]) || !"-n".equals(args[2]) || !"-o".equals(args[5])) {
-            usage();
+            usage.help();
         }
         if ("-m".equals(args[4])) {
             if (args[3].contains("*") || args[3].contains(".")) {
-                usage();
+                usage.help();
             } else {
                 pattern = String.format(".*\\.%s$", args[3]);
             }
@@ -149,7 +136,7 @@ public class Find extends SimpleFileVisitor<Path> {
             pattern = args[3];
 
         } else {
-            usage();
+            usage.help();
         }
 
         try {
