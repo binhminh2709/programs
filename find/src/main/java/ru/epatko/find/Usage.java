@@ -14,8 +14,8 @@ public class Usage {
         System.out.println();
         System.out.println("-d [START DIRECTORY]         - start directory name;");
         System.out.println("-n [FILE NAME]               - file name to search;");
-        System.out.print("-{m, f, r}                   - find options: m - by mask (example: txt, exe),");
-        System.out.println(" f - by file name (example: file.txt), r - by regular expression;");
+        System.out.println("-{m, f, r}                   - find options: m - by mask (example: txt, exe),");
+        System.out.print(" f - by file name (example: file.txt), r - by regular expression;");
         System.out.println("-o [LOG FILE]                - log file name.");
         System.exit(0);
     }
