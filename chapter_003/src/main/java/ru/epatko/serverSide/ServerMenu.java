@@ -252,7 +252,7 @@ public class ServerMenu {
          */
         @Override
         public void execute(String fileName) throws IOException {
-            
+
             byte[] data = new byte[bufferSize];
             int count;
             try (BufferedOutputStream fileWriter = new BufferedOutputStream(new FileOutputStream(fileName))) {
