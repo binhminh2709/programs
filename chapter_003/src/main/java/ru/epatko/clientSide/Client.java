@@ -1,4 +1,6 @@
-package ru.epatko.netFileManager;
+package ru.epatko.clientSide;
+
+import ru.epatko.serverSide.ServerSettings;
 
 import java.io.*;
 import java.net.Socket;
@@ -59,14 +61,19 @@ public class Client {
      */
     private final int bufferSize = 64 * 1024;
 
+    /**
+     * Array of server actions info.
+     */
+    private String[] serverActions;
+
 
     /**
      * Constructor. Get port and address.
      */
     public Client() {
-        Settings settings = new Settings();
-        this.address = settings.getAddress();
-        this.port = settings.getPort();
+        ServerSettings serverSettings = new ServerSettings();
+        this.address = serverSettings.getAddress();
+        this.port = serverSettings.getPort();
     }
 
     /**
@@ -89,18 +96,23 @@ public class Client {
      * Set up connection.
      * @throws IOException - exception.
      */
-    public void connect() throws IOException {
+    public void connect() throws IOException, ClassNotFoundException {
 
         try (Socket connection = new Socket(this.address, this.port)) {
 
             this.socketInputStream = connection.getInputStream();
             this.socketOutputStream = connection.getOutputStream();
 
-           this.in = new DataInputStream(this.socketInputStream);
+            this.in = new DataInputStream(this.socketInputStream);
             this.out = new DataOutputStream(this.socketOutputStream);
 
+            ObjectInputStream ois = new ObjectInputStream(this.socketInputStream);
+            this.serverActions = (String[]) ois.readObject();
+
+            System.out.println(" You have connection to the server.");
+            help();
+
             this.scanner = new Scanner(System.in);
-            System.out.println(in.readUTF());
 
             while (true) {
 
@@ -132,8 +144,8 @@ public class Client {
                 serverMessage = in.readUTF();
                 System.out.println(serverMessage);
             }
-        } catch (IOException ioe) {
-            ioe.printStackTrace();
+        } catch (IOException | ClassNotFoundException exc) {
+            exc.printStackTrace();
         }
     }
 
@@ -211,15 +223,16 @@ public class Client {
 
     /**
      * Print help instruction.
+     * @param - Array of server actions info.
      */
     public void help() {
         System.out.println(" ---------------------------------------------------------");
-        System.out.println("| ls [DIRECTORY] - view DIRECTORY list;                   |");
-        System.out.println("| cd [DIRECTORY] - change current directory to DIRECTORY; |");
-        System.out.println("| dl [FILE] - download FILE from server;                  |");
-        System.out.println("| ul [FILE] - upload FILE to server;                      |");
-        System.out.println("| exit - close connection and exit program;               |");
-        System.out.println("| help - show this help.                                  |");
+        System.out.println("|                     Server commands:                    |");
+        System.out.println(" ---------------------------------------------------------");
+        for (String element : this.serverActions) {
+            System.out.println(element);
+        }
+        System.out.println(" help - show this help.                                  ");
         System.out.println(" ---------------------------------------------------------");
     }
 
@@ -228,16 +241,16 @@ public class Client {
      * @param args - no arguments.
      * @throws IOException - exception.
      */
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
 
         try {
             Client client = new Client();
             System.out.println(" ---------------------------------------------------------");
-            System.out.println("| Wait connection message and use next commands:          |");
-            client.help();
+            System.out.println("| Wait connection message and use server commands.        |");
+            System.out.println(" ---------------------------------------------------------");
             client.connect();
-        } catch (IOException ioe) {
-            ioe.printStackTrace();
+        } catch (IOException | ClassNotFoundException exc) {
+            exc.printStackTrace();
         }
     }
 

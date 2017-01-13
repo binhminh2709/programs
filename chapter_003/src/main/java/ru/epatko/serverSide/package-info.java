@@ -13,7 +13,9 @@
  * - загрузить файл.
  * 3. Клиент должен это апи уметь вызывать.
  * 4. Настройки портов и адреса считывать с app.properties
+ *
+ *
+ * Server side of net file manager.
  */
 
-
-package ru.epatko.netFileManager;
+package ru.epatko.serverSide;

@@ -1,4 +1,4 @@
-package ru.epatko.netFileManager;
+package ru.epatko.serverSide;
 
 import java.io.*;
 import java.util.Properties;
@@ -7,7 +7,7 @@ import java.util.Properties;
  * @author Mikhail Epatko (epatko-m-i@rambler.ru).
  *         02.01.17.
  */
-public class Settings {
+public class ServerSettings {
 
     /**
      * Connection address.
@@ -25,7 +25,7 @@ public class Settings {
     /**
      * Load settings from app.properties file.
      */
-    public Settings() {
+    public ServerSettings() {
         File file = new File("app.properties");
 
         try (FileInputStream fileInputStream = new FileInputStream(file)) {
