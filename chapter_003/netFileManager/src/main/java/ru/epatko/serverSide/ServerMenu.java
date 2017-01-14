@@ -21,11 +21,11 @@ public class ServerMenu {
     /**
      * Data input stream.
      */
-    private DataInputStream in;
+    private DataInputStream dataInpStream;
     /**
      * Data output stream.
      */
-    private DataOutputStream out;
+    private DataOutputStream dataOutStream;
     /**
      * Actions HashMap.
      */
@@ -37,8 +37,8 @@ public class ServerMenu {
      */
     public ServerMenu(DataInputStream in, DataOutputStream out) {
         this.workPath = Paths.get(System.getProperty("user.dir"));
-        this.in = in;
-        this.out = out;
+        this.dataInpStream = in;
+        this.dataOutStream = out;
     }
 
     /**
@@ -53,19 +53,6 @@ public class ServerMenu {
     }
 
     /**
-     * Get array of server actions info.
-     * @return - array of server actions info.
-     */
-    public String[] getActions() {
-        String[] serverActions = new String[actions.size()];
-        int i = 0;
-        for (Map.Entry<String, Action> action : actions.entrySet()) {
-            serverActions[i++] = action.getValue().info();
-        }
-        return serverActions;
-    }
-
-    /**
      * Starting selected action.
      * @param command - number of action.
      * @throws IOException - exception.
@@ -73,9 +60,6 @@ public class ServerMenu {
     public void choice(Command command) throws IOException {
         if (actions.containsKey(command.getAction())) {
             this.actions.get(command.getAction()).execute(command.getParam());
-        } else {
-            this.out.writeUTF("Incorrect command.");
-            this.out.flush();
         }
     }
     /****************************************************************************************************/
@@ -116,14 +100,14 @@ public class ServerMenu {
                     for (Path file: stream) {
                         sb.append(String.format("%s    ", file.getFileName()));
                     }
-                    out.writeUTF(sb.toString());
-                    out.flush();
+                    dataOutStream.writeUTF(sb.toString());
+                    dataOutStream.flush();
                 } catch (IOException ioe) {
                     ioe.printStackTrace();
                 }
             } else {
-                out.writeUTF("Directory is not exist.");
-                out.flush();
+                dataOutStream.writeUTF("Directory is not exist.");
+                dataOutStream.flush();
             }
         }
     }
@@ -159,8 +143,8 @@ public class ServerMenu {
             if (Files.exists(resultPath, LinkOption.NOFOLLOW_LINKS)
                     & Files.isDirectory(resultPath, LinkOption.NOFOLLOW_LINKS)) {
                 workPath = resultPath;
-                out.writeUTF(String.format("Now working directory is: %s", workPath.toString()));
-                out.flush();
+                dataOutStream.writeUTF(String.format("Now working directory is: %s", workPath.toString()));
+                dataOutStream.flush();
             }
         }
     }
@@ -195,8 +179,8 @@ public class ServerMenu {
             if (Files.exists(pathSource, LinkOption.NOFOLLOW_LINKS) && Files.isReadable(pathSource)
                     && !Files.isDirectory(pathSource)) {
 
-                out.writeUTF("<ok>");
-                out.flush();
+                dataOutStream.writeUTF("<ok>");
+                dataOutStream.flush();
                 byte[] data = new byte[bufferSize];
                 int count;
 
@@ -208,21 +192,21 @@ public class ServerMenu {
                         enumerator = (int) (fileLength / bufferSize);
                     } else {
                         enumerator = (int) (fileLength / bufferSize + 1);
-                    } 
-                    out.writeInt(enumerator);
-                    out.flush();
+                    }
+                    dataOutStream.writeInt(enumerator);
+                    dataOutStream.flush();
 
                     for (int i = 0; i < enumerator; i++) {
                         count = fileReader.read(data);
-                        out.write(data, 0, count);
+                        dataOutStream.write(data, 0, count);
                     }
-                    out.flush();
+                    dataOutStream.flush();
                 } catch (IOException ioe) {
                     ioe.printStackTrace();
                 }
             } else {
-                out.writeUTF("Incorrect command.");
-                out.flush();
+                dataOutStream.writeUTF("<error>");
+                dataOutStream.flush();
             }
         }
     }
@@ -257,16 +241,16 @@ public class ServerMenu {
             byte[] data = new byte[bufferSize];
             int count;
             try (BufferedOutputStream fileWriter = new BufferedOutputStream(new FileOutputStream(fileName))) {
-                int enumerator = in.readInt();
+                int enumerator = dataInpStream.readInt();
                 for (int i = 0; i < enumerator; i++) {
-                    count = in.read(data);
+                    count = dataInpStream.read(data);
                     fileWriter.write(data, 0, count);
                 }
             }
         }
     }
     /****************************************************************************************************/
-    public class PrintWorkingDirectory implements Action {
+    private class PrintWorkingDirectory implements Action {
 
         /**
          * Name of action.
@@ -292,8 +276,8 @@ public class ServerMenu {
          */
         @Override
         public void execute(String parameter) throws IOException {
-            out.writeUTF(workPath.toString());
-            out.flush();
+            dataOutStream.writeUTF(workPath.toString());
+            dataOutStream.flush();
         }
     }
 }

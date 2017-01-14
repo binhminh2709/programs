@@ -1,12 +1,13 @@
 package ru.epatko.serverSide;
 
+import java.io.Serializable;
 import java.util.Scanner;
 
 /**
  * @author Mikhail Epatko (epatko-m-i@rambler.ru).
  *         13.01.17.
  */
-public class Command {
+public class Command implements Serializable  {
     /**
      * Server action name.
      */

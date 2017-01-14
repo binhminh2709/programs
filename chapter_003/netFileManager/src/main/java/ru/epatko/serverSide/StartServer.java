@@ -12,89 +12,84 @@ import java.net.*;
 public class StartServer {
 
     /**
-     * Connection port.
-     */
-    private int port;
-    /**
-     * Data input stream.
-     */
-    private DataInputStream in;
-    /**
-     * Data output stream.
-     */
-    private DataOutputStream out;
-
-    /**
      * Socket input stream.
      */
-    private InputStream socketInputStream;
+    private InputStream inpStream;
     /**
      * Socket output stream.
      */
-    private OutputStream socketOutputStream;
+    private OutputStream outStream;
+    /**
+     * Data input stream.
+     */
+    private DataInputStream dataInpStream;
+    /**
+     * Data output stream.
+     */
+    private DataOutputStream dataOutStream;
+    /**
+     * Object output stream.
+     */
+    private ObjectOutputStream objOutStream;
+    /**
+     * Object input stream.
+     */
+    private ObjectInputStream objInpStream;
+
     /**
      * Constructor. Get port, address and working directory.
+     * @param inputStream - input stream.
+     * @param outputStream - output stream.
      */
-    public StartServer() {
-        ServerSettings serverSettings = new ServerSettings();
-        this.port = serverSettings.getPort();
-    }
+    public StartServer(InputStream inputStream, OutputStream outputStream) {
 
-    /**
-     *
-     * @return - connection port number.
-     */
-    public int getPort() {
-        return this.port;
+        this.inpStream = inputStream;
+        this.outStream = outputStream;
     }
-
     /**
      * Set up connection.
      * @throws IOException - exception.
+     * @throws ClassNotFoundException - exception.
      */
-    public void connect() throws IOException {
+    public void listen() throws IOException, ClassNotFoundException {
 
-        try (ServerSocket serverSocket = new ServerSocket(this.port)) {
-            try (Socket connection = serverSocket.accept()) {
+        this.dataInpStream = new DataInputStream(this.inpStream);
+        this.dataOutStream = new DataOutputStream(this.outStream);
+        this.objOutStream = new ObjectOutputStream(this.outStream);
+        this.objInpStream = new ObjectInputStream(this.inpStream);
 
-                this.socketInputStream = connection.getInputStream();
-                this.socketOutputStream = connection.getOutputStream();
-                this.in = new DataInputStream(this.socketInputStream);
-                this.out = new DataOutputStream(this.socketOutputStream);
+        this.dataOutStream.writeUTF("<Ok>");
+        this.dataOutStream.flush();
 
-                ServerMenu serverMenu = new ServerMenu(this.in, this.out);
-                serverMenu.fillMenu();
-                /**
-                 * Array of server actions info.
-                 */
-                String[] serverActions = serverMenu.getActions();
+        ServerMenu serverMenu = new ServerMenu(this.dataInpStream, this.dataOutStream);
+        serverMenu.fillMenu();
 
-                ObjectOutputStream oos = new ObjectOutputStream(this.socketOutputStream);
-                oos.writeObject(serverActions);
-                oos.flush();
-
-                while (true) {
-                    Command command = new Command(this.in.readUTF());
-                    serverMenu.choice(command);
-                }
-            } catch (IOException ioe) {
-                ioe.printStackTrace();
-            }
-        } catch (IOException ioe) {
-            ioe.printStackTrace();
+        while (true) {
+            Command command = (Command) objInpStream.readObject();
+            serverMenu.choice(command);
         }
     }
     /**
      * Main method.
      * @param args - no arguments.
      * @throws IOException - exception.
+     * @throws ClassNotFoundException - exception.
      */
-    public static void main(String[] args) throws IOException {
-        try {
-            StartServer startServer = new StartServer();
-            startServer.connect();
-        } catch (IOException ioe) {
-            ioe.printStackTrace();
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
+        /**
+         * Connection port.
+         */
+        ServerSettings serverSettings = new ServerSettings();
+        int port = serverSettings.getPort();
+
+        try (ServerSocket serverSocket = new ServerSocket(port)) {
+            Socket connection = serverSocket.accept();
+            InputStream socketInputStream = connection.getInputStream();
+            OutputStream socketOutputStream = connection.getOutputStream();
+            StartServer startServer = new StartServer(socketInputStream, socketOutputStream);
+            startServer.listen();
+        } catch (IOException | ClassNotFoundException exc) {
+            exc.printStackTrace();
         }
     }
 }

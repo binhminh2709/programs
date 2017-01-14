@@ -1,7 +1,8 @@
 package ru.epatko.serverSide;
 
 import org.junit.Test;
-import ru.epatko.clientSide.Client;
+import ru.epatko.clientSide.*;
+
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
 
@@ -11,28 +12,22 @@ import static org.junit.Assert.*;
  */
 public class StartServerTest {
     @Test
-    public void whenClientStartsThenCanGetIPAddress() throws Exception {
-        Client client = new Client();
-        assertThat(client.getAddress(), is("127.0.0.1"));
+    public void whenStartsClientSettingsThenCanGetIPAddressAndPort() throws Exception {
+        ClientSettings cs = new ClientSettings();
+        assertThat(cs.getAddress(), is("127.0.0.1"));
+        assertThat(cs.getPort(), is(54321));
     }
     @Test
-    public void whenClientStartsThenCanGetPort() throws Exception {
-        Client client = new Client();
-        assertThat(client.getPort(), is(54321));
+    public void whenStartsServerSettingsThenCanGetIPAddressAndPort() throws Exception {
+        ServerSettings ss = new ServerSettings();
+        assertThat(ss.getAddress(), is("127.0.0.1"));
+        assertThat(ss.getPort(), is(54321));
     }
-
-    @Test
-    public void whenServerStartsThenCanGetPortNumber() throws Exception {
-        StartServer startServer = new StartServer();
-        assertThat(startServer.getPort(), is(54321));
-    }
-
     @Test
     public void whenSetCommandThenCanGetActionNameAndActionParameter() throws Exception {
         Command command = new Command("11  22");
         assertThat(command.getAction(), is("11"));
         assertThat(command.getParam(), is("22"));
     }
-
 
 }
