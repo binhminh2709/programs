@@ -1,0 +1,39 @@
+<project>
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>searcher</artifactId>
+    <version>2.0</version>
+    <packaging>jar</packaging>
+    
+    <parent>
+        <groupId>ru.epatko</groupId>
+        <artifactId>chapter_003</artifactId>
+        <version>3.0</version>
+    </parent>
+
+	<build>
+		<finalName>find</finalName>
+		<plugins>
+			<plugin>
+      			<groupId>org.apache.maven.plugins</groupId>
+       			<artifactId>maven-shade-plugin</artifactId>
+        		<version>2.4.3</version>
+        			<executions>
+          				<execution>
+            				<phase>package</phase>
+            					<goals>
+            						<goal>shade</goal>
+            					</goals>
+            					<configuration>
+              						<transformers>
+                						<transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                  							<mainClass>ru.epatko.searcher.Searcher</mainClass>
+                  						</transformer>
+            						</transformers>
+            					</configuration>
+          				</execution>
+        			</executions>
+      		</plugin>
+      	</plugins>
+	</build>	
+
+</project>
