@@ -23,10 +23,7 @@ public class ClientMenu {
      * Output stream.
      */
     private final OutputStream outStream;
-    /**
-     * Object input stream.
-     */
-    private final ObjectInputStream objInpStream;
+
     /**
      * Object output stream.
      */
@@ -58,7 +55,6 @@ public class ClientMenu {
         this.outStream = outStream;
         this.dataInpStream = new DataInputStream(inpStream);
         this.dataOutStream = new DataOutputStream(outStream);
-        this.objInpStream = new ObjectInputStream(this.inpStream);
         this.objOutStream = new ObjectOutputStream(this.outStream);
     }
 

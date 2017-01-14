@@ -28,10 +28,6 @@ public class StartServer {
      */
     private DataOutputStream dataOutStream;
     /**
-     * Object output stream.
-     */
-    private ObjectOutputStream objOutStream;
-    /**
      * Object input stream.
      */
     private ObjectInputStream objInpStream;
@@ -55,7 +51,6 @@ public class StartServer {
 
         this.dataInpStream = new DataInputStream(this.inpStream);
         this.dataOutStream = new DataOutputStream(this.outStream);
-        this.objOutStream = new ObjectOutputStream(this.outStream);
         this.objInpStream = new ObjectInputStream(this.inpStream);
 
         this.dataOutStream.writeUTF("<Ok>");
