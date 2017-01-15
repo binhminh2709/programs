@@ -69,9 +69,6 @@ public class Searcher extends SimpleFileVisitor<Path> {
         this.logger.log("------------------------------------------------");
         this.logger.log(String.format("Matched: %d", numMatches));
     }
-
-    // Invoke the pattern matching method on each file.
-
     /**
      * Invoke the pattern matching method on each file.
      * @param file - path by file to compare.
@@ -115,38 +112,24 @@ public class Searcher extends SimpleFileVisitor<Path> {
      * @throws IOException - exception.
      */
     public static void main(String[] args) throws IOException {
+
         /**
-         * String pattern to compare.
+         * Arguments validator.
          */
-        Usage usage = new Usage();
-        String pattern = null;
-        if (args.length != 7 || !"-d".equals(args[0]) || !"-n".equals(args[2]) || !"-o".equals(args[5])) {
-            usage.help();
-        }
-        if ("-m".equals(args[4])) {
-            if (args[3].contains("*") || args[3].contains(".")) {
-                usage.help();
-            } else {
-                pattern = String.format(".*\\.%s$", args[3]);
+        Validator validator = new Validator();
+        /**
+         * Pattern to compare.
+         */
+        String pattern = validator.isBad(args);
+
+            try {
+                Path startingDir = Paths.get(args[1]);
+                Pattern aPattern = Pattern.compile(pattern);
+                Searcher searcher = new Searcher(aPattern, args[6]);
+                Files.walkFileTree(startingDir, searcher);
+                searcher.done();
+            } catch (PatternSyntaxException pse) {
+                pse.printStackTrace();
             }
-        } else if ("-f".equals(args[4])) {
-           pattern = String.format("^%s$", args[3]);
-
-        } else if ("-r".equals(args[4])) {
-            pattern = args[3];
-
-        } else {
-            usage.help();
-        }
-
-        try {
-            Path startingDir = Paths.get(args[1]);
-            Pattern aPattern = Pattern.compile(pattern);
-            Searcher searcher = new Searcher(aPattern, args[6]);
-            Files.walkFileTree(startingDir, searcher);
-            searcher.done();
-        } catch (PatternSyntaxException pse) {
-            System.out.println(pse.getMessage());
-        }
     }
 }
