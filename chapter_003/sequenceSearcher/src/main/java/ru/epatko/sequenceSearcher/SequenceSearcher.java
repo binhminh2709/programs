@@ -23,7 +23,7 @@ public class SequenceSearcher {
          */
         int digit = 0;
         for (int i = 0; i < (array.length - 1); i++) {
-            if (array[i] == array[i+1]) {
+            if (array[i] == array[i + 1]) {
                 counter++;
                 if (counter > maxSequence) {
                     maxSequence = counter;
