@@ -11,6 +11,7 @@
         <module>palindromeChecker</module>
         <module>netFileManager</module>
         <module>searcher</module>
+        <module>sequenceSearcher</module>
     </modules>
     
     <dependencies>
