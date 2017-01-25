@@ -119,11 +119,7 @@ public class CalcMenu {
      */
     private void error() {
         System.out.println("Incorrect input.");
-        this.secondValue = 0d;
-        this.result = 0d;
-        this.reuse = false;
-        this.repeat = false;
-        this.operator = "";
+        compute("c");
     }
 
     //********************************************* Addition *******************************************************/
