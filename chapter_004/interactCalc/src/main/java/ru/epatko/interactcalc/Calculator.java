@@ -1,4 +1,4 @@
-package ru.epatko.calculator;
+package ru.epatko.interactcalc;
 
 /**
  * @author Mikhail Epatko (epatko-m-i@rambler.ru).
