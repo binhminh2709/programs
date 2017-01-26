@@ -1,5 +1,7 @@
 package ru.epatko.interactcalc;
 
+import ru.epatko.scientificMenu.ScientificMenu;
+
 /**
  * @author Mikhail Epatko (epatko-m-i@rambler.ru).
  *         24.01.17.
@@ -43,7 +45,7 @@ public class InteractCalc {
     public static void main(String[] args) {
         Calculator calc = new Calculator();
         Input input = new ConsoleInput();
-        CalcMenu menu = new CalcMenu(input, calc);
+        CalcMenu menu = new ScientificMenu(input, calc);
         menu.fillMenu();
         InteractCalc iCalc = new InteractCalc(input, menu);
         menu.compute("h");

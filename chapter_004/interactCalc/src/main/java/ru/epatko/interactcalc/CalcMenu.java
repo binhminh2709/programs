@@ -24,7 +24,7 @@ public class CalcMenu {
     /**
      * result.
      */
-    private double result = 0d;
+    protected double result = 0d;
     /**
      * Operation sign.
      */
@@ -32,7 +32,7 @@ public class CalcMenu {
     /**
      * Result reuse flag.
      */
-    private boolean reuse = false;
+    protected boolean reuse = false;
     /**
      * Repeat last operation flag.
      */
@@ -40,7 +40,7 @@ public class CalcMenu {
     /**
      * Actions HashMap.
      */
-    private Map<String, CalcAction> calcActions = new HashMap<>();
+    protected Map<String, CalcAction> calcActions = new HashMap<>();
 
     /**
      * Constructor.
@@ -83,7 +83,7 @@ public class CalcMenu {
      * Ask first value input.
      * @return - double value.
      */
-    private double takeFirstValue() {
+    protected double takeFirstValue() {
 
         double firstValue = 0d;
 
@@ -99,7 +99,7 @@ public class CalcMenu {
      * Ask second value input.
      * @return - double value.
      */
-    private double takeSecondValue() {
+    protected double takeSecondValue() {
 
         if (!this.repeat) {
             this.secondValue = Double.parseDouble(this.input.ask("Enter second value: "));
@@ -110,14 +110,14 @@ public class CalcMenu {
     /**
      * Print result.
      */
-    private void printResult() {
+    protected void printResult() {
         System.out.printf("Result: %g%s", this.result, System.getProperty("line.separator"));
     }
 
     /**
      * Print error message and reset values.
      */
-    private void error() {
+    protected void error() {
         System.out.println("Incorrect input.");
         compute("c");
     }
