@@ -12,5 +12,5 @@ public interface Input {
      * @return - user message.
      */
     String ask(String question);
-
+ 
 }
