@@ -26,7 +26,7 @@
             					<configuration>
               						<transformers>
                 						<transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                  							<mainClass>ru.epatko.scientificCalc.ScientificCalc</mainClass>
+                  							<mainClass>ru.epatko.scientificCalc.ScientificCalcStart</mainClass>
                   						</transformer>
             						</transformers>
             					</configuration>
