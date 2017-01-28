@@ -6,6 +6,7 @@
     
     <modules>
      	<module>interactCalc</module>
+     	<module>scientificCalc</module>
      	
     </modules>
     

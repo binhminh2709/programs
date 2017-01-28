@@ -1,4 +1,4 @@
-package ru.epatko.scientificMenu;
+package ru.epatko.scientificCalc;
 
 import ru.epatko.interactcalc.*;
 
@@ -6,15 +6,21 @@ import ru.epatko.interactcalc.*;
  * @author Mikhail Epatko (epatko-m-i@rambler.ru).
  *         26.01.17.
  */
-public class ScientificMenu extends CalcMenu {
+public class ScientificCalcMenu extends CalcMenu {
 
     /**
-     * Constructor.
-     * @param input - input method.
-     * @param calc - calculator.
+     * Scientific calculator.
      */
-    public ScientificMenu(Input input, Calculator calc) {
+    private final ScientificCalculator calculator;
+    /**
+     * Constructor.
+     *
+     * @param input - input method.
+     * @param calc  - calculator.
+     */
+    public ScientificCalcMenu(Input input, ScientificCalculator calc) {
         super(input, calc);
+        this.calculator = calc;
     }
 
     /**
@@ -55,7 +61,8 @@ public class ScientificMenu extends CalcMenu {
         @Override
         public void execute() {
             try {
-                result = Math.sin(Math.toRadians(takeFirstValue()));
+                calculator.sin(takeFirstValue());
+                result = calculator.getResult();
                 printResult();
                 reuse = true;
             } catch (NumberFormatException nfe) {
@@ -67,7 +74,6 @@ public class ScientificMenu extends CalcMenu {
     /**
      * Cos.
      */
-
     private class Cos implements CalcAction {
         /**
          * Action name.
@@ -93,7 +99,8 @@ public class ScientificMenu extends CalcMenu {
         @Override
         public void execute() {
             try {
-                result = Math.cos(Math.toRadians(takeFirstValue()));
+                calculator.cos(takeFirstValue());
+                result = calculator.getResult();
                 printResult();
                 reuse = true;
             } catch (NumberFormatException nfe) {

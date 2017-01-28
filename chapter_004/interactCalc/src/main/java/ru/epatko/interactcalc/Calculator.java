@@ -10,7 +10,7 @@ public class Calculator {
 	/**
 	 * Operation result.
 	 */
-	private double result;
+	protected double result;
 
 	/**
 	 * Addition operation.
@@ -53,6 +53,6 @@ public class Calculator {
 	 * @return - operation result.
 	 */
 	public double getResult() {
-		return this.result;
+		return result;
 	}
 }

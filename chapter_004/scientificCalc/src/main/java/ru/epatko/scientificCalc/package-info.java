@@ -4,4 +4,4 @@
  *
  * Scientific calculator.
  */
-package ru.epatko.scientificMenu;
+package ru.epatko.scientificCalc;
