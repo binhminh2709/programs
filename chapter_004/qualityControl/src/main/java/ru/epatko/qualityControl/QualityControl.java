@@ -56,12 +56,20 @@ public class QualityControl {
     }
 
     /**
+     * Add store to stores array list.
+     * @param store - store.
+     */
+    public void addStore(Store store) {
+        this.stores.add(store);
+    }
+
+    /**
      * Fill stores array list.
      */
     public void fillStores() {
-        this.stores.add(new WareHouse());
-        this.stores.add(new Shop());
-        this.stores.add(new Trash());
+        addStore(new WareHouse());
+        addStore(new Shop());
+        addStore(new Trash());
     }
 
     /**
