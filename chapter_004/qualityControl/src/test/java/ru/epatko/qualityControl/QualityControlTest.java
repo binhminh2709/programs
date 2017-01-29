@@ -50,7 +50,7 @@ public class QualityControlTest {
     }
 
     @Test
-    public void whenChangeCurrentDSateThenControlTransfersFoodToShop() throws Exception {
+    public void whenChangeCurrentDSateThenControllerTransfersFoodToTheNextStore() throws Exception {
 
         QualityControl qControl = new QualityControl(4);
         qControl.fillStores();
