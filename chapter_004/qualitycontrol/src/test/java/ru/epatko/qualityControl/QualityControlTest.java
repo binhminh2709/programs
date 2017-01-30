@@ -107,9 +107,9 @@ public class QualityControlTest {
         apple.setPrice(1d);
         apple.setQuantity(1d);
 
-        assertThat(apple.getCreateDate(), is(1l));
+        assertThat(apple.getCreateDate(), is(1L));
         assertThat(apple.getDiscount(), is(1d));
-        assertThat(apple.getExpirationDate(), is(1l));
+        assertThat(apple.getExpirationDate(), is(1L));
         assertThat(apple.getName(), is("1"));
         assertThat(apple.getQuantity(), is(1d));
         assertThat(apple.getPrice(), is(1d));
@@ -117,16 +117,16 @@ public class QualityControlTest {
     @Test
     public void whenSetMeatFieldsThenCanGetFields() {
         Meat meat = new Meat();
-        meat.setExpirationDate(1l);
-        meat.setCreateDate(1l);
+        meat.setExpirationDate(1L);
+        meat.setCreateDate(1L);
         meat.setDiscount(1d);
         meat.setName("1");
         meat.setPrice(1d);
         meat.setQuantity(1d);
 
-        assertThat(meat.getCreateDate(), is(1l));
+        assertThat(meat.getCreateDate(), is(1L));
         assertThat(meat.getDiscount(), is(1d));
-        assertThat(meat.getExpirationDate(), is(1l));
+        assertThat(meat.getExpirationDate(), is(1L));
         assertThat(meat.getName(), is("1"));
         assertThat(meat.getQuantity(), is(1d));
         assertThat(meat.getPrice(), is(1d));
