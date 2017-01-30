@@ -4,7 +4,7 @@ package ru.epatko.qualityControl;
  * @author Mikhail Epatko (epatko-m-i@rambler.ru).
  *         29.01.17.
  */
-public class Meat implements Food {
+public class Apple implements Food {
 
     /**
      * Product name.
@@ -43,11 +43,11 @@ public class Meat implements Food {
      * Set product expiration date.
      * @param expirationDate - product expiration date.
      */
-    public void setExpirationDate(long expirationDate) {
+     public void setExpirationDate(long expirationDate) {
         this.expirationDate = expirationDate;
     }
 
-    /**
+     /**
      * Set product creation date.
      * @param createDate - product creation date.
      */
@@ -63,7 +63,7 @@ public class Meat implements Food {
         this.quantity = quantity;
     }
 
-    /**
+     /**
      * Set product price.
      * @param price - product price.
      */
@@ -71,7 +71,7 @@ public class Meat implements Food {
         this.price = price;
     }
 
-    /**
+     /**
      * Set discount.
      * @param discount - discount.
      */
@@ -116,13 +116,7 @@ public class Meat implements Food {
      * @return - product price.
      */
     public double getPrice() {
-        double priceWithDiscount;
-        if (discount != 0) {
-            priceWithDiscount = this.price * this.discount / 100;
-        } else {
-            priceWithDiscount = this.price;
-        }
-        return priceWithDiscount;
+        return this.price;
     }
 
     /**

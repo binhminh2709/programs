@@ -1,6 +1,6 @@
 <project>
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>interactCalc</artifactId>
+    <artifactId>scientificcalc</artifactId>
     <version>2.0</version>
     <packaging>jar</packaging>
     
@@ -26,7 +26,7 @@
             					<configuration>
               						<transformers>
                 						<transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                  							<mainClass>ru.epatko.interactCalc.InteractCalc</mainClass>
+                  							<mainClass>ru.epatko.scientificCalc.ScientificCalcStart</mainClass>
                   						</transformer>
             						</transformers>
             					</configuration>

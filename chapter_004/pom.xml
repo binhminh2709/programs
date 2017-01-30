@@ -5,9 +5,9 @@
     <version>3.0</version>
     
     <modules>
-     	<module>interactCalc</module>
-     	<module>scientificCalc</module>
-        <module>qualityControl</module>
+     	<module>interactcalc</module>
+     	<module>scientificcalc</module>
+        <module>qualitycontrol</module>
      	
     </modules>
     

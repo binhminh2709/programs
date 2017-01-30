@@ -9,6 +9,12 @@ import java.util.ArrayList;
 public interface Store {
 
     /**
+     * Get store name.
+     * @return - store name.
+     */
+    String getName();
+
+    /**
      * Add food to array list.
      * @param food - food.
      */
@@ -25,4 +31,17 @@ public interface Store {
      * @param food - food to remove.
      */
     void removeFood(Food food);
+
+    /**
+     * Check is food appropriate store.
+     * @param food - food.
+     * @return - true or false.
+     */
+    boolean isAppropriate(Food food);
+
+    /**
+     * Set current date.
+     * @param currentDate - current date (long format).
+     */
+    void setCurrentDate(long currentDate);
 }
