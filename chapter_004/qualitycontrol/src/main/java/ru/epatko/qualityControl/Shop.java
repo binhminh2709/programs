@@ -19,11 +19,6 @@ public class Shop implements Store {
     private ArrayList<Food> foods = new ArrayList<>();
 
     /**
-     * Current date.
-     */
-    private long currentDate;
-
-    /**
      * Result of food appropriateness checking.
      */
     private boolean checkResult;
@@ -39,27 +34,26 @@ public class Shop implements Store {
     }
 
     /**
-     * Setter.
-     * @param currentDate - current date (long format).
-     */
-    @Override
-    public void setCurrentDate(long currentDate) {
-        this.currentDate = currentDate;
-    }
-
-    /**
      * Check is food appropriate this store.
      *
      * @param food - food.
      * @return - true or false.
      */
     @Override
-    public boolean isAppropriate(Food food) {
+    public boolean isAppropriate(Food food, long currentDate) {
 
-        double remainingPeriod = 1d - (double) (this.currentDate - food.getCreateDate())
-                / (double) ((food.getExpirationDate() - food.getCreateDate()));
-        if (remainingPeriod <= 0.75 && remainingPeriod >= 0.25) {
-            this.checkResult = true;
+        double remainingPeriod = 1d - (double) (currentDate - food.getCreateDate())
+                                         / (double) ((food.getExpirationDate() - food.getCreateDate()));
+        if (remainingPeriod <= 0.75 && remainingPeriod > 0d) {
+            if (remainingPeriod < 0.25 && !food.getDiscountFlag()) {
+                food.setPrice(food.getPrice() * (1 - food.getDiscount()));
+                food.setDiscountFlag();
+            }
+            if (addFood(food)) {
+                this.checkResult = true;
+            } else {
+                this.checkResult = false;
+            }
         } else {
             this.checkResult = false;
         }
@@ -69,10 +63,16 @@ public class Shop implements Store {
     /**
      * Add food to array list.
      * @param food - food.
+     * @return boolean add or no.
      */
     @Override
-    public void addFood(Food food) {
-        this.foods.add(food);
+    public boolean addFood(Food food) {
+        boolean added = false;
+        if (!this.foods.contains(food)) {
+            this.foods.add(food);
+            added = true;
+        }
+        return added;
     }
 
     /**

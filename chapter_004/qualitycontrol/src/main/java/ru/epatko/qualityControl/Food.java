@@ -41,6 +41,14 @@ public interface Food {
      * @param discount - discount.
      */
     void setDiscount(double discount);
+    /**
+     * Set discount flag.
+     */
+    void setDiscountFlag();
+    /**
+     * Get discount flag.
+     */
+    boolean getDiscountFlag();
 
     /**
      * get product name.

@@ -25,11 +25,12 @@ public class Meat implements Food {
     /**
      * Product discount.
      */
-    private double discount;
+    private double discount = 0.25;
     /**
      * Product quantity.
      */
     private double quantity;
+    private boolean discountFlag = false;
 
     /**
      * Set name.
@@ -78,6 +79,20 @@ public class Meat implements Food {
     public void setDiscount(double discount) {
         this.discount = discount;
     }
+    @Override
+    public void setDiscountFlag() {
+        this.discountFlag = true;
+    }
+
+    /**
+     * Get discount flag.
+     * @return - discount flag.
+     */
+    @Override
+    public boolean getDiscountFlag() {
+        return this.discountFlag;
+    }
+
 
     /**
      * get product name.

@@ -17,8 +17,9 @@ public interface Store {
     /**
      * Add food to array list.
      * @param food - food.
+     * @return boolean add or no.
      */
-    void addFood(Food food);
+    boolean addFood(Food food);
 
     /**
      * Get foods array list.
@@ -37,11 +38,5 @@ public interface Store {
      * @param food - food.
      * @return - true or false.
      */
-    boolean isAppropriate(Food food);
-
-    /**
-     * Set current date.
-     * @param currentDate - current date (long format).
-     */
-    void setCurrentDate(long currentDate);
+    boolean isAppropriate(Food food, long currentDate);
 }

@@ -25,11 +25,15 @@ public class Apple implements Food {
     /**
      * Product discount.
      */
-    private double discount;
+    private double discount = 0.5;
     /**
      * Product quantity.
      */
     private double quantity;
+    /**
+     * Discount flag.
+     */
+    private boolean discountFlag = false;
 
     /**
      * Set name.
@@ -77,6 +81,23 @@ public class Apple implements Food {
      */
     public void setDiscount(double discount) {
         this.discount = discount;
+    }
+
+    /**
+     * Set discount flag.
+     */
+    @Override
+    public void setDiscountFlag() {
+        this.discountFlag = true;
+    }
+
+    /**
+     * Get discount flag.
+     * @return - discount flag.
+     */
+    @Override
+    public boolean getDiscountFlag() {
+        return this.discountFlag;
     }
 
     /**

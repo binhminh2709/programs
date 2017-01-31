@@ -9,6 +9,10 @@ import java.util.*;
 public class QualityControl {
 
     /**
+     * Current date.
+     */
+    private long currentDate;
+    /**
      * Stores array list.
      */
     private ArrayList<Store> stores = new ArrayList<>();
@@ -19,6 +23,14 @@ public class QualityControl {
      */
     public ArrayList<Store> getStores() {
         return this.stores;
+    }
+
+    /**
+     * Setter.
+     * @param currentDate - current date (long format).
+     */
+    public void setCurrentDate(long currentDate) {
+        this.currentDate = currentDate;
     }
 
     /**
@@ -42,12 +54,15 @@ public class QualityControl {
      * Put food to the store.
      * @param food - food.
      */
-    public void putFood(Food food) {
+    public boolean putFood(Food food) {
+        boolean moved = false;
         for (int i = 0; i < this.stores.size(); i++) {
-            if (this.stores.get(i).isAppropriate(food)) {
-                this.stores.get(i).addFood(food);
+            if (this.stores.get(i).isAppropriate(food, this.currentDate)) {
+                moved = true;
+                break;
             }
         }
+        return moved;
     }
 
     /**
@@ -58,8 +73,9 @@ public class QualityControl {
             ArrayList<Food> foods = stores.get(i).getFoods();
             for (int j = 0; j < foods.size(); j++) {
                 Food food = foods.get(j);
-                putFood(food);
-                stores.get(i).removeFood(food);
+                if (putFood(food)) {
+                    stores.get(i).removeFood(food);
+                }
             }
         }
     }

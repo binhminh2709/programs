@@ -2,8 +2,6 @@ package ru.epatko.qualityControl;
 
 import org.junit.Test;
 
-import java.util.ArrayList;
-
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
@@ -21,10 +19,7 @@ public class QualityControlTest {
 
         QualityControl controller = new QualityControl();
         controller.fillStores();
-        ArrayList<Store> stores = controller.getStores();
-        for (int i = 0; i < stores.size(); i++) {
-            stores.get(i).setCurrentDate(4);
-        }
+        controller.setCurrentDate(4);
         Meat meat = new Meat();
         meat.setCreateDate(1);
         meat.setExpirationDate(16);
@@ -37,10 +32,8 @@ public class QualityControlTest {
 
         QualityControl controller = new QualityControl();
         controller.fillStores();
-        ArrayList<Store> stores = controller.getStores();
-        for (int i = 0; i < stores.size(); i++) {
-            stores.get(i).setCurrentDate(8);
-        }
+        controller.setCurrentDate(8);
+
         Apple apple = new Apple();
         apple.setCreateDate(1);
         apple.setExpirationDate(17);
@@ -53,10 +46,7 @@ public class QualityControlTest {
 
         QualityControl controller = new QualityControl();
         controller.fillStores();
-        ArrayList<Store> stores = controller.getStores();
-        for (int i = 0; i < stores.size(); i++) {
-            stores.get(i).setCurrentDate(14);
-        }
+        controller.setCurrentDate(18);
         Apple apple = new Apple();
         apple.setCreateDate(1);
         apple.setExpirationDate(17);
@@ -65,33 +55,28 @@ public class QualityControlTest {
     }
 
     @Test
-    public void whenChangeCurrentDSateThenControllerTransfersFoodToTheNextStore() {
+    public void whenChangeCurrentDateThenControllerTransfersFoodToTheNextStore() {
 
         QualityControl controller = new QualityControl();
         controller.fillStores();
-        ArrayList<Store> stores = controller.getStores();
-        for (int i = 0; i < stores.size(); i++) {
-            stores.get(i).setCurrentDate(4);
-        }
+        controller.setCurrentDate(4);
         Apple apple = new Apple();
         apple.setCreateDate(1);
         apple.setExpirationDate(17);
         controller.putFood(apple);
+
         assertThat(controller.getStores().get(WARE_HOUSE).getFoods().contains(apple), is(true));
         assertThat(controller.getStores().get(SHOP).getFoods().isEmpty(), is(true));
         assertThat(controller.getStores().get(TRASH).getFoods().isEmpty(), is(true));
 
-        for (int i = 0; i < stores.size(); i++) {
-            stores.get(i).setCurrentDate(8);
-        }
+        controller.setCurrentDate(8);
         controller.checkQuality();
         assertThat(controller.getStores().get(SHOP).getFoods().contains(apple), is(true));
+
         assertThat(controller.getStores().get(WARE_HOUSE).getFoods().isEmpty(), is(true));
         assertThat(controller.getStores().get(TRASH).getFoods().isEmpty(), is(true));
 
-        for (int i = 0; i < stores.size(); i++) {
-            stores.get(i).setCurrentDate(14);
-        }
+        controller.setCurrentDate(17);
         controller.checkQuality();
         assertThat(controller.getStores().get(TRASH).getFoods().contains(apple), is(true));
         assertThat(controller.getStores().get(SHOP).getFoods().isEmpty(), is(true));
@@ -130,5 +115,23 @@ public class QualityControlTest {
         assertThat(meat.getName(), is("1"));
         assertThat(meat.getQuantity(), is(1d));
         assertThat(meat.getPrice(), is(1d));
+    }
+
+    @Test
+    public void whenSetSmallRemainingPeriodThenGetDiscountPrice() {
+        QualityControl controller = new QualityControl();
+        controller.fillStores();
+        Apple apple = new Apple();
+        apple.setCreateDate(1);
+        apple.setExpirationDate(17);
+        apple.setPrice(1d);
+        controller.putFood(apple);
+
+        controller.setCurrentDate(14);
+        controller.checkQuality();
+        assertThat(controller.getStores().get(SHOP).getFoods().contains(apple), is(true));
+        assertThat(controller.getStores().get(SHOP).getFoods().get(0).getPrice(), is(0.5));
+        assertThat(controller.getStores().get(TRASH).getFoods().isEmpty(), is(true));
+        assertThat(controller.getStores().get(WARE_HOUSE).getFoods().isEmpty(), is(true));
     }
 }
