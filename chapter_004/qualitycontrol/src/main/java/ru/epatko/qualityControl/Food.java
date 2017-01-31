@@ -47,6 +47,7 @@ public interface Food {
     void setDiscountFlag();
     /**
      * Get discount flag.
+     * @return - boolean, apply discount or no.
      */
     boolean getDiscountFlag();
 

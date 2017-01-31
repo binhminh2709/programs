@@ -36,6 +36,7 @@ public interface Store {
     /**
      * Check is food appropriate store.
      * @param food - food.
+     * @param currentDate - current date.
      * @return - true or false.
      */
     boolean isAppropriate(Food food, long currentDate);

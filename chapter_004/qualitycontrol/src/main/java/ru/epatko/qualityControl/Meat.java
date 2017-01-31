@@ -30,6 +30,9 @@ public class Meat implements Food {
      * Product quantity.
      */
     private double quantity;
+    /**
+     * Discount flag.
+     */
     private boolean discountFlag = false;
 
     /**

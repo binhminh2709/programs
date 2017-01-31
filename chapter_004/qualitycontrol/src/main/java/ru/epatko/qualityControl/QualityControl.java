@@ -53,6 +53,7 @@ public class QualityControl {
     /**
      * Put food to the store.
      * @param food - food.
+     * @return - boolean, moved food or no.
      */
     public boolean putFood(Food food) {
         boolean moved = false;
