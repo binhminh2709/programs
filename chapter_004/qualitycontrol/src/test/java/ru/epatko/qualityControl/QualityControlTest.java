@@ -1,6 +1,7 @@
 package ru.epatko.qualityControl;
 
 import org.junit.Test;
+import ru.epatko.decorators.*;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
@@ -133,5 +134,25 @@ public class QualityControlTest {
         assertThat(controller.getStores().get(SHOP).getFoods().get(0).getPrice(), is(0.5));
         assertThat(controller.getStores().get(TRASH).getFoods().isEmpty(), is(true));
         assertThat(controller.getStores().get(WARE_HOUSE).getFoods().isEmpty(), is(true));
+    }
+
+    @Test
+    public void whenCreateRecyclableAppleThenMoveItToRecycle() {
+        QualityControl controller = new QualityControl();
+        controller.fillStores();
+
+        RecyclableFood recyclableApple = new RecyclableFood(new Apple());
+        recyclableApple.setCreateDate(1);
+        recyclableApple.setExpirationDate(17);
+        recyclableApple.setPrice(1d);
+        controller.putFood(recyclableApple);
+
+        controller.setCurrentDate(18);
+        controller.checkQuality();
+
+
+
+
+
     }
 }
