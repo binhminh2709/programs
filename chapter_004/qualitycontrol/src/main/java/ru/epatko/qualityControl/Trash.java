@@ -87,6 +87,5 @@ public class Trash implements Store {
     @Override
     public void removeFood(Food food) {
         this.foods.remove(food);
-
     }
 }

@@ -4,4 +4,4 @@
  *
  * Decorators.
  */
-package ru.epatko.decorators;
+package ru.epatko.newQualityControl;

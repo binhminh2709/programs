@@ -1,88 +1,99 @@
-package ru.epatko.decorators;
-
-import ru.epatko.qualityControl.Food;
+package ru.epatko.newQualityControl;
 
 /**
  * @author Mikhail Epatko (epatko-m-i@rambler.ru).
- *         02.02.17.
+ *         03.02.17.
  */
-public abstract class FoodDecorator implements Food {
+public class Milk implements RecycleFood {
 
     /**
-     * Food.
+     * Product name.
      */
-    private Food food;
-
+    private String name;
     /**
-     * Constructor.
-     * @param food - food.
+     * Product expiration date.
      */
-    public FoodDecorator(Food food) {
-        this.food = food;
-    }
+    private long expirationDate;
+    /**
+     * Product creation date.
+     */
+    private long createDate;
+    /**
+     * Product price.
+     */
+    private double price;
+    /**
+     * Product discount.
+     */
+    private double discount = 0.5;
+    /**
+     * Product quantity.
+     */
+    private double quantity;
+    /**
+     * Discount flag.
+     */
+    private boolean discountFlag = false;
 
     /**
      * Recyclable flag.
-     * @return - true or false.
      */
-    public abstract boolean isRecyclable();
-    /**
-     * Set recyclable flag.
-     */
-    public abstract void setRecyclable();
+    private boolean recyclableFlag = true;
 
     /**
      * Set name.
      * @param name - product name.
      */
-    @Override
     public void setName(String name) {
-        this.food.setName(name);
+        this.name = name;
+    }
+
+    /**
+     * Setter.
+     * @param recyclableFlag - recyclable flag.
+     */
+    public void setRecyclableFlag(boolean recyclableFlag) {
+        this.recyclableFlag = recyclableFlag;
     }
 
     /**
      * Set product expiration date.
      * @param expirationDate - product expiration date.
      */
-    @Override
     public void setExpirationDate(long expirationDate) {
-        this.food.setExpirationDate(expirationDate);
+        this.expirationDate = expirationDate;
     }
 
     /**
      * Set product creation date.
      * @param createDate - product creation date.
      */
-    @Override
     public void setCreateDate(long createDate) {
-        this.food.setCreateDate(createDate);
+        this.createDate = createDate;
     }
 
     /**
      * Set product quantity.
      * @param quantity - product quantity.
      */
-    @Override
     public void setQuantity(double quantity) {
-        this.food.setQuantity(quantity);
+        this.quantity = quantity;
     }
 
     /**
      * Set product price.
      * @param price - product price.
      */
-    @Override
     public void setPrice(double price) {
-        this.food.setPrice(price);
+        this.price = price;
     }
 
     /**
      * Set discount.
      * @param discount - discount.
      */
-    @Override
     public void setDiscount(double discount) {
-        this.food.setDiscount(discount);
+        this.discount = discount;
     }
 
     /**
@@ -90,69 +101,71 @@ public abstract class FoodDecorator implements Food {
      */
     @Override
     public void setDiscountFlag() {
-        this.food.setDiscountFlag();
+        this.discountFlag = true;
     }
 
     /**
      * Get discount flag.
-     * @return - boolean, apply discount or no.
+     * @return - discount flag.
      */
     @Override
     public boolean getDiscountFlag() {
-        return this.food.getDiscountFlag();
+        return this.discountFlag;
     }
 
     /**
      * get product name.
      * @return -  product name.
      */
-    @Override
     public String getName() {
-        return this.food.getName();
+        return name;
     }
 
     /**
      * Get product expiration date.
      * @return - product expiration date (long).
      */
-    @Override
     public long getExpirationDate() {
-        return this.food.getExpirationDate();
+        return expirationDate;
     }
 
     /**
      * Get product creation date.
      * @return - product creation date (long).
      */
-    @Override
     public long getCreateDate() {
-        return this.food.getCreateDate();
+        return createDate;
     }
 
     /**
      * Get product quantity.
      * @return - product quantity.
      */
-    @Override
     public double getQuantity() {
-        return this.food.getQuantity();
+        return this.quantity;
     }
 
     /**
      * Get product price.
      * @return - product price.
      */
-    @Override
     public double getPrice() {
-        return this.food.getPrice();
+        return this.price;
     }
 
     /**
      * Get product discount.
      * @return - discount.
      */
-    @Override
     public double getDiscount() {
-        return this.food.getDiscount();
+        return discount;
+    }
+    /**
+     * Show recyclable flag.
+     * @return - true or false.
+     */
+    @Override
+    public boolean isRecyclable() {
+        return this.recyclableFlag;
     }
 }
