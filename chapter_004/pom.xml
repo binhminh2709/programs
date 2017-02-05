@@ -8,6 +8,7 @@
      	<module>interactcalc</module>
      	<module>scientificcalc</module>
         <module>qualitycontrol</module>
+        <module>taskmenu</module>
      	
     </modules>
     
