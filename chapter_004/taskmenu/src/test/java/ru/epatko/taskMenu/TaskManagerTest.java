@@ -21,13 +21,13 @@ public class TaskManagerTest {
         ByteArrayOutputStream output = new ByteArrayOutputStream();
         System.setOut (new PrintStream(output));
         String result = Joiner.on(LS).join(
-                "1. TaskOne:",
-                "   1.1. TaskOneOne - execute TaskOneOne.",
-                "2. TaskTwo:",
-                "   2.1. TaskTwoOne:",
-                "      2.1.1. TaskTwoOneOne - execute TaskTwoOneOne.",
-                "      2.1.2. TaskTwoOneTwo - execute TaskTwoOneTwo.",
-                "3. TaskThree - execute TaskThree.",
+                "Task 1.",
+                "   Task 1.1.",
+                "Task 2.",
+                "   Task 2.1.",
+                "      Task 2.1.1.",
+                "      Task 2.1.2.",
+                "Task 3.",
                 ""
         );
         manager.showMenu();
@@ -41,7 +41,7 @@ public class TaskManagerTest {
         ByteArrayOutputStream output = new ByteArrayOutputStream();
         System.setOut (new PrintStream(output));
         menu.executeTask("1");
-        assertThat(output.toString(), is(String.format("Incorrect input.%s", LS)));
+        assertThat(output.toString(), is(String.format("Executed Task 1.%s", LS)));
     }
     @Test
     public void whenCallTaskOneZeroThenGetError() {
@@ -59,7 +59,7 @@ public class TaskManagerTest {
         ByteArrayOutputStream output = new ByteArrayOutputStream();
         System.setOut (new PrintStream(output));
         menu.executeTask("1.1");
-        assertThat(output.toString(), is(String.format("Executed TaskOneOne.%s", LS)));
+        assertThat(output.toString(), is(String.format("Executed Task 1.1.%s", LS)));
     }
     @Test
     public void whenCallTaskOneOneOneThenGetError() {
@@ -77,7 +77,7 @@ public class TaskManagerTest {
         ByteArrayOutputStream output = new ByteArrayOutputStream();
         System.setOut (new PrintStream(output));
         menu.executeTask("2");
-        assertThat(output.toString(), is(String.format("Incorrect input.%s", LS)));
+        assertThat(output.toString(), is(String.format("Executed Task 2.%s", LS)));
     }
     @Test
     public void whenCallTaskTwoZeroThenGetError() {
@@ -95,7 +95,7 @@ public class TaskManagerTest {
         ByteArrayOutputStream output = new ByteArrayOutputStream();
         System.setOut (new PrintStream(output));
         menu.executeTask("2.1");
-        assertThat(output.toString(), is(String.format("Incorrect input.%s", LS)));
+        assertThat(output.toString(), is(String.format("Executed Task 2.1.%s", LS)));
     }
     @Test
     public void whenCallTaskTwoOneZeroThenGetError() {
@@ -113,7 +113,7 @@ public class TaskManagerTest {
         ByteArrayOutputStream output = new ByteArrayOutputStream();
         System.setOut (new PrintStream(output));
         menu.executeTask("2.1.1");
-        assertThat(output.toString(), is(String.format("Executed TaskTwoOneOne.%s", LS)));
+        assertThat(output.toString(), is(String.format("Executed Task 2.1.1.%s", LS)));
     }
     @Test
     public void whenCallTaskTwoOneOneOneThenGetError() {
@@ -131,7 +131,7 @@ public class TaskManagerTest {
         ByteArrayOutputStream output = new ByteArrayOutputStream();
         System.setOut (new PrintStream(output));
         menu.executeTask("2.1.2");
-        assertThat(output.toString(), is(String.format("Executed TaskTwoOneTwo.%s", LS)));
+        assertThat(output.toString(), is(String.format("Executed Task 2.1.2.%s", LS)));
     }
     @Test
     public void whenCallTaskTwoOneTwoOneThenGetError() {
@@ -149,7 +149,7 @@ public class TaskManagerTest {
         ByteArrayOutputStream output = new ByteArrayOutputStream();
         System.setOut (new PrintStream(output));
         menu.executeTask("3");
-        assertThat(output.toString(), is(String.format("Executed TaskThree.%s", LS)));
+        assertThat(output.toString(), is(String.format("Executed Task 3.%s", LS)));
     }
     @Test
     public void whenCallTaskThreeThreeThenGetError() {
@@ -169,5 +169,4 @@ public class TaskManagerTest {
         menu.executeTask("4");
         assertThat(output.toString(), is(String.format("Incorrect input.%s", LS)));
     }
-
 }

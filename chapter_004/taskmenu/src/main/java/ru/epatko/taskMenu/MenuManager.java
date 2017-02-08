@@ -9,11 +9,6 @@ import java.util.ArrayList;
 public class MenuManager {
 
     /**
-     * Command index to execute.
-     */
-    private int commandIndex = 0;
-
-    /**
      * Tasks arraylist.
      */
     private ArrayList<Task> tasks = new ArrayList<>();
@@ -22,13 +17,13 @@ public class MenuManager {
      * Fill tasks menu.
      */
     public void fillMenu() {
-        TaskOne taskOne = new TaskOne();
-        TaskTwo taskTwo = new TaskTwo();
-        TaskThree taskThree = new TaskThree();
-        TaskOneOne taskOneOne = new TaskOneOne();
-        TaskTwoOne taskTwoOne = new TaskTwoOne();
-        TaskTwoOneOne taskTwoOneOne = new TaskTwoOneOne();
-        TaskTwoOneTwo taskTwoOneTwo = new TaskTwoOneTwo();
+        Task taskOne = new Task("1");
+        Task taskTwo = new Task("2");
+        Task taskThree = new Task("3");
+        Task taskOneOne = new Task("1.1");
+        Task taskTwoOne = new Task("2.1");
+        Task taskTwoOneOne = new Task("2.1.1");
+        Task taskTwoOneTwo = new Task("2.1.2");
 
         taskTwoOne.addSubTask(taskTwoOneOne);
         taskTwoOne.addSubTask(taskTwoOneTwo);
@@ -58,13 +53,16 @@ public class MenuManager {
     /**
      * Execute task.
      * @param taskNumber - task number to execute.
+     * @throws NumberFormatException - exception.
+     * @throws IndexOutOfBoundsException - exception.
      */
-    public void executeTask(String taskNumber) {
+    public void executeTask(String taskNumber) throws NumberFormatException, IndexOutOfBoundsException {
         String[] parseCommand = taskNumber.split("\\.");
+        int commandIndex = 0;
         try {
-            int i = Integer.parseInt(parseCommand[commandIndex]);
-            if (i <= this.tasks.size()) {
-                this.tasks.get(--i).execute(parseCommand, ++commandIndex);
+            int firstCommand = Integer.parseInt(parseCommand[commandIndex++]);
+            if (firstCommand <= this.tasks.size()) {
+                this.tasks.get(--firstCommand).execute(parseCommand, commandIndex);
             } else {
                 error();
             }
