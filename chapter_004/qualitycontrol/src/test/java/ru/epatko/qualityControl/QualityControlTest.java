@@ -282,7 +282,7 @@ public class QualityControlTest {
     }
 
     @Test
-    public void whenSendFoodToNewQualityControlThen() {
+    public void whenSendFoodToNewQualityControlThenQualityControlSendItToWareHouse() {
 
         NewQualityControl controller = new NewQualityControl();
         controller.fillStores();
