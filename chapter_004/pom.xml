@@ -9,7 +9,8 @@
      	<module>scientificcalc</module>
         <module>qualitycontrol</module>
         <module>taskmenu</module>
-        <module>simplegenerator</module>     	
+        <module>simplegenerator</module>
+        <module>tictactoe</module>
     </modules>
     
     <dependencies>

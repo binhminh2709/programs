@@ -4,41 +4,26 @@ package ru.epatko.ticTacToe;
  * @author Mikhail Epatko (mikhail.epatko@gmail.com).
  *         07.02.17.
  */
-public class Zero implements Sign {
+public class Sign {
+
     /**
-     * Row number.
+     * Sign name.
      */
-    private final int row;
-    /**
-     * Sign number.
-     */
-    private final int column;
+    private final String name;
 
     /**
      * Constructor.
-     * @param row - sign row number.
-     * @param column - sign column number.
+     * @param name - sign name.
      */
-    public Zero(int row, int column) {
-        this.row = row;
-        this.column = column;
+    public Sign( String name) {
+        this.name = String.format("[%s]", name);
+    }
+    /**
+     * Get sign name.
+     * @return - sign name.
+     */
+    public String getName() {
+        return this.name;
     }
 
-    /**
-     * Get sign row number.
-     * @return - row number.
-     */
-    @Override
-    public int getRow() {
-        return this.row;
-    }
-
-    /**
-     * Get sign column number.
-     * @return - column number.
-     */
-    @Override
-    public int getColumn() {
-        return this.column;
-    }
 }
