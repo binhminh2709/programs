@@ -22,6 +22,7 @@ public class NewQualityControl extends QualityControl {
     @Override
     public void setCurrentDate(long currentDate) {
         this.currentDate = currentDate;
+        super.setCurrentDate(currentDate);
     }
 
     /**
@@ -41,6 +42,7 @@ public class NewQualityControl extends QualityControl {
         addStore(new NewShop());
         addStore(new NewTrash());
         addStore(new ProcessingFactory());
+        super.fillStores();
     }
 
     /**
@@ -64,6 +66,9 @@ public class NewQualityControl extends QualityControl {
                 break;
             }
         }
+        if (!moved) {
+            super.putFood(food);
+        }
         return moved;
     }
 
@@ -71,6 +76,7 @@ public class NewQualityControl extends QualityControl {
      * Check food quality.
      */
     public void checkQuality() {
+        super.checkQuality();
         for (int i = 0; i < this.stores.size(); i++) {
             ArrayList<RecycleFood> foods = stores.get(i).getRecycleFoods();
             for (int j = 0; j < foods.size(); j++) {

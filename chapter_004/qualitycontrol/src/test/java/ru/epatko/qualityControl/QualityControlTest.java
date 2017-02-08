@@ -3,6 +3,8 @@ package ru.epatko.qualityControl;
 import org.junit.Test;
 import ru.epatko.newQualityControl.*;
 
+import java.util.ArrayList;
+
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
@@ -277,5 +279,20 @@ public class QualityControlTest {
         assertThat(controller.getNewStores().get(SHOP).getRecycleFoods().isEmpty(), is(true));
         assertThat(controller.getNewStores().get(WARE_HOUSE).getRecycleFoods().isEmpty(), is(true));
         assertThat(controller.getNewStores().get(TRASH).getRecycleFoods().isEmpty(), is(true));
+    }
+
+    @Test
+    public void whenSendFoodToNewQualityControlThen() {
+
+        NewQualityControl controller = new NewQualityControl();
+        controller.fillStores();
+        controller.setCurrentDate(2L);
+        Apple apple = new Apple();
+        apple.setCreateDate(1L);
+        apple.setExpirationDate(17L);
+        controller.putFood(apple);
+        ArrayList<Store> stores = controller.getStores();
+
+        assertThat(stores.get(WARE_HOUSE).getFoods().contains(apple), is(true));
     }
 }
