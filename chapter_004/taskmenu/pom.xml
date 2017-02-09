@@ -1,12 +1,20 @@
 <project>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>taskmenu</artifactId>
-    <version>2.0</version>    
-        
+    <version>2.0</version>
+
     <parent>
         <groupId>ru.epatko</groupId>
         <artifactId>chapter_004</artifactId>
         <version>3.0</version>
     </parent>
+
+    <dependencies>
+        <dependency>
+            <groupId>ru.epatko</groupId>
+            <artifactId>chat</artifactId>
+            <version>3.0</version>
+        </dependency>
+    </dependencies>
 
 </project>

@@ -29,7 +29,7 @@ public class Field {
     /**
      * Playing field.
      */
-    public String[][] field;
+    private String[][] field;
     /**
      * Full cells count.
      */
@@ -46,6 +46,7 @@ public class Field {
     /**
      * Constructor.
      * @param cells - count of cells by vertical and horizontal.
+     * @param winCount - win count.
      */
     public Field(int cells, int winCount) {
         this.cells = cells;
@@ -58,6 +59,8 @@ public class Field {
      * @param coordinates - sign coordinates.
      * @param sign - sign.
      * @throws IllegalArgumentException - scanner exception.
+     * @throws NoSuchElementException - scanner exception.
+     * @return - result of method execution.
      */
     public boolean setSign(String coordinates, String sign) throws IllegalArgumentException,
                                                                    NoSuchElementException {
@@ -123,7 +126,7 @@ public class Field {
         //Check diagonal left-right-down.
         i = x;
         j = y;
-        while (i < cells && j >=0) {
+        while (i < cells && j >= 0) {
             if (this.field[i][j] != null && this.field[i][j].equals(sign)) {
                 this.lineCount++;
             }
