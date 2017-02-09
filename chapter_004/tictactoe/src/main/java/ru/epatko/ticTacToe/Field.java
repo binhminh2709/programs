@@ -4,6 +4,7 @@ import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 /**
+ * Playing field.
  *
  * @author Mikhail Epatko (mikhail.epatko@gmail.com).
  *         07.02.17.
@@ -52,7 +53,6 @@ public class Field {
         field = new String[this.cells][this.cells];
     }
 
-
     /**
      * Set sign to cell.
      * @param coordinates - sign coordinates.
@@ -61,14 +61,19 @@ public class Field {
      */
     public boolean setSign(String coordinates, String sign) throws IllegalArgumentException,
                                                                    NoSuchElementException {
+        /**
+         * Result of method execution.
+         */
         boolean result = false;
+        /**
+         * Scanner.
+         */
         Scanner scanner = new Scanner(coordinates);
         try {
             int row = scanner.nextInt();
             int column = scanner.nextInt();
             int x = column - 1;
             int y = row - 1;
-
 
             if (x >= 0 && y >= 0 && row <= this.cells && column <= this.cells && this.field[x][y] == null) {
                 this.field[x][y] = sign;
