@@ -55,6 +55,14 @@ public class Field {
     }
 
     /**
+     * Get playing field.
+     * @return -  playing field.
+     */
+    public String[][] getField() {
+        return this.field;
+    }
+
+    /**
      * Set sign to cell.
      * @param coordinates - sign coordinates.
      * @param sign - sign.

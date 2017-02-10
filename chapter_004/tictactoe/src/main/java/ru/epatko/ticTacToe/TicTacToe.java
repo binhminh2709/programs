@@ -49,7 +49,7 @@ public class TicTacToe {
          * Ask computer player starts first.
          */
         if ("comp".equals(input.say("To computer starts first, enter \"comp\": "))) {
-            while (!field.setSign(player.play(), signO)) {
+            while (!field.setSign(player.play(field.getField()), signO)) {
                 continue;
             }
             field.printField();
@@ -61,7 +61,7 @@ public class TicTacToe {
         while (!"q".equals(coordinates = input.say(String.format("%s: ", signX)))) {
 
             if (field.setSign(coordinates, signX)) {
-                while (!field.setSign(player.play(), signO)) {
+                while (!field.setSign(player.play(field.getField()), signO)) {
                     continue;
                 }
                 field.printField();
