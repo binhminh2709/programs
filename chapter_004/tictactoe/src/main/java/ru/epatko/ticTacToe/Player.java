@@ -7,11 +7,22 @@ package ru.epatko.ticTacToe;
  */
 public class Player {
 
+    /**
+     * Count of cells by vertical and horizontal.
+     */
     private final int cells;
 
+    /**
+     * Default constructor.
+     */
     public Player() {
         this.cells = 3;
     }
+
+    /**
+     * Constructor.
+     * @param cells - count of cells by vertical and horizontal.
+     */
     public Player(int cells) {
         this.cells = cells;
     }
@@ -22,8 +33,8 @@ public class Player {
      * @return - player coordinates.
      */
     public String play(String[][] field) {
-        int x = (int) (Math.random() * 4);
-        int y = (int) (Math.random() * 4);
+        int x = (int) (Math.random() * (cells + 1));
+        int y = (int) (Math.random() * (cells + 1));
         return String.format("%s %s", Integer.toString(x), Integer.toString(y));
     }
 }
