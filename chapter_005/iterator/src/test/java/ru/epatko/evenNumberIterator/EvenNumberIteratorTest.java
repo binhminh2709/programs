@@ -12,12 +12,13 @@ import static org.hamcrest.core.Is.is;
 public class EvenNumberIteratorTest {
     @Test
     public void next() {
-        EvenNumberIterator it = new EvenNumberIterator(new int[] {0,1,2,3,4});
+        EvenNumberIterator it = new EvenNumberIterator(new int[] {0,1,2,3});
 
         assertThat(it.hasNext(), is(true));
-        assertThat(it.next(), is(2));
+        assertThat(it.next(), is(1));
         assertThat(it.hasNext(), is(true));
-        assertThat(it.next(), is(4));
+        assertThat(it.next(), is(3));
         assertThat(it.hasNext(), is(false));
     }
+
 }
