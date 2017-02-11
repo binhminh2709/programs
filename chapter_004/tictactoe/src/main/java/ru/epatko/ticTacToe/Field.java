@@ -109,44 +109,52 @@ public class Field {
      */
     private void checkLines(int x, int y, String sign) {
 
-        //Check diagonal left-right-up.
+        //Check diagonal left-right-down.
         int i = x;
         int j = y;
         while (i < cells && j < cells) {
             if (this.field[i][j] != null && this.field[i][j].equals(sign)) {
                 this.lineCount++;
+            } else {
+                break;
             }
             i++;
             j++;
         }
-        //Check diagonal right-left-down.
+        //Check diagonal right-left-up.
         i = x - 1;
         j = y - 1;
         while (i >= 0 && j >= 0) {
             if (this.field[i][j] != null && this.field[i][j].equals(sign)) {
                 this.lineCount++;
+            } else {
+                break;
             }
             i--;
             j--;
         }
         checkLineCount(sign);
 
-        //Check diagonal left-right-down.
+        //Check diagonal left-right-up.
         i = x;
         j = y;
         while (i < cells && j >= 0) {
             if (this.field[i][j] != null && this.field[i][j].equals(sign)) {
                 this.lineCount++;
+            } else {
+                break;
             }
             i++;
             j--;
         }
-        //Check diagonal right-left-up.
+        //Check diagonal right-left-down.
         i = x - 1;
-        j = y - 1;
-        while (i >= 0 && j >= 0 && j < cells) {
+        j = y + 1;
+        while (i >= 0 && j < cells) {
             if (this.field[i][j] != null && this.field[i][j].equals(sign)) {
                 this.lineCount++;
+            } else {
+                break;
             }
             i--;
             j++;
@@ -159,6 +167,8 @@ public class Field {
         while (i < cells) {
             if (this.field[i][j] != null && this.field[i][j].equals(sign)) {
                 this.lineCount++;
+            } else {
+                break;
             }
             i++;
         }
@@ -168,26 +178,32 @@ public class Field {
         while (i >= 0) {
             if (this.field[i][j] != null && this.field[i][j].equals(sign)) {
                 this.lineCount++;
+            } else {
+                break;
             }
             i--;
         }
         checkLineCount(sign);
 
-        // Check vertical down-up.
+        // Check vertical up-down.
         i = x;
         j = y;
         while (j < cells) {
             if (this.field[i][j] != null && this.field[i][j].equals(sign)) {
                 this.lineCount++;
+            } else {
+                break;
             }
             j++;
         }
 
-        // Check vertical up-down.
+        // Check vertical down-up.
         j = y - 1;
         while (j >= 0) {
             if (this.field[i][j] != null && this.field[i][j].equals(sign)) {
                 this.lineCount++;
+            } else {
+                break;
             }
             j--;
         }
@@ -200,7 +216,6 @@ public class Field {
      */
     public void checkLineCount(String sign) {
         if (this.lineCount == this.winCount) {
-            printField();
             exitGame(String.format("%s - is winner. Game over.", sign));
         } else {
             this.lineCount = 0;
@@ -212,6 +227,7 @@ public class Field {
      * @param message - reason to exit.
      */
     private void exitGame(String message) {
+        printField();
         System.out.println(message);
         System.exit(0);
     }

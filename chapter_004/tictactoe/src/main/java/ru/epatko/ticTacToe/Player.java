@@ -29,12 +29,19 @@ public class Player {
 
     /**
      * Get player coordinates.
+     * Random logic is not good idea.
+     *
      * @param field - playing field.
      * @return - player coordinates.
      */
     public String play(String[][] field) {
-        int x = (int) (Math.random() * (cells + 1));
-        int y = (int) (Math.random() * (cells + 1));
-        return String.format("%s %s", Integer.toString(x), Integer.toString(y));
+        int a, b;
+        do {
+            a = (int) (Math.random() * cells) + 1;
+            b = (int) (Math.random() * cells) + 1;
+
+        } while (field[a - 1][b - 1] != null);
+
+        return String.format("%s %s", Integer.toString(b), Integer.toString(a));
     }
 }
