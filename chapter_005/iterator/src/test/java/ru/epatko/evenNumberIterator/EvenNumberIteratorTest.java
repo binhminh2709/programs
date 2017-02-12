@@ -3,7 +3,10 @@ package ru.epatko.evenNumberIterator;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
+
+import java.util.Iterator;
 import java.util.NoSuchElementException;
+
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 
@@ -52,5 +55,39 @@ public class EvenNumberIteratorTest {
         SimpleNumberIterator it = new SimpleNumberIterator(new int[] {0, 1, 4, 6, 8, 9});
 
         it.next();
+    }
+    @Test
+    public void whenCallForthElementThenGetIt() {
+        Iterator<Integer> iteratorOne = new ArrayIterator(new int[] {1, 2, 3});
+        Iterator<Integer> iteratorTwo = new ArrayIterator(new int[] {4, 5, 6});
+        Iterator<Integer> iteratorThree = new ArrayIterator(new int[] {7, 8, 9});
+        Iterator[] arrayOfIterators = new  Iterator[] {iteratorOne, iteratorTwo, iteratorThree};
+        Iterator<Iterator<Integer>> iteratorOfIterators = new IteratorIterator(arrayOfIterators);
+
+        Converter converter = new Converter();
+        Iterator<Integer> iterator = converter.convert(iteratorOfIterators);
+
+        iterator.next();
+        iterator.next();
+        iterator.next();
+        assertThat(iterator.next(), is(4));
+    }
+    @Test
+    public void whenCallOneMoreElementAfterLastThenGetNoSuchElementException() {
+
+        expectedException.expect(NoSuchElementException.class);
+
+        Iterator<Integer> iteratorOne = new ArrayIterator(new int[] {1, 2});
+        Iterator<Integer> iteratorTwo = new ArrayIterator(new int[] {4});
+        Iterator[] arrayOfIterators = new  Iterator[] {iteratorOne, iteratorTwo};
+        Iterator<Iterator<Integer>> iteratorOfIterators = new IteratorIterator(arrayOfIterators);
+
+        Converter converter = new Converter();
+        Iterator<Integer> iterator = converter.convert(iteratorOfIterators);
+
+        assertThat(iterator.next(), is(1));
+        assertThat(iterator.next(), is(2));
+        assertThat(iterator.next(), is(4));
+        iterator.next();
     }
 }

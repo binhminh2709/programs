@@ -17,6 +17,10 @@ public class SimpleNumberIterator implements Iterator {
      */
     private int index = 0;
 
+    /**
+     * Iterator of simple numbers.
+     * @param array - array of numbers.
+     */
     public SimpleNumberIterator(int[] array) {
         this.array = array;
     }
@@ -61,18 +65,19 @@ public class SimpleNumberIterator implements Iterator {
                 if (num % j == 0) {
                     result = false;
                     break;
-                } else result = true;
+                } else {
+                    result = true;
+                }
             }
-            if (result == true) {
+            if (result) {
                 this.index = i;
                 break;
             }
         }
-        if (result == true) {
+        if (result) {
 
             return this.array[this.index++];
-        } else {
-            throw new NoSuchElementException();
         }
+        throw new NoSuchElementException();
     }
 }

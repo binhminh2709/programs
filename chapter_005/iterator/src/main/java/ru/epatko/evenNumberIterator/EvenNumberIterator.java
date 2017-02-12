@@ -18,6 +18,10 @@ public class EvenNumberIterator implements Iterator {
      */
     private int index = 0;
 
+    /**
+     * Constructor.
+     * @param array - array of integers.
+     */
     public EvenNumberIterator(int[] array) {
         this.array = array;
     }
@@ -54,14 +58,9 @@ public class EvenNumberIterator implements Iterator {
                 break;
             }
         }
-        if (result == true) {
+        if (result) {
             return this.array[this.index++];
-        } else {
-            throw new NoSuchElementException();
         }
-
-
-
-
+        throw new NoSuchElementException();
     }
 }
