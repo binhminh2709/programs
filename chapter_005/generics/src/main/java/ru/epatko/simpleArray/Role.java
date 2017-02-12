@@ -7,36 +7,13 @@ package ru.epatko.simpleArray;
 public class Role extends Base {
 
     /**
-     * ID.
-     */
-    private String id;
-
-    /**
      * Constructor.
      *
      * @param id ID.
      */
     public Role(String id) {
-        this.id = id;
+        setId(id);
     }
 
-    /**
-     * Get ID.
-     *
-     * @return {@code String} ID.
-     */
-    @Override
-    public String getId() {
-        return this.id;
-    }
 
-    /**
-     * Set ID.
-     *
-     * @param id ID.
-     */
-    @Override
-    public void setId(String id) {
-        this.id = id;
-    }
 }

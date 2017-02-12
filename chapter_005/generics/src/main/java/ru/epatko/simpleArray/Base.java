@@ -6,16 +6,24 @@ package ru.epatko.simpleArray;
  */
 public abstract class Base {
     /**
+     * ID.
+     */
+    private String id;
+    /**
      * Get ID.
      *
      * @return {@code String} ID.
      */
-    public abstract String getId();
+    public String getId() {
+        return this.id;
+    }
 
     /**
      * Set ID.
      *
      * @param id ID.
      */
-    public abstract void setId(String id);
+    public void setId(String id) {
+        this.id = id;
+    }
 }
