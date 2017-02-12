@@ -90,4 +90,21 @@ public class EvenNumberIteratorTest {
         assertThat(iterator.next(), is(4));
         iterator.next();
     }
+
+    @Test
+    public void whenAskIfHasOneMoreElementAfterLastThenGetFalse() {
+
+        Iterator<Integer> iteratorOne = new ArrayIterator(new int[] {1, 2});
+        Iterator<Integer> iteratorTwo = new ArrayIterator(new int[] {4});
+        Iterator[] arrayOfIterators = new  Iterator[] {iteratorOne, iteratorTwo};
+        Iterator<Iterator<Integer>> iteratorOfIterators = new IteratorIterator(arrayOfIterators);
+
+        Converter converter = new Converter();
+        Iterator<Integer> iterator = converter.convert(iteratorOfIterators);
+
+        assertThat(iterator.next(), is(1));
+        assertThat(iterator.next(), is(2));
+        assertThat(iterator.next(), is(4));
+        assertThat(iterator.hasNext(), is(false));
+    }
 }
