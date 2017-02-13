@@ -12,7 +12,7 @@ import java.util.Scanner;
 public class Field {
 
     /**
-     * Count of cells by vertical and horizontal.
+     * Count of cells by vertical and horizontal in playing field.
      */
     private final int cells;
 
@@ -36,27 +36,39 @@ public class Field {
     private int fullCellsCount = 0;
 
     /**
-     * Default constructor.
+     * Print playing field and messages.
      */
-    public Field() {
+    private final Printer printer;
+
+    /**
+     * Default constructor.
+     *
+     * @param printer print playing field and messages
+     */
+    public Field(final Printer printer) {
         this.cells = 3;
         this.winCount = 3;
-        field = new String[this.cells][this.cells];
+        this.field = new String[this.cells][this.cells];
+        this.printer = printer;
     }
     /**
      * Constructor.
-     * @param cells - count of cells by vertical and horizontal.
-     * @param winCount - win count.
+     *
+     * @param cells count of cells by vertical and horizontal
+     * @param winCount win count
+     * @param printer print playing field and messages
      */
-    public Field(int cells, int winCount) {
+    public Field(final int cells, final int winCount, final Printer printer) {
         this.cells = cells;
         this.winCount = winCount;
-        field = new String[this.cells][this.cells];
+        this.field = new String[this.cells][this.cells];
+        this.printer = printer;
     }
 
     /**
      * Get playing field.
-     * @return -  playing field.
+     *
+     * @return playing field
      */
     public String[][] getField() {
         return this.field;
@@ -64,11 +76,11 @@ public class Field {
 
     /**
      * Set sign to cell.
-     * @param coordinates - sign coordinates.
-     * @param sign - sign.
-     * @throws IllegalArgumentException - scanner exception.
-     * @throws NoSuchElementException - scanner exception.
-     * @return - result of method execution.
+     * @param coordinates sign coordinates
+     * @param sign sign
+     * @throws IllegalArgumentException scanner exception
+     * @throws NoSuchElementException scanner exception
+     * @return result of method execution
      */
     public boolean setSign(String coordinates, String sign) throws IllegalArgumentException,
                                                                    NoSuchElementException {
@@ -96,16 +108,17 @@ public class Field {
                 exitGame("No free cells already. Game over");
             }
         } catch (IllegalArgumentException | NoSuchElementException exc) {
-            System.out.println("Incorrect input");
+            this.printer.printMessage("Incorrect input");
         }
         return result;
     }
 
     /**
      * Check sign lines.
-     * @param x - row index.
-     * @param y - column index.
-     * @param sign - sign.
+     *
+     * @param x row index
+     * @param y column index
+     * @param sign sign
      */
     private void checkLines(int x, int y, String sign) {
 
@@ -212,7 +225,8 @@ public class Field {
 
     /**
      * Check the number of signs in the line.
-     * @param sign - sign.
+     *
+     * @param sign sign
      */
     public void checkLineCount(String sign) {
         if (this.lineCount == this.winCount) {
@@ -224,36 +238,12 @@ public class Field {
 
     /**
      * Exit game.
-     * @param message - reason to exit.
+     *
+     * @param message reason to exit
      */
     private void exitGame(String message) {
-        printField();
-        System.out.println(message);
+        this.printer.printField(this.field);
+        this.printer.printMessage(message);
         System.exit(0);
-    }
-
-    /**
-     * Print playing field.
-     */
-    public void printField() {
-        String cell;
-        System.out.print("   ");
-        for (int i = 0; i < this.cells; i++) {
-            System.out.printf(" %s ", i + 1);
-        }
-        System.out.println();
-
-        for (int i = 0; i < this.cells; i++) {
-            System.out.printf("%3d", i + 1);
-            for (int j = 0; j < this.cells; j++) {
-                if (this.field[i][j] != null) {
-                    cell = String.format("[%s]", this.field[i][j]);
-                } else {
-                    cell = "[ ]";
-                }
-            System.out.print(cell);
-            }
-            System.out.println();
-        }
     }
 }

@@ -21,6 +21,10 @@ public class TicTacToe {
      * Playing field.
      */
     private final Field field;
+    /**
+     * Print playing field and messages.
+     */
+    private final Printer printer;
 
     /**
      * Constructor.
@@ -28,10 +32,11 @@ public class TicTacToe {
      * @param field - playing field.
      * @param player - computer player.
      */
-    public TicTacToe(Input input, Field field, Player player) {
+    public TicTacToe(final Input input, final Field field, final Player player, final Printer printer) {
         this.input = input;
         this.field = field;
         this.player = player;
+        this.printer = printer;
     }
 
     /**
@@ -41,9 +46,9 @@ public class TicTacToe {
         String coordinates;
         String signX = "X";
         String signO = "O";
-        System.out.println("To play enter sign coordinates: x y");
-        System.out.println("To quit program enter \"q\".");
-        field.printField();
+        printer.printMessage("To play enter sign coordinates: x y");
+        printer.printMessage("To quit program enter \"q\".");
+        printer.printField(field.getField());
 
         /**
          * Ask computer player starts first.
@@ -52,7 +57,7 @@ public class TicTacToe {
             while (!field.setSign(player.play(field.getField()), signO)) {
                 continue;
             }
-            field.printField();
+            printer.printField(field.getField());
         }
 
         /**
@@ -64,7 +69,7 @@ public class TicTacToe {
                 while (!field.setSign(player.play(field.getField()), signO)) {
                     continue;
                 }
-                field.printField();
+                printer.printField(field.getField());
             }
         }
     }
@@ -75,9 +80,10 @@ public class TicTacToe {
      */
     public static void main(String[] args) {
         Input input = new ConsoleInput();
-        Field field = new Field();
+        Printer printer = new ConsolePrinter();
+        Field field = new Field(printer);
         Player player = new Player();
-        TicTacToe game = new TicTacToe(input, field, player);
+        TicTacToe game = new TicTacToe(input, field, player, printer);
         game.start();
     }
 }
