@@ -28,9 +28,11 @@ public class TicTacToe {
 
     /**
      * Constructor.
-     * @param input - input method.
-     * @param field - playing field.
-     * @param player - computer player.
+     *
+     * @param input input method
+     * @param field playing field
+     * @param player computer player
+     * @param printer print playing field and messages
      */
     public TicTacToe(final Input input, final Field field, final Player player, final Printer printer) {
         this.input = input;
@@ -76,7 +78,8 @@ public class TicTacToe {
 
     /**
      * Main class.
-     * @param args - no arguments.
+     *
+     * @param args - no arguments
      */
     public static void main(String[] args) {
         Input input = new ConsoleInput();

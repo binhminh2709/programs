@@ -122,105 +122,133 @@ public class Field {
      */
     private void checkLines(int x, int y, String sign) {
 
-        //Check diagonal left-right-down.
-        int i = x;
-        int j = y;
-        while (i < cells && j < cells) {
-            if (this.field[i][j] != null && this.field[i][j].equals(sign)) {
-                this.lineCount++;
-            } else {
-                break;
-            }
-            i++;
-            j++;
-        }
-        //Check diagonal right-left-up.
-        i = x - 1;
-        j = y - 1;
-        while (i >= 0 && j >= 0) {
-            if (this.field[i][j] != null && this.field[i][j].equals(sign)) {
-                this.lineCount++;
-            } else {
-                break;
-            }
-            i--;
-            j--;
-        }
+        checkLeftRightDown(x, y, sign);
+        checkRightLeftUp(x - 1, y - 1, sign);
         checkLineCount(sign);
 
-        //Check diagonal left-right-up.
-        i = x;
-        j = y;
-        while (i < cells && j >= 0) {
-            if (this.field[i][j] != null && this.field[i][j].equals(sign)) {
-                this.lineCount++;
-            } else {
-                break;
-            }
-            i++;
-            j--;
-        }
-        //Check diagonal right-left-down.
-        i = x - 1;
-        j = y + 1;
-        while (i >= 0 && j < cells) {
-            if (this.field[i][j] != null && this.field[i][j].equals(sign)) {
-                this.lineCount++;
-            } else {
-                break;
-            }
-            i--;
-            j++;
-        }
+        checkLeftRightUp(x, y, sign);
+        checkRightLeftDown(x - 1, y + 1, sign);
         checkLineCount(sign);
 
-        // Check horizontal left-right.
-        i = x;
-        j = y;
-        while (i < cells) {
-            if (this.field[i][j] != null && this.field[i][j].equals(sign)) {
-                this.lineCount++;
-            } else {
-                break;
-            }
-            i++;
-        }
-
-        // Check horizontal right-left.
-        i = x - 1;
-        while (i >= 0) {
-            if (this.field[i][j] != null && this.field[i][j].equals(sign)) {
-                this.lineCount++;
-            } else {
-                break;
-            }
-            i--;
-        }
+        checkLeftRight(x, y, sign);
+        checkRightLeft(x - 1, y, sign);
         checkLineCount(sign);
 
-        // Check vertical up-down.
-        i = x;
-        j = y;
-        while (j < cells) {
-            if (this.field[i][j] != null && this.field[i][j].equals(sign)) {
-                this.lineCount++;
-            } else {
-                break;
-            }
-            j++;
-        }
+        checkUpDown(x, y, sign);
+        checkDownUp(x, y - 1, sign);
+        checkLineCount(sign);
+    }
 
+    /**
+     * Check Left-Right-Down diagonal.
+     *
+     * @param x row index
+     * @param y column index
+     * @param sign sign
+     */
+    public void checkLeftRightDown(int x, int y, String sign) {
+        if (x < cells && y < cells && this.field[x][y] != null && this.field[x][y].equals(sign)) {
+            this.lineCount++;
+            checkLeftRightDown(++x, ++y, sign);
+        }
+    }
+    /**
+     * Check Right-Left-Up diagonal.
+     *
+     * @param x row index
+     * @param y column index
+     * @param sign sign
+     */
+    public void checkRightLeftUp(int x, int y, String sign) {
+        if (x >= 0 && y >= 0 && this.field[x][y] != null && this.field[x][y].equals(sign)) {
+            this.lineCount++;
+            checkRightLeftUp(--x, --y, sign);
+        }
+    }
+
+    /**
+     * Check Left-Right-Up diagonal.
+     *
+     * @param x row index
+     * @param y column index
+     * @param sign sign
+     */
+    public void checkLeftRightUp(int x, int y, String sign) {
+        if (x < cells && y >= 0 && this.field[x][y] != null && this.field[x][y].equals(sign)) {
+            this.lineCount++;
+            checkLeftRightUp(++x, --y, sign);
+        }
+    }
+
+    /**
+     * Check Right-Left-Down diagonal.
+     *
+     * @param x row index
+     * @param y column index
+     * @param sign sign
+     */
+    public void checkRightLeftDown(int x, int y, String sign) {
+        if (x >= 0 && y < cells && this.field[x][y] != null && this.field[x][y].equals(sign)) {
+            this.lineCount++;
+            checkRightLeftDown(--x, ++y, sign);
+        }
+    }
+
+    /**
+     * Check Left-Right horizontal.
+     *
+     * @param x row index
+     * @param y column index
+     * @param sign sign
+     */
+    public void checkLeftRight(int x, int y, String sign) {
+        if (x < cells && this.field[x][y] != null && this.field[x][y].equals(sign)) {
+            this.lineCount++;
+            checkLeftRight(++x, y, sign);
+        }
+    }
+
+    /**
+     * Check Right-Left horizontal.
+     *
+     * @param x row index
+     * @param y column index
+     * @param sign sign
+     */
+    public void checkRightLeft(int x, int y, String sign) {
+        if (x >= 0 && this.field[x][y] != null && this.field[x][y].equals(sign)) {
+            this.lineCount++;
+            checkRightLeft(--x, y, sign);
+        }
+    }
+
+    /**
+     * Check Up-Down vertical.
+     *
+     * @param x row index
+     * @param y column index
+     * @param sign sign
+     */
+    public void checkUpDown(int x, int y, String sign) {
+        if (y < cells && this.field[x][y] != null && this.field[x][y].equals(sign)) {
+            this.lineCount++;
+            checkUpDown(x, ++y, sign);
+        }
+    }
+
+    /**
+     * Check Down-Up vertical.
+     *
+     * @param x row index
+     * @param y column index
+     * @param sign sign
+     */
+    public void checkDownUp(int x, int y, String sign) {
         // Check vertical down-up.
-        j = y - 1;
-        while (j >= 0) {
-            if (this.field[i][j] != null && this.field[i][j].equals(sign)) {
-                this.lineCount++;
-            } else {
-                break;
-            }
-            j--;
+        if (y >= 0 && this.field[x][y] != null && this.field[x][y].equals(sign)) {
+            this.lineCount++;
+            checkDownUp(x, --y, sign);
         }
-        checkLineCount(sign);
     }
 
     /**
