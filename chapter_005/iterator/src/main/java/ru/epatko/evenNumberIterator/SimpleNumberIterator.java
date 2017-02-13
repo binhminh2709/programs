@@ -34,7 +34,34 @@ public class SimpleNumberIterator implements Iterator {
      */
     @Override
     public boolean hasNext() {
-        return this.array.length > this.index;
+        boolean result = false;
+        for (int i = this.index; i < this.array.length; i++) {
+
+            int num = this.array[i];
+            if (num < 2) {
+                continue;
+            }
+            if (num == 2 || num == 3) {
+                this.index = i;
+                result = true;
+                break;
+            }
+
+            int count = (int) Math.sqrt(num) + 1;
+
+            for (int j = 2; j <= count; j++) {
+                if (num % j == 0) {
+                    result = false;
+                    break;
+                } else {
+                    result = true;
+                }
+            }
+            if (result) {
+                break;
+            }
+        }
+        return result;
     }
 
     /**

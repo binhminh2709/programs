@@ -36,7 +36,17 @@ public class EvenNumberIterator implements Iterator {
      */
     @Override
     public boolean hasNext() {
-        return this.array.length > index;
+
+        boolean result = false;
+
+        for (int i = this.index; i < this.array.length; i++) {
+            if (this.array[i] != 0 && this.array[i] % 2 == 0) {
+                result = true;
+                break;
+            }
+        }
+
+        return result;
     }
 
     /**

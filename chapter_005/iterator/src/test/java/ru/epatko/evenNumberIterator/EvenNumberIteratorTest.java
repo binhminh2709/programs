@@ -20,7 +20,7 @@ public class EvenNumberIteratorTest {
 
     @Test
     public void whenCallIteratorNextThenGetNextEvenNumber() {
-        EvenNumberIterator it = new EvenNumberIterator(new int[] {0, 1, 2, 3, 4});
+        EvenNumberIterator it = new EvenNumberIterator(new int[] {0, 1, 2, 3, 4, 5});
 
         assertThat(it.hasNext(), is(true));
         assertThat(it.next(), is(2));
@@ -44,16 +44,20 @@ public class EvenNumberIteratorTest {
     public void whenCallIteratorNextThenGetNextSimpleNumber() {
         SimpleNumberIterator it = new SimpleNumberIterator(new int[] {0, 1, 2, 4, 6, 7, 8, 9});
 
+        assertThat(it.hasNext(), is(true));
         assertThat(it.next(), is(2));
+        assertThat(it.hasNext(), is(true));
         assertThat(it.next(), is(7));
+        assertThat(it.hasNext(), is(false));
     }
     @Test
-    public void whenCallIteratorMoreThenGetNoSuchElementException() {
+    public void whenCallIteratorMoreThanItHasShouldGetNoSuchElementException() {
 
         expectedException.expect(NoSuchElementException.class);
 
         SimpleNumberIterator it = new SimpleNumberIterator(new int[] {0, 1, 4, 6, 8, 9});
 
+        assertThat(it.hasNext(), is(false));
         it.next();
     }
     @Test
