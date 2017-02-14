@@ -13,7 +13,7 @@ package ru.epatko.simpleArray;
 public class SimpleArray<T> {
 
     /**
-     * Array of Telements.
+     * Array of T elements.
      */
     private Object[] array;
     /**
