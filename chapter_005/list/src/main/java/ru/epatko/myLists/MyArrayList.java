@@ -105,7 +105,7 @@ public class MyArrayList<E> implements SimpleContainer<E> {
      *
      * @param <E> type o felement of MyArrayList
      */
-    private class MyIterator<E> implements Iterator {
+    private class MyIterator<E> implements Iterator<E> {
 
         /**
          * Iterator index.

@@ -29,7 +29,7 @@ public class MyArrayListTest {
     }
 
     @Test
-    public void whenAddTwoElementsToMyArrayListAndCallThirdThenGetNull() throws Exception {
+    public void whenAddTwoElementsToMyArrayListAndCallThirdThenGetNull() {
 
         MyArrayList<Integer> arrayList = new MyArrayList<>(3);
 
@@ -40,7 +40,7 @@ public class MyArrayListTest {
     }
 
     @Test
-    public void whenCallElementByWrongIndexThenGetIndexOutOfBoundsException() throws Exception {
+    public void whenCallElementByWrongIndexThenGetIndexOutOfBoundsException() {
 
         expectedException.expect(IndexOutOfBoundsException.class);
         MyArrayList<Integer> arrayList = new MyArrayList<>(2);
@@ -52,7 +52,7 @@ public class MyArrayListTest {
     }
 
     @Test
-    public void whenCreateForEachLoopThenCanGetEachElementOfMyArrayList() throws Exception {
+    public void whenCreateForEachLoopThenCanGetEachElementOfMyArrayList() {
 
         MyArrayList<Integer> arrayList = new MyArrayList<>(3);
 
@@ -64,5 +64,18 @@ public class MyArrayListTest {
         for (Object element : arrayList) {
             assertThat(element, is(i++));
         }
+    }
+
+    @Test
+    public void whenAddOneMoreElementThenMyArrayListChangesItOunSize() {
+
+
+        MyArrayList<Integer> arrayList = new MyArrayList<>(2);
+
+        arrayList.add(1);
+        arrayList.add(2);
+        arrayList.add(3);
+
+        assertThat(arrayList.get(2), is(3));
     }
 }
