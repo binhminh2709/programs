@@ -7,6 +7,12 @@ import java.util.NoSuchElementException;
  * @author Mikhail Epatko (mikhail.epatko@gmail.com).
  *         14.02.17.
  */
+
+/**
+ * MyLinkedList.
+ *
+ * @param <E> any type of element
+ */
 public class MyLinkedList<E> implements SimpleContainer<E> {
 
     /**
@@ -35,10 +41,11 @@ public class MyLinkedList<E> implements SimpleContainer<E> {
         final Node<E> node = this.last;
         final Node<E> newNode = new Node<>(node, element, null);
         this.last = newNode;
-        if (node == null)
+        if (node == null) {
             this.first = newNode;
-        else
+        } else {
             node.next = newNode;
+        }
         this.size++;
     }
 
@@ -62,11 +69,32 @@ public class MyLinkedList<E> implements SimpleContainer<E> {
         return node.current;
     }
 
+    /**
+     * Node.
+     *
+     * @param <E> any type of element
+     */
     private class Node<E> {
+        /**
+         * current element.
+         */
         E current;
+        /**
+         * Next node.
+         */
         Node<E> next;
+        /**
+         * Previous node.
+         */
         Node<E> prev;
 
+        /**
+         * Node.
+         *
+         * @param prev previous node
+         * @param element current element
+         * @param next next node
+         */
         Node(Node<E> prev, E element, Node<E> next) {
             this.current = element;
             this.next = next;
@@ -91,7 +119,13 @@ public class MyLinkedList<E> implements SimpleContainer<E> {
      */
     private class MyIterator<E> implements Iterator {
 
+        /**
+         * Last required node.
+         */
         private Node<E> lastReturned;
+        /**
+         * Next node.
+         */
         private Node<E> next;
 
         /**
@@ -123,7 +157,4 @@ public class MyLinkedList<E> implements SimpleContainer<E> {
             return (E) get(this.iteratorIndex++);
         }
     }
-
-
-
 }

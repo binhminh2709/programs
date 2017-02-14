@@ -39,13 +39,10 @@ public class MyLinkedListTest {
         mll.add("1");
 
         mll.get(1);
-
-
     }
 
     @Test
     public void whenCreateForEachLoopThenCanGetEachElementOfMyArrayList() {
-
 
         MyLinkedList<Integer> mll = new MyLinkedList<>();
 
