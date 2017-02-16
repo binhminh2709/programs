@@ -6,6 +6,8 @@ import java.util.NoSuchElementException;
 /**
  * @author Mikhail Epatko (mikhail.epatko@gmail.com).
  *         16.02.17.
+ *
+ * @param <E> - any of elements type
  */
 public class SimpleLinkedSet<E> {
     /**
@@ -27,13 +29,13 @@ public class SimpleLinkedSet<E> {
      * Add new element to container.
      *
      * @param element new element
+     * @return {@code true} if element was added
      */
 
-    public void add(E element) {
+    public boolean add(E element) {
         Iterator<E> itr = new MyIterator<E>();
-        int index = 0;
         boolean contains = false;
-        while (index < this.size && itr.hasNext()) {
+        while (itr.hasNext()) {
             if (element.equals(itr.next())) {
                 contains = true;
                 break;
@@ -50,7 +52,7 @@ public class SimpleLinkedSet<E> {
             }
             this.size++;
         }
-        return
+        return !contains;
     }
     /**
      * Node.
@@ -109,7 +111,7 @@ public class SimpleLinkedSet<E> {
         /**
          * Iterator index.
          */
-        private int iteratorIndex = 0;
+        private int itIndex = 0;
 
         /**
          * Returns {@code true} if the iteration has more elements.
@@ -118,7 +120,7 @@ public class SimpleLinkedSet<E> {
          */
         @Override
         public boolean hasNext() {
-            return size > this.iteratorIndex;
+            return size > this.itIndex;
         }
 
         /**
@@ -135,7 +137,7 @@ public class SimpleLinkedSet<E> {
             Node<E> node = this.lastReturned;
             E element = node.current;
             this.lastReturned = node.next;
-            this.iteratorIndex++;
+            this.itIndex++;
             return element;
         }
     }
