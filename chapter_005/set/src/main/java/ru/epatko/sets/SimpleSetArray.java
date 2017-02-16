@@ -56,7 +56,7 @@ public class SimpleSetArray<E> {
         if (!contains) {
             this.array[this.index++] = element;
         }
-        return contains ? false : true;
+        return !contains;
     }
     /**
      *  Increases the capacity.
