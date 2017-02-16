@@ -14,7 +14,7 @@ public class MyQueue<E> extends MyLinkedList<E> {
      * @param element the item to be added into this que
      */
 
-    public void addLast(E element) {
+    public void enQueue(E element) {
         add(element);
     }
 
@@ -23,7 +23,7 @@ public class MyQueue<E> extends MyLinkedList<E> {
      *
      * @return  The first object of this que
      */
-    public E getFirst() {
+    public E deQueue() {
         return removeFirst();
     }
 }

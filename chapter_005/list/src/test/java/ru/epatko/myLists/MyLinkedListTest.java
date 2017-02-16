@@ -82,12 +82,12 @@ public class MyLinkedListTest {
     @Test
     public void whenGetFirstElementFromMyQueueThenSecondElementBecomesTheFirst() {
         MyQueue<Integer> mq = new MyQueue<>();
-        mq.addLast(1);
-        mq.addLast(2);
+        mq.enQueue(1);
+        mq.enQueue(2);
 
-        mq.getFirst();
+        mq.deQueue();
 
-        assertThat(mq.getFirst(), is(2));
+        assertThat(mq.deQueue(), is(2));
     }
 
     @Test
@@ -95,10 +95,10 @@ public class MyLinkedListTest {
         expectedException.expect(NoSuchElementException.class);
 
         MyQueue<Integer> mq = new MyQueue<>();
-        mq.addLast(1);
-        mq.getFirst();
+        mq.enQueue(1);
+        mq.deQueue();
 
-        mq.getFirst();
+        mq.deQueue();
     }
 
     @Test
