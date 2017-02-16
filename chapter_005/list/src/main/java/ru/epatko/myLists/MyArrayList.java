@@ -119,7 +119,7 @@ public class MyArrayList<E> implements SimpleContainer<E> {
          */
         @Override
         public boolean hasNext() {
-            return array.length > this.iteratorIndex;
+            return (array.length > this.iteratorIndex && array[this.iteratorIndex] != null);
         }
 
         /**

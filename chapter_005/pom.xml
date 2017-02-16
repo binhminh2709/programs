@@ -8,6 +8,7 @@
      	<module>iterator</module>
      	<module>generics</module>
      	<module>list</module>
+     	<module>set</module>
     </modules>
     
     <dependencies>
