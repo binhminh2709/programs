@@ -156,7 +156,7 @@ public class MyLinkedList<E> implements SimpleContainer<E> {
      * @return an Iterator.
      */
     @Override
-    public Iterator iterator() {
+    public Iterator<E> iterator() {
         return new MyIterator<E>();
     }
 
@@ -165,16 +165,12 @@ public class MyLinkedList<E> implements SimpleContainer<E> {
      *
      * @param <E> type of element of MyLinkedList
      */
-    private class MyIterator<E> implements Iterator {
+    private class MyIterator<E> implements Iterator<E> {
 
         /**
          * Last required node.
          */
-        private Node<E> lastReturned;
-        /**
-         * Next node.
-         */
-        private Node<E> next;
+        private Node<E> lastReturned = (Node<E>) first;
 
         /**
          * Iterator index.
@@ -202,7 +198,11 @@ public class MyLinkedList<E> implements SimpleContainer<E> {
             if (!hasNext()) {
                 throw new NoSuchElementException();
             }
-            return (E) get(this.iteratorIndex++);
+            Node<E> node = this.lastReturned;
+            E element = node.current;
+            this.lastReturned = node.next;
+            this.iteratorIndex++;
+            return element;
         }
     }
 }
