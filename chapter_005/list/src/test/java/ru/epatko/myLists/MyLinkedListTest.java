@@ -1,9 +1,10 @@
 package ru.epatko.myLists;
 
-import org.junit.Rule;
-import org.junit.Test;
+import org.junit.*;
 import org.junit.rules.ExpectedException;
 
+import java.util.Iterator;
+import java.util.NoSuchElementException;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
@@ -13,18 +14,22 @@ import static org.junit.Assert.assertThat;
  */
 public class MyLinkedListTest {
 
+    public MyLinkedList<String> mll;
+
+
+    @Before
+    public void initialize() {
+        mll = new MyLinkedList<>();
+        mll.add("1");
+        mll.add("2");
+        mll.add("3");
+    }
+
     @Rule
     public ExpectedException expectedException = ExpectedException.none();
 
     @Test
     public void whenAddElementsThenCanGetThem() {
-
-        MyLinkedList<String> mll = new MyLinkedList<>();
-
-        mll.add("1");
-        mll.add("2");
-        mll.add("3");
-
         assertThat(mll.get(0), is("1"));
         assertThat(mll.get(2), is("3"));
         assertThat(mll.get(1), is("2"));
@@ -34,26 +39,95 @@ public class MyLinkedListTest {
     public void whenCallElementByWrongIndexThenGetIndexOutOfBoundsException() {
 
         expectedException.expect(IndexOutOfBoundsException.class);
-        MyLinkedList<String> mll = new MyLinkedList<>();
 
-        mll.add("1");
-
-        mll.get(1);
+        mll.get(4);
     }
 
     @Test
     public void whenCreateForEachLoopThenCanGetEachElementOfMyArrayList() {
 
-        MyLinkedList<Integer> mll = new MyLinkedList<>();
+        MyLinkedList<Integer> mlli = new MyLinkedList<>();
 
-        mll.add(0);
-        mll.add(1);
-        mll.add(2);
+        mlli.add(0);
+        mlli.add(1);
+        mlli.add(2);
         int i = 0;
 
-        for (Object element : mll) {
+        for (Object element : mlli) {
             assertThat(element, is(i++));
         }
     }
+
+    @Test
+    public void whenCallNextInMyIteratorOfMyLinkedListThenGetNextElement() {
+        Iterator<String> it = mll.iterator();
+
+        assertThat(it.next(), is("1"));
+        assertThat(it.next(), is("2"));
+        assertThat(it.next(), is("3"));
+    }
+
+    @Test
+    public void whenMyLinkedListHasNoMoreElementsAndWeCallNextInMyIteratorThenGetNoSuchElementException() {
+        expectedException.expect(NoSuchElementException.class);
+
+        Iterator<String> it = mll.iterator();
+        it.next();
+        it.next();
+        it.next();
+
+        it.next();
+    }
+
+    @Test
+    public void whenGetFirstElementFromMyQueueThenSecondElementBecomesTheFirst() {
+        MyQueue<Integer> mq = new MyQueue<>();
+        mq.addLast(1);
+        mq.addLast(2);
+
+        mq.getFirst();
+
+        assertThat(mq.getFirst(), is(2));
+    }
+
+    @Test
+    public void whenMyQueueHasNoElementsAndWeTryGetFirstElementThenGetNoSuchElementException() {
+        expectedException.expect(NoSuchElementException.class);
+
+        MyQueue<Integer> mq = new MyQueue<>();
+        mq.addLast(1);
+        mq.getFirst();
+
+        mq.getFirst();
+    }
+
+    @Test
+    public void whenGetElementFromMyStackThenSecondElementBecomesTheFirst() {
+
+        MyStack<Integer> ms = new MyStack<>();
+        ms.push(1);
+        ms.push(2);
+
+        assertThat(ms.pop(), is(2));
+        assertThat(ms.pop(), is(1));
+    }
+
+    @Test
+    public void whenMyStackHasNoElementsAndWeTryGetElementThenGetNoSuchElementException() {
+        expectedException.expect(NoSuchElementException.class);
+
+        MyStack<Integer> ms = new MyStack<>();
+        ms.push(1);
+        ms.pop();
+
+        ms.pop();
+    }
+
+
+
+
+
+
+
 
 }

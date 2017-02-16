@@ -70,6 +70,54 @@ public class MyLinkedList<E> implements SimpleContainer<E> {
     }
 
     /**
+     * Removes and returns the first element from this list.
+     *
+     * @return the first element from this list
+     * @throws NoSuchElementException if this list is empty
+     */
+    public E removeFirst() throws NoSuchElementException {
+        final Node<E> firsNode = first;
+        if (firsNode == null) throw new NoSuchElementException();
+
+        final E element = firsNode.current;
+        final Node<E> next = firsNode.next;
+        firsNode.current = null;
+        firsNode.next = null;
+        first = next;
+        if (next == null) {
+            last = null;
+        } else {
+            next.prev = null;
+        }
+        size--;
+        return element;
+    }
+
+    /**
+     * Removes and returns the last element from this list.
+     *
+     * @return the last element from this list
+     * @throws NoSuchElementException if this list is empty
+     */
+    public E removeLast() {
+        final Node<E> lastNode = last;
+        if (lastNode == null) {
+            throw new NoSuchElementException();
+        }
+        final E element = lastNode.current;
+        final Node<E> prev = lastNode.prev;
+        lastNode.current = null;
+        lastNode.prev = null;
+        last = prev;
+        if (prev == null) {
+            first = null;
+        } else {
+            prev.next = null;
+        }
+        size--;
+        return element;
+    }
+    /**
      * Node.
      *
      * @param <E> any type of element
