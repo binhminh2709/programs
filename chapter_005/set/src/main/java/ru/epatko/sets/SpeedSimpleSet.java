@@ -8,6 +8,8 @@ import java.util.NoSuchElementException;
 /**
  * @author Mikhail Epatko (mikhail.epatko@gmail.com).
  *         17.02.17.
+ *
+ * @param <E> - any type of objects.
  */
 public class SpeedSimpleSet<E> {
 
@@ -100,6 +102,9 @@ public class SpeedSimpleSet<E> {
          */
         private Iterator<E> tempIterator;
 
+        /**
+         * Iterator created flag.
+         */
         private boolean iteratorCreated = false;
 
         /**
@@ -111,7 +116,7 @@ public class SpeedSimpleSet<E> {
         public boolean hasNext() {
             boolean has = false;
             if (groups.length > this.iteratorIndex && groups[this.iteratorIndex] != null) {
-                if (this.iteratorCreated == false) {
+                if (!this.iteratorCreated) {
                     tempIterator = groups[this.iteratorIndex].iterator();
                     this.iteratorCreated = true;
                 }
