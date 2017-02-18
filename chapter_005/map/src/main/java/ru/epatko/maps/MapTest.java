@@ -11,17 +11,21 @@ import java.util.*;
 public class MapTest {
 
 
-    Map<User, Object> map = new HashMap<>();
+    Map<User, Object> map;
     Calendar birthday = new GregorianCalendar(1970, 01, 01);
     User userOne = new User("Name", 2, birthday);
     User userTwo = new User("Name", 2, birthday);
 
     @Test
-    public void itemOne() {
+    public void whenNotOverrideMethodsHashCodeAndEqualsThenHaveAddedTwoObjectsIntoMap() {
+        map = new HashMap<>();
+        User userOne = new User("Name", 2, birthday);
+        User userTwo = new User("Name", 2, birthday);
+
         map.put(userOne, "one");
         map.put(userTwo, "two");
         System.out.println(map);
-
+    }
 //  Результат:
 //        {ru.epatko.maps.User@5ce81285=one, ru.epatko.maps.User@78c03f1f=two}
 //
@@ -39,8 +43,8 @@ public class MapTest {
 //          ~ если массив равен null или его размер равен 0, то размер увеличивается и элемент кладется в ячейку (корзину),
 //          ~ если массив не пустой и в ячейке (корзине) уже имеется элемент (группа элементов), то помещаемый элемент
 //            сравнивается с каждым из имеющихся в ячейке элементов по хэшам (=) и ключам (equals() - по дефолту,
-//            сравнивает хэши ключей). С версии Java SE 8  в заполненных группах для повышения производительности
-//            (напрмер, при множестве конфликтов) применяются сбалансированные двоичные деревья. Это увеличивает
+//            сравнивает внутренние адреса объектов). С версии Java SE 8  в заполненных группах для повышения производительности
+//            (например, при множестве конфликтов) применяются сбалансированные двоичные деревья. Это увеличивает
 //            производительность при индексации элементов и гарантирует поиск элемента за время O(log N),
 //            но увеличивается время на добавление элемента в map,
 //          ~ если у старого и нового элементов равны хэши и эквивалентны ключи, то на место старого элемента
@@ -48,7 +52,22 @@ public class MapTest {
 //            старого (замещенного) элемента,
 //          ~ если хэши не равны или ключи не эквивалентны, то новый элемент добавляется в конец списка.
 //
-//  Итог: т.к. у объектов userOne и userTwo разные хэш-коды, то оба объекта были помещены в map,
-//        а потом println-ом выведены на печать.
+//  Итог: т.к. у объектов userOne и userTwo разные хэш-коды и разные внутренние адреса, то оба объекта были помещены
+//        в map, а потом println-ом выведены на печать.
+
+
+    @Test
+    public void whenOverrideHashCodeAndNotOverrideEqualsThenHaveAddedOneObjectIntoMap() {
+        map = new HashMap<>();
+        UserH userOne = new UserH("Name", 2, birthday);
+        UserH userTwo = new UserH("Name", 2, birthday);
+        map.put(userOne, "one");
+        map.put(userTwo, "two");
+
+        System.out.println(userOne.equals(userTwo));
+
+
+
+        System.out.println(map);
     }
 }
