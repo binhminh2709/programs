@@ -79,6 +79,26 @@ public class MapTest {
 //          и занесут оба этих ключа с их значениями в map (в одну ячейку (корзину)).
 
 
+    @Test
+    public void whenOverrideEqualsAndNotOverrideHashCodeThenHaveAddedTwoObjectsIntoMap() {
+        map = new HashMap<>();
+        UserE userOne = new UserE("Name", 2, birthday);
+        UserE userTwo = new UserE("Name", 2, birthday);
+
+        map.put(userOne, "one");
+        map.put(userTwo, "two");
+
+        System.out.println(map);
+    }
+//  Результат:
+//          {ru.epatko.maps.UserH@e1323e84=one, ru.epatko.maps.UserH@e1323e84=two}
+//  Объяснение:
+//          При добавлении значения по ключу в HashMap ключ нового элемента сравнивается с ключами имеющихся
+//          в map-е элементов по хэшу и методом equals().
+//          В данном случае у объектов-ключей userOne и userTwo будут разные хэши, а результат вызова
+//          userOne.equals(userTwo) будет true, т.к. equals() переопределен и сравнивает поля объектов.
+//          Поэтому методы put() и  putVal() в HashMap решат, что userOne и userTwo являются двумя разными ключами
+//          и занесут оба этих ключа с их значениями в map.
 
 
 
