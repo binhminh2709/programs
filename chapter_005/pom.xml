@@ -9,6 +9,7 @@
      	<module>generics</module>
      	<module>list</module>
      	<module>set</module>
+     	<module>map</module>
     </modules>
     
     <dependencies>
