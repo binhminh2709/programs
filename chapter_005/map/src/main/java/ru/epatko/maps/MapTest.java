@@ -91,7 +91,7 @@ public class MapTest {
         System.out.println(map);
     }
 //  Результат:
-//          {ru.epatko.maps.UserH@e1323e84=one, ru.epatko.maps.UserH@e1323e84=two}
+//          {ru.epatko.maps.UserE@3d82c5f3=one, ru.epatko.maps.UserE@2b05039f=two}
 //  Объяснение:
 //          При добавлении значения по ключу в HashMap ключ нового элемента сравнивается с ключами имеющихся
 //          в map-е элементов по хэшу и методом equals().
