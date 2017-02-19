@@ -37,4 +37,14 @@ public class UserHE extends User {
                 && getBirthday().equals(user.getBirthday())
                 && getChildren() == user.getChildren();
     }
+
+    /**
+     * Returns a string representation of the object.
+     *
+     * @return a string representation of the object.
+     */
+    @Override
+    public String toString() {
+        return String.format("Name: %s, Birthday: %tF, Children: %d", getName(), getBirthday(), getChildren());
+    }
 }

@@ -48,8 +48,9 @@ public class MyMap<K, V> implements Iterable<V> {
             this.next = next;
         }
 
-        public final String toString() {
-            return String.format("%d = %s", key, value);
+        public String toString() {
+            String result = String.format("%s= %d", key.toString(), value);
+            return result;
         }
 
         public final int hashCode() {
