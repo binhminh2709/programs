@@ -36,7 +36,7 @@ public class UserHE extends User {
      */
     @Override
     public boolean equals(Object obj) {
-        UserHE user =(UserHE) obj;
+        UserHE user = (UserHE) obj;
         return getName().equals(user.getName())
                 && getBirthday().equals(user.getBirthday())
                 && getChildren() == user.getChildren();
