@@ -6,7 +6,7 @@ import java.util.Calendar;
  * @author Mikhail Epatko (mikhail.epatko@gmail.com).
  *         18.02.17.
  */
-public class UserH extends User{
+public class UserH extends User {
 
 
     public UserH(String name, int children, Calendar birthday) {
@@ -22,6 +22,10 @@ public class UserH extends User{
      */
     @Override
     public int hashCode() {
-        return (getName().hashCode() + getChildren() + getBirthday().hashCode()) / 3 ;
+        int result = 17;
+        result = result * 37 + getName().hashCode();
+        result = result * 37 + getChildren();
+        result = result * 37 + getBirthday().hashCode();
+        return result;
     }
 }
