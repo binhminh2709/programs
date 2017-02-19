@@ -20,11 +20,11 @@ public class MyMap<K, V> implements Iterable<V> {
     private int size;
 
     public MyMap() {
-        this.nodes = (Node<K,V>[]) new Node[DEFAULT_INITIAL_CAPACITY];
+        this.nodes = (Node<K, V>[]) new Node[DEFAULT_INITIAL_CAPACITY];
     }
 
     public MyMap(int capacity) {
-        this.nodes = (Node<K,V>[]) new Node[capacity];
+        this.nodes = (Node<K, V>[]) new Node[capacity];
     }
 
     public int getSize() {
@@ -35,7 +35,7 @@ public class MyMap<K, V> implements Iterable<V> {
     /**
      * Basic node, used for most entries.
      */
-    static class Node<K,V> {
+    static class Node<K, V> {
         final int hash;
         final K key;
         V value;
@@ -73,6 +73,7 @@ public class MyMap<K, V> implements Iterable<V> {
     /**
      * Computes hash.
      * @param key object key
+     * @return hash
      */
     public int hash(Object key) {
         int h;
@@ -198,18 +199,18 @@ public class MyMap<K, V> implements Iterable<V> {
     }
 
     private class MyValueIterator<V> extends MyHashIterator implements Iterator<V> {
-        public V next(){
+        public V next() {
             return (V) nextNode().value;
         }
     }
 
     abstract class MyHashIterator<K, V> {
 
-        Node<K,V> nextNode = null;        // next node to return
+        Node<K, V> nextNode = null;        // next node to return
         int itIndex;                      // current slot
         Node<K, V>[] table;
 
-        public MyHashIterator() {
+        private MyHashIterator() {
             this.itIndex = 0;
             table = (Node<K, V>[]) nodes;
         }
@@ -243,7 +244,7 @@ public class MyMap<K, V> implements Iterable<V> {
             if (!hasNext()) {
                 throw new NoSuchElementException();
             }
-            Node<K,V> result = nextNode;
+            Node<K, V> result = nextNode;
             nextNode = nextNode.next;
             return result;
         }
