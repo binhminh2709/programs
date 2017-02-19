@@ -20,7 +20,11 @@ public class UserHE extends User {
      */
     @Override
     public int hashCode() {
-        return (getName().hashCode() + getChildren() + getBirthday().hashCode()) / 3 ;
+        int result = 17;
+        result = result * 37 + getName().hashCode();
+        result = result * 37 + getChildren();
+        result = result * 37 + getBirthday().hashCode();
+        return result;
     }
 
     /**
