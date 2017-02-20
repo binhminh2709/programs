@@ -10,6 +10,7 @@
      	<module>list</module>
      	<module>set</module>
      	<module>map</module>
+     	<module>tree</module>
     </modules>
     
     <dependencies>
