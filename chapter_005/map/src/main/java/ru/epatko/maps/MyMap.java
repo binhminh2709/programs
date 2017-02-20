@@ -49,7 +49,7 @@ public class MyMap<K, V> implements Iterable<V> {
         }
 
         public String toString() {
-            return String.format("%s, Value: %d", key.toString(), value);
+            return String.format("%s, Value: %s", key, value);
         }
 
         public final int hashCode() {
