@@ -6,14 +6,13 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * @author Mikhail Epatko (mikhail.epatko@gmail.com).
+ * Simple binary tree (not binary search tree).
+ * @author Mikhail Epatko (mikhail.epatko@gmail.com)
  *         20.02.17.
  */
 public class MyTree<E> {
 
     private Leaf<E> root;
-
-
 
     /**
      * Basic leaf.
@@ -22,23 +21,17 @@ public class MyTree<E> {
 
         final int hash;
         final E value;
-        Leaf<E> left;
-        Leaf<E> right;
         Leaf<E> parent;
+
+        List<Leaf<E>> children = new ArrayList<>();
 
         /**
          * Constructs leaf.
          * @param value object {@code E} type
-         * @param left left leaf
-         * @param right right leaf
-         * @param parent parent leaf
          */
-        public Leaf(final E value, Leaf<E> parent, Leaf<E> left, Leaf<E> right) {
+        public Leaf(final E value) {
             this.value = value;
             hash = Objects.hashCode(value);
-            this.left = left;
-            this.right = right;
-            this.parent = parent;
         }
 
         @Override
@@ -69,7 +62,6 @@ public class MyTree<E> {
         }
     }
 
-
     /**
      * Adds value as a child of parent leaf.
      * @param parent parent leaf
@@ -78,13 +70,11 @@ public class MyTree<E> {
      */
     public boolean addChild(Leaf<E> parent, E value) {
         boolean result = false;
-        if (parent.left != null && parent.right != null) {
-            result = false;
-        } else if (parent.left == null) {
-            parent.left = new Leaf<>(value, parent, null, null);
-        } else {
-            parent.right = new Leaf<>(value, parent, null, null);
+        if (root == null) {
+            root = parent;
         }
+            parent.children.add(new Leaf<E>(value));
+            result = true;
         return result;
     }
 
@@ -93,8 +83,9 @@ public class MyTree<E> {
      * @return list of values
      */
     public List<E> getChildren() {
-        List<E> list = new ArrayList<E>();
+        List<E> list = new ArrayList<>();
         Leaf<E> temp = root;
+        list.add(temp.value);
         return getValuesList(list, temp);
     }
 
@@ -104,11 +95,13 @@ public class MyTree<E> {
      * @param temp temporary leaf
      * @return list of values
      */
-    public List<E> getValuesList(List list, Leaf<E> temp) {
-        if (temp != null) {
-            getValuesList(list, temp.left);
-            list.add(temp.value);
-            getValuesList(list, temp.right);
+    public List<E> getValuesList(List<E> list, Leaf<E> temp) {
+
+        for (Leaf<E> child : temp.children) {
+            list.add(child.value);
+            if (!child.children.isEmpty()) {
+                getValuesList(list, child);
+            }
         }
         return list;
     }
