@@ -57,7 +57,7 @@ public class MyTree<E> {
          */
         @Override
         public int hashCode() {
-            return value.hashCode() + children.hashCode();
+            return value.hashCode();
         }
 
         /**
