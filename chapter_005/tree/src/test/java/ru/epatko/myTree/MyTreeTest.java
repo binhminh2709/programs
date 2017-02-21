@@ -52,32 +52,6 @@ public class MyTreeTest {
     }
 
     @Test
-    public void  whenAddObjectToMyTreeThenCanFindAllTheLeafsContainingIt() {
-        mt.addChild(root.children.get(1).children.get(0), 3);
-        mt.addChild(root.children.get(1).children.get(0), 3);
-        mt.addChild(root.children.get(2).children.get(1), 3);
-
-
-        List<MyTree.Leaf<Integer>> list = new ArrayList<>();
-        MyTree.Leaf<Integer> test = new MyTree.Leaf<>(3);
-        list.add(test);
-        list.add(test);
-        list.add(test);
-        list.add(test);
-
-        assertThat(mt.findElement(3), is(list));
-
-        list.clear();
-
-        list.add(root.children.get(1).children.get(0).children.get(0));
-        list.add(root.children.get(1).children.get(0).children.get(1));
-        list.add(root.children.get(2));
-        list.add(root.children.get(2).children.get(1).children.get(1));
-
-        assertThat(mt.findElement(3), is(list));
-    }
-
-    @Test
     public void  whenAddObjectToMyTreeThenCanFindAllTheLeafsContainingItFromRoot() {
         mt.addChild(root.children.get(1).children.get(0), 3);
         mt.addChild(root.children.get(1).children.get(0), 3);

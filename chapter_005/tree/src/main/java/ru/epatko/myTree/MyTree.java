@@ -17,10 +17,8 @@ public class MyTree<E> {
      */
     static class Leaf<E> implements Comparable<Leaf<E>> {
 
-        final int hash;
-        final E value;
-        Leaf<E> parent;
 
+        final E value;
         List<Leaf<E>> children = new ArrayList<>();
 
         /**
@@ -29,7 +27,7 @@ public class MyTree<E> {
          */
         public Leaf(final E value) {
             this.value = value;
-            hash = Objects.hashCode(value);
+
         }
 
         @Override
@@ -44,7 +42,8 @@ public class MyTree<E> {
                 result = true;
             } else if (o instanceof Leaf) {
                 Leaf<E> e = (Leaf<E>) o;
-                if (hash == e.hash && Objects.equals(value, e.value)) {
+                int hash = hashCode();
+                if (hash == e.hashCode() && Objects.equals(value, e.value)) {
                     result = true;
                 }
             }
@@ -52,11 +51,21 @@ public class MyTree<E> {
         }
 
         /**
+         * Returns a hash code value for the object.
+         *
+         * @return a hash code value for this object.
+         */
+        @Override
+        public int hashCode() {
+            return value.hashCode() + children.hashCode();
+        }
+
+        /**
          * Compares this object with the specified object for order.
          */
         @Override
         public int compareTo(Leaf<E> l) {
-            return hash - l.hash;
+            return hashCode() - l.hashCode();
         }
     }
 
