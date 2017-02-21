@@ -98,12 +98,12 @@ public class MyTree<E> {
     /**
      * Running by tree and filling list of values.
      * @param list list
-     * @param temp temporary leaf
+     * @param startPoint start point
      * @return list of values
      */
-    private List<E> getValuesList(List<E> list, Leaf<E> temp) {
+    private List<E> getValuesList(List<E> list, Leaf<E> startPoint) {
 
-        for (Leaf<E> child : temp.children) {
+        for (Leaf<E> child : startPoint.children) {
             list.add(child.value);
             if (!child.children.isEmpty()) {
                 getValuesList(list, child);
@@ -123,12 +123,12 @@ public class MyTree<E> {
     /**
      * Finds all the leafs containing the element.
      * @param list list of leafs containing the element
-     * @param temp start point to search (root)
+     * @param startPoint start point to search (root)
      * @param element element
      * @return list of leafs containing the element
      */
-    private List<Leaf<E>> findLeafs(List<Leaf<E>> list, Leaf<E> temp, E element) {
-        for (Leaf<E> child : temp.children) {
+    private List<Leaf<E>> findLeafs(List<Leaf<E>> list, Leaf<E> startPoint, E element) {
+        for (Leaf<E> child : startPoint.children) {
             if (child.value.equals(element)) {
                 list.add(child);
             }
@@ -137,6 +137,29 @@ public class MyTree<E> {
             }
         }
         return list;
+    }
+
+    /**
+     * Call tree balance checker with start point parameter.
+     * @return {@code true} if tree has ideal balance
+     */
+    public boolean checkBalance() {
+        return checkTreeBalance(root);
+    }
+
+    /**
+     * Check tree balance.
+     * @param startPoint point to start checking
+     * @return {@code true} if tree has ideal balance
+     */
+    private boolean checkTreeBalance (Leaf<E> startPoint) {
+        int size = startPoint.children.size();
+        if (size == 0) {
+            return true;
+        } else if (size != 2) {
+            return false;
+        }
+        return checkTreeBalance(startPoint.children.get(0)) && checkTreeBalance(startPoint.children.get(1));
     }
 
 

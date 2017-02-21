@@ -52,7 +52,7 @@ public class MyTreeTest {
     }
 
     @Test
-    public void  whenAddObjectToMyTreeThenCanFindAllTheLeafsContainingItFromRoot() {
+    public void  whenAddObjectToMyTreeThenCanFindAllTheLeafsContainingIt() {
         mt.addChild(root.children.get(1).children.get(0), 3);
         mt.addChild(root.children.get(1).children.get(0), 3);
         mt.addChild(root.children.get(2).children.get(1), 3);
@@ -66,4 +66,33 @@ public class MyTreeTest {
 
         assertThat(mt.findElement(3), is(list));
     }
+
+    @Test
+    public void whenCheckUnbalancedTreeBalanceTgenGetFalse() {
+        assertThat(mt.checkBalance(), is(false));
+    }
+
+    @Test
+    public void whenCheckBalancedTreeBalanceTgenGetTrue() {
+        MyTree<Integer> balancedTree = new MyTree<>();
+        MyTree.Leaf<Integer> newRoot = new MyTree.Leaf<>(0);
+
+        balancedTree.addChild(newRoot, 1);
+        balancedTree.addChild(newRoot, 2);
+
+        balancedTree.addChild(newRoot.children.get(0), 3);
+        balancedTree.addChild(newRoot.children.get(0), 4);
+
+        balancedTree.addChild(newRoot.children.get(1), 5);
+        balancedTree.addChild(newRoot.children.get(1), 6);
+
+        balancedTree.addChild(newRoot.children.get(0).children.get(0), 7);
+        balancedTree.addChild(newRoot.children.get(0).children.get(0), 8);
+
+        balancedTree.addChild(newRoot.children.get(1).children.get(1), 9);
+        balancedTree.addChild(newRoot.children.get(1).children.get(1), 10);
+
+        assertThat(balancedTree.checkBalance(), is(true));
+    }
+
 }
