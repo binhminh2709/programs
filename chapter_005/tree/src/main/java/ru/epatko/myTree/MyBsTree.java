@@ -139,6 +139,29 @@ public class MyBsTree<E> {
     }
 
     /**
+     * Binary search.
+     * @param value value
+     * @return all the leafs containing the value
+     */
+    public List <Leaf<E>> binarySearch(E value) {
+        Leaf<E> temp = root;
+        List<Leaf<E>> list = new ArrayList<>();
+        while (temp != null) {
+            int v = value.hashCode();
+            int t = temp.hashCode();
+            if (v < t) {
+                temp = temp.left;
+            } else if (v > t) {
+                temp = temp.right;
+            } else {
+                list.add(temp);
+                temp = temp.left;
+            }
+        }
+        return list;
+    }
+
+    /**
      * Calls findLeafs with parameters necessary to find all the leafs containing the value.
      * @param value value
      * @return list of leafs containing the value
@@ -167,29 +190,6 @@ public class MyBsTree<E> {
         }
         if (startPoint.right != null) {
             findLeafs(list, startPoint.right, value);
-        }
-        return list;
-    }
-
-    /**
-     * Binary search.
-     * @param value value
-     * @return all the leafs containing the value
-     */
-    public List <Leaf<E>> binarySearch(E value) {
-        Leaf<E> temp = root;
-        List<Leaf<E>> list = new ArrayList<>();
-        while (temp != null) {
-            int v = value.hashCode();
-            int t = temp.hashCode();
-            if (v < t) {
-                temp = temp.left;
-            } else if (v > t) {
-                temp = temp.right;
-            } else {
-                list.add(temp);
-                temp = temp.left;
-            }
         }
         return list;
     }
