@@ -92,7 +92,7 @@ public class MyTree<E> {
      * @param temp temporary leaf
      * @return list of values
      */
-    public List<E> getValuesList(List<E> list, Leaf<E> temp) {
+    private List<E> getValuesList(List<E> list, Leaf<E> temp) {
 
         for (Leaf<E> child : temp.children) {
             list.add(child.value);
@@ -103,8 +103,32 @@ public class MyTree<E> {
         return list;
     }
 
-//    public List<E>
+    public List<Leaf<E>> findElement(E element) {
+        List<Leaf<E>> list = new ArrayList<>();
+        if (root.value.equals(element)) {
+            list.add(root);
+        }
+        return  findLeafs(list, root, element);
+    }
 
+    /**
+     * Finds all the leafs containing the element.
+     * @param list list of leafs containing the element
+     * @param temp start point to search (root)
+     * @param element element
+     * @return list of leafs containing the element
+     */
+    private List<Leaf<E>> findLeafs(List<Leaf<E>> list, Leaf<E> temp, E element) {
+        for (Leaf<E> child : temp.children) {
+            if (child.value.equals(element)) {
+                list.add(child);
+            }
+            if (!child.children.isEmpty()) {
+                findLeafs(list, child, element);
+            }
+        }
+        return list;
+    }
 
 
 }
