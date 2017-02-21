@@ -1,12 +1,10 @@
 package ru.epatko.myTree;
 
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 /**
- * Simple binary tree (not binary search tree).
+ * Simple tree.
  * @author Mikhail Epatko (mikhail.epatko@gmail.com)
  *         20.02.17.
  */
@@ -84,9 +82,8 @@ public class MyTree<E> {
      */
     public List<E> getChildren() {
         List<E> list = new ArrayList<>();
-        Leaf<E> temp = root;
-        list.add(temp.value);
-        return getValuesList(list, temp);
+        list.add(root.value);
+        return getValuesList(list, root);
     }
 
     /**
@@ -105,4 +102,9 @@ public class MyTree<E> {
         }
         return list;
     }
+
+//    public List<E>
+
+
+
 }

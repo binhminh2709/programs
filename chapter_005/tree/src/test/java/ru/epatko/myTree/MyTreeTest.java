@@ -1,10 +1,8 @@
 package ru.epatko.myTree;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.*;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
