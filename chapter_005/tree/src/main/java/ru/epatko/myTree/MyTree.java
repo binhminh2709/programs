@@ -25,7 +25,7 @@ public class MyTree<E> {
          * Constructs leaf.
          * @param value object {@code E} type
          */
-        public Leaf(final E value) {
+        Leaf(final E value) {
             this.value = value;
 
         }
