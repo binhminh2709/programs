@@ -11,6 +11,7 @@
      	<module>set</module>
      	<module>map</module>
      	<module>tree</module>
+     	<module>testtask</module>
     </modules>
     
     <dependencies>
