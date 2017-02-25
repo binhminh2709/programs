@@ -31,7 +31,7 @@ public class OrderProcessor {
                                 Integer.parseInt(xmlr.getAttributeValue(4)));
                     }
                     if ("DeleteOrder".equals(xmlr.getLocalName())) {
-                        deleteOrder (xmlr.getAttributeValue(0), Integer.parseInt(xmlr.getAttributeValue(1)));
+                        deleteOrder(xmlr.getAttributeValue(0), Integer.parseInt(xmlr.getAttributeValue(1)));
                     }
                 }
             }
@@ -134,14 +134,16 @@ public class OrderProcessor {
             dif = book.asks.size() - book.bids.size();
 
             System.out.println();
-            System.out.printf("%2$s%2$s       Order book: %s%s%2$s       BID              ASK%2$s%2$s", book.name, lineSeparator);
-            ;
+            System.out.printf("%2$s%2$s       Order book: %s%s%2$s       BID              ASK%2$s%2$s",
+                              book.name, lineSeparator);
+
             System.out.println("  Volume@Price – Volume@Price");
             System.out.println();
             while (itA.hasNext() && itB.hasNext()) {
                 keyA = itA.next();
                 keyB = itB.next();
-                System.out.printf("%7d@%6.2f - %7d@%.2f%s", book.bids.get(keyB), keyB, book.asks.get(keyA), keyA, lineSeparator);
+                System.out.printf("%7d@%6.2f - %7d@%.2f%s", book.bids.get(keyB), keyB,
+                                                            book.asks.get(keyA), keyA, lineSeparator);
             }
             if (dif > 0) {
                 while (itA.hasNext()) {
