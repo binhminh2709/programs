@@ -5,13 +5,15 @@ package ru.epatko.gc;
  *         01.03.17.
  */
 public class User {
-    private String Name;
+    private String name;
     private int number;
 
-    public User() {}
+    public User() {
+
+    }
 
     public User(String name, int number) {
-        this.Name = name;
+        this.name = name;
         this.number = number;
     }
 
