@@ -67,6 +67,4 @@ public class UserTest {
 // Таким образом, для приложения учета заявок из второго модуля может быть использован Serial Collector.
 // Для серверного приложения оптимальным будет выбор Concurrent Mark-Sweep (CMS) Collector.
 
-
-
 }
