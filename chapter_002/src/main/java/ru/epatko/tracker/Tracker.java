@@ -44,7 +44,7 @@ public class Tracker {
  	public void change(int orderId, String field, String newDescription) {
 
  		for (Order element : this.orders) {
-			if (element.getId() == orderId) {
+			if (element != null && element.getId() == orderId) {
 				if (field.equals("description")) {
  				element.setNewDescription(newDescription);
  				}
@@ -62,7 +62,7 @@ public class Tracker {
 */
 	public void delete(int orderId) {
 		for (int i = 0; i < this.orders.length; i++) {
-			if (orders[i].getId() == orderId) {
+			if (orders[i] != null && orders[i].getId() == orderId) {
 				orders[i] = null;
 				break;
 			}
@@ -85,9 +85,7 @@ public class Tracker {
 	public Order getOrderById(int orderId) {
 		Order result = null;
 		for (Order element : this.orders) {
-			if (element == null) {
-				continue;
-			} else if (element.getId() == orderId) {
+			if (element != null && element.getId() == orderId) {
 				result = element;
 				break;
 			}
@@ -113,10 +111,7 @@ public class Tracker {
 		Order[] result = new Order[this.orders.length];
 		int i = 0;
 		for (Order element : this.orders) {
-			if (element == null) {
-				continue;
-			}
-			if (element.getName().contains(filter)) {
+			if (element != null && element.getName().contains(filter)) {
 				result[i] = element;
 				i++;
 			}

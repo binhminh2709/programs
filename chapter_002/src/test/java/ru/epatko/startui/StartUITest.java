@@ -1,9 +1,10 @@
 package ru.epatko.startui;
 
-import org.junit.*;
-import static org.junit.Assert.*;
-import static org.hamcrest.core.Is.is;
+import org.junit.Test;
 import ru.epatko.tracker.Tracker;
+
+import static org.hamcrest.core.Is.is;
+import static org.junit.Assert.assertThat;
 
 /**
  * @author Mikhail Epatko (epatko-m-i@rambler.ru).
@@ -13,7 +14,7 @@ public class StartUITest {
 
     @Test
     public void whenCreateOrderThenCanGetNameOfOrder() {
-        String answers[] = {"0", "Some Order Name", "Some Order Description", "y"}; //Create an order #1 and exit cycle.
+        String answers[] = {"Some Order Name", "Some Order Description"}; //Create an order #1 and exit cycle.
         Input inputMethod = new StubInput(answers);
         Tracker tracker = new Tracker();
         StartUI start = new StartUI(inputMethod, tracker);
@@ -23,46 +24,40 @@ public class StartUITest {
 
     }
 
-  /*  @Test
-   public void whenDeleteOrderThenCantGetNameOfOrder() {
-        String answers[] = {"0", "Order-1", "Description-1", "",             // Create order #1.
-                            "0", "Order", "Description", "",                 // Create order #2.
-                            "2", "2",                                        // Delete order #2.
-                            "y"};                                            // Exit cycle.
-        Input inputMethod = new StubInput(answers);
+
+    @Test
+    public void whenCreateToMachOrdersThenOutOfMemoryError() {
+        Input testInput = new TestInput();
         Tracker tracker = new Tracker();
-        StartUI start = new StartUI(inputMethod, tracker);
+        StartUI start = new StartUI(testInput, tracker);
         start.init();
 
-        assertThat(tracker.getOrderName(2), is("No order with this ID."));
 
-    }*/
 
-  /*  @Test
-    public void whenCreateOrderCommentThenCanGetCommentOfOrder() {
-        String answers[] = {"0", "Order-1", "Description-1", "",             // Create order #1.
-                            "1", "1", "comment", "Comment",                 // Change comment of order #1.
-                            "y"};                                           // Exit cycle.
-        Input inputMethod = new StubInput(answers);
-        Tracker tracker = new Tracker();
-        StartUI start = new StartUI(inputMethod, tracker);
-        start.init();
+    }
 
-        assertThat(tracker.getOrderComment(1), is("Comment"));
-    }*/
+    private class TestInput implements Input {
+        String[] answers = new String[] {"0", "0", ""};
+        int index = 0;
+        int count = 1;
+        public String ask(String question) {
+            if (count > 24000) {
+                return "y";
+            }
 
-   /* @Test
-    public void whenChangeOrderDescriptionThenCanGetNewDescriptionOfOrder() {
-        String[] answers = {"0", "Order-1", "Description-1", "",                // Create order #1.
-                            "0", "Order-2", "Description-2", "",                // Create order #2.
-                            "0", "Order-3", "Description-3", "",                // Create order #3.
-                            "1", "3", "description", "Some New description-3",  // Change description of order #3.
-                            "y"};                                               // Exit cycle.
-        Input inputMethod = new StubInput(answers);
-        Tracker tracker = new Tracker();
-        StartUI start = new StartUI(inputMethod, tracker);
-        start.init();
+            if (this.index == 3) {
+                this.index = 0;
+            }
+            count++;
+            return this.answers[this.index++];
+        }
 
-        assertThat(tracker.getOrderDescription(3), is("Some New description-3"));
-    }*/
+        public int ask(String question, int[] range) {
+            return 0;
+        }
+
+    }
 }
+
+
+
