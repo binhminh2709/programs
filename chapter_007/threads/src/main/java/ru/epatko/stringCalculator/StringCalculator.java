@@ -11,7 +11,7 @@ public class StringCalculator {
      */
     public static final class WordsCounter implements Runnable {
 
-        String string;
+        private String string;
 
         /**
          * Count words in string.
@@ -38,7 +38,7 @@ public class StringCalculator {
      */
     public static final class SpaceCounter implements Runnable {
 
-        String string;
+        private String string;
 
         /**
          * Count spaces in string.
