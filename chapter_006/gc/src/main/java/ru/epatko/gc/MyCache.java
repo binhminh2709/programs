@@ -1,13 +1,11 @@
 package ru.epatko.gc;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.lang.ref.SoftReference;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Scanner;
-import java.util.TreeMap;
+import java.util.*;
 
 /**
  * @author Mikhail Epatko (mikhail.epatko@gmail.com).
@@ -15,44 +13,31 @@ import java.util.TreeMap;
  */
 public class MyCache {
 
-    private TreeMap<String, SoftReference<StringBuilder>> cache = new TreeMap<>();
+    private HashMap<String, SoftReference<StringBuilder>> cache = new HashMap<>();
     private Path sourcePath;
     private static final String LS = System.getProperty("line.separator");
 
-    public MyCache(String pathToSourceFolder) {
-        this.sourcePath = Paths.get(pathToSourceFolder);
+    public MyCache(String sourceFolderPath) {
+        this.sourcePath = Paths.get(sourceFolderPath);
     }
 
-    public TreeMap<String, SoftReference<StringBuilder>> getCache() {
-        return this.cache;
-    }
-
-    public StringBuilder showFile(String fileName) throws IOException {
-        StringBuilder textFileContent = null;
+    public String get(String fileName) throws IOException {
+        StringBuilder textFileContent = new StringBuilder();
         if (cache.containsKey(fileName)) {
             textFileContent = cache.get(fileName).get();
-        }
-        if (textFileContent == null) {
-            textFileContent = getFileContent(fileName);
-            SoftReference<StringBuilder> softReference = new SoftReference(textFileContent);
-            cache.put(fileName, softReference);
-        }
-        return textFileContent;
-    }
-
-    private StringBuilder getFileContent(String fileName) throws IOException {
-        StringBuilder sb = new StringBuilder();
-        Path file = sourcePath.resolve(fileName).normalize();
-        if (Files.exists(file) && !Files.isDirectory(file) && Files.isReadable(file)) {
-            try (InputStream in = Files.newInputStream(file)) {
-                Scanner scanner = new Scanner(in);
-                while (scanner.hasNext()) {
-                    sb.append(scanner.nextLine()).append(LS);
+        } else {
+            Path file = this.sourcePath.resolve(fileName);
+            if (Files.exists(file) && !Files.isDirectory(file) && Files.isReadable(file)) {
+                try (Scanner scanner = new Scanner(Files.newInputStream(file))) {
+                    while (scanner.hasNext()) {
+                        textFileContent.append(scanner.nextLine()).append(LS);
+                    }
+                } catch (IOException ioe) {
+                    ioe.printStackTrace();
                 }
-            } catch (IOException ioe) {
-                ioe.printStackTrace();
             }
+            cache.put(fileName, new SoftReference(textFileContent));
         }
-        return sb;
+        return textFileContent.toString();
     }
 }
