@@ -1,4 +1,4 @@
-package ru.epatko.swcounter;
+package ru.epatko.stringCalculator;
 
 /**
  * @author Mikhail Epatko (mikhail.epatko@gmail.com).
