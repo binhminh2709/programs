@@ -1,11 +1,15 @@
 package ru.epatko.stringCalculator;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * @author Mikhail Epatko (mikhail.epatko@gmail.com).
  *         10.03.17.
  */
 public class StringCalculator {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(StringCalculator.class);
     /**
      * Words counter.
      */
@@ -29,7 +33,17 @@ public class StringCalculator {
          */
         @Override
         public void run() {
-            System.out.println(string.split(" +").length);
+            for (int i = 0; i < 10; i++ ) {
+                if (!Thread.interrupted()) {
+                    try {
+                        Thread.sleep(200);
+                    } catch (InterruptedException e) {
+                        LOGGER.info(e.getMessage());
+                        return;
+                    }
+                    System.out.println(string.split(" +").length);
+                }
+            }
         }
     }
 
@@ -56,17 +70,38 @@ public class StringCalculator {
          */
         @Override
         public void run() {
-            try {
-                Thread.sleep(100);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+            for (int i = 0; i < 10; i++ ) {
+                if (!Thread.interrupted()) {
+                    try {
+                        Thread.sleep(200);
+                    } catch (InterruptedException e) {
+                        LOGGER.info(e.getMessage());
+                        return;
+                    }
+                    System.out.println(string.split(" +").length - 1);
+                }
             }
-            System.out.println(string.split(" +").length - 1);
         }
     }
 
     public static void main(String[] args) {
-        new Thread(new SpaceCounter("111 222    333  444   555")).start(); //Print "4"
-        new Thread(new WordsCounter("111 222    333  444   555")).start(); //Print "5"
+        System.out.println("Start program.");
+
+        Thread spaceCounterThread = new Thread(new SpaceCounter("111 222    333  444   555"));
+        spaceCounterThread.start(); //Print "4"
+
+        Thread wordCounterThread = new Thread(new WordsCounter("111 222    333  444   555"));
+        wordCounterThread.start(); //Print "5"
+
+        try {
+            spaceCounterThread.join(500);
+            wordCounterThread.join(500);
+            spaceCounterThread.interrupt();
+            wordCounterThread.interrupt();
+        } catch (InterruptedException e) {
+            LOGGER.info(e.getMessage());
+        }
+
+        System.out.println("End program.");
     }
 }
