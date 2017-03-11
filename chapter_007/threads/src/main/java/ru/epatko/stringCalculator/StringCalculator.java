@@ -35,13 +35,15 @@ public class StringCalculator {
         public void run() {
             for (int i = 0; i < 10; i++ ) {
                 if (!Thread.interrupted()) {
-                    try {
-                        Thread.sleep(200);
-                    } catch (InterruptedException e) {
-                        LOGGER.info(e.getMessage());
-                        return;
-                    }
                     System.out.println(string.split(" +").length);
+                } else {
+                    return;
+                }
+                try {
+                    Thread.sleep(200);
+                } catch (InterruptedException e) {
+                    LOGGER.info(e.getMessage());
+                    return;
                 }
             }
         }
@@ -72,13 +74,15 @@ public class StringCalculator {
         public void run() {
             for (int i = 0; i < 10; i++ ) {
                 if (!Thread.interrupted()) {
-                    try {
-                        Thread.sleep(200);
-                    } catch (InterruptedException e) {
-                        LOGGER.info(e.getMessage());
-                        return;
-                    }
                     System.out.println(string.split(" +").length - 1);
+                } else {
+                    return;
+                }
+                try {
+                    Thread.sleep(200);
+                } catch (InterruptedException e) {
+                    LOGGER.info(e.getMessage());
+                    return;
                 }
             }
         }
