@@ -34,12 +34,8 @@ public class StringCalculator {
         @Override
         public void run() {
             for (int i = 0; i < 10; i++ ) {
-                if (!Thread.interrupted()) {
-                    System.out.println(string.split(" +").length);
-                } else {
-                    return;
-                }
                 try {
+                    System.out.println(string.split(" +").length);
                     Thread.sleep(200);
                 } catch (InterruptedException e) {
                     LOGGER.info(e.getMessage());
@@ -73,12 +69,8 @@ public class StringCalculator {
         @Override
         public void run() {
             for (int i = 0; i < 10; i++ ) {
-                if (!Thread.interrupted()) {
-                    System.out.println(string.split(" +").length - 1);
-                } else {
-                    return;
-                }
                 try {
+                    System.out.println(string.split(" +").length - 1);
                     Thread.sleep(200);
                 } catch (InterruptedException e) {
                     LOGGER.info(e.getMessage());
