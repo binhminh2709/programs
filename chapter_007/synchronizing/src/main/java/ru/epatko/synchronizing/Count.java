@@ -8,7 +8,7 @@ public class Count {
 
     private int count = 0;
 
-    public int getCount() {
+    public synchronized int getCount() {
         return this.count;
     }
 

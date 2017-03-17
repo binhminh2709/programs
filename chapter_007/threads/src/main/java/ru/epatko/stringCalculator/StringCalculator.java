@@ -76,11 +76,14 @@ public class StringCalculator {
                     LOGGER.info(e.getMessage());
                     return;
                 }
+
             }
         }
     }
 
     public static void main(String[] args) {
+        final long startTime = System.currentTimeMillis();
+
         System.out.println("Start program.");
 
         Thread spaceCounterThread = new Thread(new SpaceCounter("111 222    333  444   555"));
@@ -99,5 +102,8 @@ public class StringCalculator {
         }
 
         System.out.println("End program.");
+
+        final long endTime = System.currentTimeMillis();
+        System.out.println(String.format("Work time: %,d ms", endTime - startTime));
     }
 }

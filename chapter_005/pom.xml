@@ -12,6 +12,7 @@
      	<module>map</module>
      	<module>tree</module>
      	<module>testtask</module>
+	<module>clientcounter</module>
 
     </modules>
     
