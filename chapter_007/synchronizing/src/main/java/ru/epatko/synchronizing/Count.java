@@ -6,12 +6,22 @@ package ru.epatko.synchronizing;
  */
 public class Count {
 
+    /**
+     * Count.
+     */
     private int count = 0;
 
+    /**
+     * Getter.
+     * @return count
+     */
     public synchronized int getCount() {
         return this.count;
     }
 
+    /**
+     * Increment.
+     */
     public synchronized void increment() {
         this.count++;
     }
