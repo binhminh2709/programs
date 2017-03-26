@@ -2,6 +2,13 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>jmm</artifactId>
     <version>1.0</version>
+    <dependencies>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>RELEASE</version>
+        </dependency>
+    </dependencies>
 
 
     <parent>

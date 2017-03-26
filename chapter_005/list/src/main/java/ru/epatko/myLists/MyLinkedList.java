@@ -9,11 +9,12 @@ import java.util.NoSuchElementException;
  */
 
 /**
- * MyLinkedList.
+ * 
  *
  * @param <E> any type of element
  */
 public class MyLinkedList<E> implements SimpleContainer<E> {
+
 
     /**
      * Pointer to first node.
@@ -29,6 +30,31 @@ public class MyLinkedList<E> implements SimpleContainer<E> {
      * Number of elements in List.
      */
     private int size = 0;
+    
+    public Node<E> getFirst() {
+        return this.first;
+    }
+
+    public Node<E> getLast() {
+        return this.last;
+    }
+
+    public int getSize() {
+        return this.size;
+    }
+
+    public void setFirst(Node<E> first) {
+        this.first = first;
+    }
+
+    public void setLast(Node<E> last) {
+        this.last = last;
+    }
+
+    public void setSize(int size) {
+        this.size = size;
+    }
+    
 
     /**
      * Add new element to container.
