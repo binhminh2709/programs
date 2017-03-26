@@ -2,6 +2,24 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>synchronizing</artifactId>
     <version>1.0</version>
+    <packaging>jar</packaging>
+
+
+    <dependencies>
+         <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>RELEASE</version>
+        </dependency>
+
+		<dependency>
+    	   <groupId>org.slf4j</groupId>
+    	    <artifactId>slf4j-log4j12</artifactId>
+    	   <version>RELEASE</version>
+   		</dependency>
+
+
+    </dependencies>
 
 
     <parent>
@@ -9,5 +27,31 @@
         <artifactId>chapter_007</artifactId>
         <version>1.0</version>
     </parent>
+
+    <build>
+		<finalName>find</finalName>
+		<plugins>
+			<plugin>
+      			<groupId>org.apache.maven.plugins</groupId>
+       			<artifactId>maven-shade-plugin</artifactId>
+        		<version>2.4.3</version>
+        			<executions>
+          				<execution>
+            				<phase>package</phase>
+            					<goals>
+            						<goal>shade</goal>
+            					</goals>
+            					<configuration>
+              						<transformers>
+                						<transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                  							<mainClass>ru.epatko.textsearcher.Searcher</mainClass>
+                  						</transformer>
+            						</transformers>
+            					</configuration>
+          				</execution>
+        			</executions>
+      		</plugin>
+      	</plugins>
+	</build>
 
 </project>
