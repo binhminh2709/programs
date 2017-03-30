@@ -37,10 +37,6 @@ public class Searcher extends SimpleFileVisitor<Path> {
      */
     private LinkedList<Thread> threads = new LinkedList<>();
     /**
-     * Path to file.
-     */
-    private Path path;
-    /**
      * Flag: find one or all matches.
      */
     private boolean findOne;
@@ -106,7 +102,6 @@ public class Searcher extends SimpleFileVisitor<Path> {
     @Override
     public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) {
        if (!stop) {
-//           this.path = file;
            this.threads.add(new Thread(new Finder(file)));
            threads.getLast().start();
             return CONTINUE;
