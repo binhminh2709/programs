@@ -35,7 +35,7 @@ public class Searcher extends SimpleFileVisitor<Path> {
     /**
      * Arraylist of threads.
      */
-    private ArrayList<Thread> threads = new ArrayList<>(50);
+    private LinkedList<Thread> threads = new LinkedList<>();
     /**
      * Path to file.
      */
@@ -106,10 +106,9 @@ public class Searcher extends SimpleFileVisitor<Path> {
     @Override
     public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) {
        if (!stop) {
-           this.path = file;
-           Finder finder = new Finder(file);
-           this.threads.add(new Thread(finder));
-           threads.get(threads.size() - 1).start();
+//           this.path = file;
+           this.threads.add(new Thread(new Finder(file)));
+           threads.getLast().start();
             return CONTINUE;
        } else {
             return TERMINATE;
@@ -185,14 +184,14 @@ public class Searcher extends SimpleFileVisitor<Path> {
         /**
          * Checked file.
          */
-        private Path checkedFile;
+        private Path fileToCheck;
 
         /**
          * Constructor.
-         * @param checkedFile checked file
+         * @param fileToCheck file to check
          */
-        Finder(Path checkedFile) {
-            this.checkedFile = checkedFile;
+        Finder(Path fileToCheck) {
+            this.fileToCheck = fileToCheck;
         }
 
         /**
@@ -201,14 +200,14 @@ public class Searcher extends SimpleFileVisitor<Path> {
         @Override
         public void run() {
             try {
-                File file = this.checkedFile.toFile();
-                if (file.exists() && file.canRead() && isFileText(path)) {
-                    List<String> stringList = Files.readAllLines(path, StandardCharsets.UTF_8);
+                File file = this.fileToCheck.toFile();
+                if (file.exists() && file.canRead() && isFileText()) {
+                    List<String> stringList = Files.readAllLines(fileToCheck, StandardCharsets.UTF_8);
                     for (String string : stringList) {
                         if (Thread.interrupted()) {
                             break;
                         } else if (string.contains(textToSearch)) {
-                            showResult(checkedFile, string);
+                            showResult(fileToCheck, string);
                             break;
                         }
                     }
@@ -220,15 +219,14 @@ public class Searcher extends SimpleFileVisitor<Path> {
 
         /**
          * Check if file is text file.
-         * @param path path to file
          * @return true or false
          * @throws IOException exception
          */
-        private boolean isFileText(Path path) throws IOException {
+        private boolean isFileText() throws IOException {
             try {
-                if (Files.probeContentType(path).contains("text")
-                    || Files.probeContentType(path).contains("xml")
-                    || Files.probeContentType(path).contains("pdf")) {
+                if (Files.probeContentType(fileToCheck).contains("text")
+                    || Files.probeContentType(fileToCheck).contains("xml")
+                    || Files.probeContentType(fileToCheck).contains("pdf")) {
                     return true;
                 }
             } catch (IOException ioe) {
